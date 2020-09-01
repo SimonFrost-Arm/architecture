@@ -2003,13 +2003,13 @@ Internet-Draft              RATS Arch & Terms             September 2020
    In this example, Evidence generation based on received handles always
    uses the current (most recent) handle.  As handles are distributed
    over the network, all involved entities receive a fresh handle at
-   roughly the same time.  The time that represents this event is named
-   Handle received: time(HR_x).  Due to distribution over the network,
-   there is some jitter with respect to time(HR_x) for each involved
-   entity.  To compensate for this jitter, there is a small period of
-   overlap (a specified offset) in which both a current handle and
-   corresponding former handle are valid in Evidence appraisal:
-   "validity-duration = time(HR_v') + offset - time(HR_v)".  The offset
+   roughly the same time.  Due to distribution over the network, there
+   is some jitter with respect to the time the Handle is received,
+   time(HR), for each involved entity.  To compensate for this jitter,
+   there is a small period of overlap (a specified offset) in which both
+   a current handle and corresponding former handle are valid in
+   Evidence appraisal: "validity-duration = time(HR_v') + offset -
+   time(HR_v)".  The offset is typically based on a network's round trip
 
 
 
@@ -2018,10 +2018,9 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 36]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
-   is typically based on a network's round trip time.  Analogously, the
-   generation of valid Evidence is only possible, if the age of the
-   handle used is lower than the validity-duration: "time(HR_v) -
-   time(EG_a) < validity-duration".
+   time.  Analogously, the generation of valid Evidence is only
+   possible, if the age of the handle used is lower than the validity-
+   duration: "time(HR_v) - time(EG_a) < validity-duration".
 
    From the point of view of a Verifier, the generation of valid
    Evidence is only possible, if the age of the handle used in the
@@ -2066,6 +2065,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                                                 |
            |                                              time(OP_r)
            |                                                 |
+
 
 
 
