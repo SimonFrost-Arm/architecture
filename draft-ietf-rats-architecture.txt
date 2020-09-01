@@ -94,7 +94,7 @@ Table of Contents
    4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   9
      4.1.  Appraisal Policies  . . . . . . . . . . . . . . . . . . .  10
      4.2.  Two Types of Environments of an Attester  . . . . . . . .  10
-     4.3.  Layered Attestation Environments  . . . . . . . . . . . .  11
+     4.3.  Layered Attestation Environments  . . . . . . . . . . . .  12
      4.4.  Composite Device  . . . . . . . . . . . . . . . . . . . .  13
    5.  Topological Models  . . . . . . . . . . . . . . . . . . . . .  16
      5.1.  Passport Model  . . . . . . . . . . . . . . . . . . . . .  16
@@ -541,19 +541,19 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Other examples may exist, and the examples discussed could even be
    combined into even more complex implementations.
 
-   Claims are collected from Target Environments, as shown in Figure 2.
-   That is, Attesting Environments collect the raw values and the
-   information to be represented in claims, such as by doing some
-   measurement of a Target Environment's code, memory, and/or registers.
-   Attesting Environments then format the claims appropriately, and
-   typically use key material and cryptographic functions, such as
-   signing or cipher algorithms, to create Evidence.  Places that
-   Attesting Environments can exist include Trusted Execution
-   Environments (TEE), embedded Secure Elements (eSE), and BIOS
-   firmware.  An execution environment may not, by default, be capable
-   of claims collection for a given Target Environment.  Execution
-   environments that are designed to be capable of claims collection are
-   referred to in this document as Attesting Environments.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -561,6 +561,22 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 10]
 
 Internet-Draft              RATS Arch & Terms             September 2020
 
+
+   Claims are collected from Target Environments, as shown in Figure 2.
+   That is, Attesting Environments collect the values and the
+   information to be represented in Claims, by reading system registers
+   and variables, calling into subsystems, taking measurements on code
+   or memory and so on of the Target Environment.  Attesting
+   Environments then format the claims appropriately, and typically use
+   key material and cryptographic functions, such as signing or cipher
+   algorithms, to create Evidence.  There is no limit to or requirement
+   on the places that an Attesting Environment can exist, but they
+   typically are in Trusted Execution Environments (TEE), embedded
+   Secure Elements (eSE), and BIOS firmware.  An execution environment
+   may not, by default, be capable of claims collection for a given
+   Target Environment.  Execution environments that are designed to be
+   capable of claims collection are referred to in this document as
+   Attesting Environments.
 
                     .--------------------------------.
                     |                                |
@@ -592,6 +608,16 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
                     Figure 2: Two Types of Environments
 
+
+
+
+
+
+Birkholz, et al.          Expires 5 March 2021                 [Page 11]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
 4.3.  Layered Attestation Environments
 
    By definition, the Attester role creates Evidence.  An Attester may
@@ -605,18 +631,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Figure 3 depicts an example of a device that includes (A) a BIOS
    stored in read-only memory in this example, (B) an updatable
    bootloader, and (C) an operating system kernel.
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 5 March 2021                 [Page 11]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
                .----------.                    .----------.
                |          |                    |          |
@@ -652,6 +666,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                                    |
            '------------------------------------'
 
+
+
+
+Birkholz, et al.          Expires 5 March 2021                 [Page 12]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
                          Figure 3: Layered Attester
 
    Attesting Environment A, the read-only BIOS in this example, has to
@@ -666,14 +688,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    important and defining feature of layered attestation, which is that
    the successfully measured Target Environment B now becomes (or
    contains) an Attesting Environment for the next layer.  This
-
-
-
-Birkholz, et al.          Expires 5 March 2021                 [Page 12]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    procedure in Layered Attestation is sometimes called "staging".  It
    is important that the new Attesting Environment B not be able to
    alter any Claims about its own Target Environment B.  This can be
@@ -708,20 +722,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Each sub-entity has at least one Attesting Environment collecting the
    claims from at least one Target Environment, then this sub-entity
    generates Evidence about its trustworthiness.  Therefore each sub-
-   entity can be called an Attester.  Among all the Attesters, there may
-   be only some which have the ability to communicate with the Verifier
-   while others do not.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -729,6 +729,10 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 13]
 
 Internet-Draft              RATS Arch & Terms             September 2020
 
+
+   entity can be called an Attester.  Among all the Attesters, there may
+   be only some which have the ability to communicate with the Verifier
+   while others do not.
 
    For example, a carrier-grade router consists of a chassis and
    multiple slots.  The trustworthiness of the router depends on all its
@@ -755,10 +759,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Attester.
 
    Figure 4 depicts the conceptual data flow for a Composite Device.
-
-
-
-
 
 
 
