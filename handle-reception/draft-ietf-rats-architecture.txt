@@ -2025,8 +2025,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    From the point of view of a Verifier, the generation of valid
    Evidence is only possible, if the age of the handle used in the
    Evidence generation is younger than the duration of the distribution
-   interval - "(time(HD')-time(HD)) - (time(HR)-time(EG)) < validity-
-   duration".
+   interval - "delta(time(HD),time(EG)) < delta(time(HD),time(HD'))".
 
    Due to the validity-duration of handles, multiple different pieces of
    Evidence can be generated based on the same handle.  The resulting
@@ -2065,6 +2064,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                                                 |
            |                                              time(OP)
            |                                                 |
+
 
 
 
