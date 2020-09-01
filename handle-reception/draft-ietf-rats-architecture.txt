@@ -1779,7 +1779,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    |    | relayed      | another entity.                               |
    +----+--------------+-----------------------------------------------+
    | HR | Handle       | A handle distributed by a Handle              |
-   |    | received     | Distributor was received.                     |
+   |    | received     | Distributor was received                      |
    +----+--------------+-----------------------------------------------+
    | EG | Evidence     | An Attester creates Evidence from             |
    |    | generation   | collected Claims.                             |
@@ -1991,13 +1991,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
    entity that requires access to a source of time is the entity taking
    on the role of Handle Distributor.
 
-   Handles are different from nonces as they can be used more than once
-   and can be used by more than one entity at the same time.  Handles
-   are different from timestamps as they do not have to convey
-   information about a point in time, but their reception creates that
-   information.  The reception of a handle is similar to the event that
-   increments a relative tickcounter.  Receipt of a new handle
-   invalidates a previously received handle.
+   Handles are different to nonces as they are not used only once and
+   are used by more than one entity at the same time.  Handles are
+   different to timestamps as they do not have to convey information
+   about a point in time, but their reception creates that information.
+   The reception of a handle is similar to the event that increments a
+   relative tickcounter.  The event at which a handle is received a new
+   (most recent) handle outdates (and therefore invalidates) the former
+   received handle.
 
    In this example, Evidence generation based on received handles always
    uses the current (most recent) handle.  As handles are distributed
@@ -2009,7 +2010,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    overlap (a specified offset) in which both a current handle and
    corresponding former handle are valid in Evidence appraisal:
    "validity-duration = time(HR') + offset - time(HR)".  The offset is
-   typically based on a network's round trip time.  Analogously, the
 
 
 
@@ -2018,15 +2018,15 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 36]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+   typically based on a network's round trip time.  Analogously, the
    generation of valid Evidence is only possible, if the age of the
-   handle used is lower than the validity-duration: "time(HR) - time(EG)
-   < validity-duration".
+   handle used is lower than the validity-duration:
+   "delta(time(EG),time(HR) < validity-duration".
 
    From the point of view of a Verifier, the generation of valid
    Evidence is only possible, if the age of the handle used in the
    Evidence generation is younger than the duration of the distribution
-   interval - "(time(HD')-time(HD)) - (time(HR)-time(EG)) < validity-
-   duration".
+   interval - "delta(time(HD),time(EG)) < delta(time(HD),time(HD'))".
 
    Due to the validity-duration of handles, multiple different pieces of
    Evidence can be generated based on the same handle.  The resulting
@@ -2045,7 +2045,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                |                |               |
            ~                ~                ~               ~
            |                |                |               |
-        time(HR)<-----------+-------------time(HR)------->time(HR)
+        time(HRa)<----------+-------------time(HRv)------>time(HRr)
            |                |                |               |
         time(EG)            |                |               |
            |------Evidence{time(EG)}-------->|               |
@@ -2056,7 +2056,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                |                                |
            ~                ~                                ~
            |                |                                |
-        time(HR')<----------'---------------------------->time(HR')
+        time(HRa')<----------'-------------------------->time(HRr')
            |                                                 |
         time(RR)
            |----Attestation Result{time(RX)-time(RG)}---->time(RA)
