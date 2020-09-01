@@ -2662,16 +2662,16 @@ To enable this availability, handles are distributed centrally by the Handle Dis
 As any other role, the Handle Distributor role can be taken on by a dedicated entity or collapsed with other roles, such as a Verifier.
 The use of handles can compensate for a lack of clocks or other sources of time on entities taking on RATS roles.
 The only entity that requires access to a source of time is the entity taking on the role of Handle Distributor.<a href="#section-16.3-1" class="pilcrow">¶</a></p>
-<p id="section-16.3-2">Handles are different to nonces as they are not used only once and are used by more than one entity at the same time.
-Handles are different to timestamps as they do not have to convey information about a point in time, but their reception creates that information.
+<p id="section-16.3-2">Handles are different from nonces as they can be used more than once and can be used by more than one entity at the same time.
+Handles are different from timestamps as they do not have to convey information about a point in time, but their reception creates that information.
 The reception of a handle is similar to the event that increments a relative tickcounter.
-The event at which a handle is received a new (most recent) handle outdates (and therefore invalidates) the former received handle.<a href="#section-16.3-2" class="pilcrow">¶</a></p>
+Receipt of a new handle invalidates a previously received handle.<a href="#section-16.3-2" class="pilcrow">¶</a></p>
 <p id="section-16.3-3">In this example, Evidence generation based on received handles always uses the current (most recent) handle.
 As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
 The time that represents this event is named Handle received: time(HR). Due to distribution over the network, there is some jitter with respect to time(HR) for each involved entity.
 To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: <code>validity-duration = time(HR') + offset - time(HR)</code>. The offset is typically based on a network's round trip time.
-Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: <code>delta(time(EG),time(HR) &lt; validity-duration</code>.<a href="#section-16.3-3" class="pilcrow">¶</a></p>
-<p id="section-16.3-4">From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval - "delta(time(HD),time(EG)) &lt; delta(time(HD),time(HD'))".<a href="#section-16.3-4" class="pilcrow">¶</a></p>
+Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: <code>time(HR) - time(EG) &lt; validity-duration</code>.<a href="#section-16.3-3" class="pilcrow">¶</a></p>
+<p id="section-16.3-4">From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval - "(time(HD')-time(HD)) - (time(HR)-time(EG)) &lt; validity-duration".<a href="#section-16.3-4" class="pilcrow">¶</a></p>
 <p id="section-16.3-5">Due to the validity-duration of handles, multiple different pieces of Evidence can be generated based on the same handle.
 The resulting granularity (time resolution) of Evidence freshness is typically lower than the resolution of clock-based tickcounters.<a href="#section-16.3-5" class="pilcrow">¶</a></p>
 <p id="section-16.3-6">The following example illustrates a hypothetical Background-Check Model solution that uses handles and requires a trustworthy time source available to the Handle Distributor role.<a href="#section-16.3-6" class="pilcrow">¶</a></p>
