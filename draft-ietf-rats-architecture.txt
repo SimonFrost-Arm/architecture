@@ -135,11 +135,11 @@ Internet-Draft              RATS Arch & Terms             September 2020
      16.2.  Example 2: Nonce-based Passport Model Example  . . . . .  35
      16.3.  Example 3: Timestamp-based Background-Check Model
             Example  . . . . . . . . . . . . . . . . . . . . . . . .  36
-     16.4.  Example 4: Nonce-based Background-Check Model Example  .  36
+     16.4.  Example 4: Nonce-based Background-Check Model Example  .  37
    17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  37
      17.1.  Normative References . . . . . . . . . . . . . . . . . .  37
-     17.2.  Informative References . . . . . . . . . . . . . . . . .  37
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  38
+     17.2.  Informative References . . . . . . . . . . . . . . . . .  38
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  39
 
 1.  Introduction
 
@@ -1756,36 +1756,36 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Universal Time, or might be defined relative to some other timestamp
    or timeticks counter.
 
-   +====+==============+===============================================+
-   | ID | Event        | Explanation of event                          |
-   +====+==============+===============================================+
-   | VG | Value        | A value to appear in a Claim was              |
-   |    | generation   | created.                                      |
-   +----+--------------+-----------------------------------------------+
-   | AA | Attester     | An Attesting Environment starts to            |
-   |    | awareness    | be aware of a new/changed Claim               |
-   |    |              | value.                                        |
-   +----+--------------+-----------------------------------------------+
-   | HD | Handle       | A centrally generated identifier for          |
-   |    | distribution | time-bound recentness across a                |
-   |    |              | domain of devices is successfully             |
-   |    |              | distributed to Attesters.                     |
-   +----+--------------+-----------------------------------------------+
-   | NS | Nonce sent   | A nonce not predictable to an                 |
-   |    |              | Attester (recentness & uniqueness)            |
-   |    |              | is sent to an Attester.                       |
-   +----+--------------+-----------------------------------------------+
-   | NR | Nonce        | A nonce is relayed to an Attester by          |
-   |    | relayed      | another entity.                               |
-   +----+--------------+-----------------------------------------------+
-   | EG | Evidence     | An Attester creates Evidence from             |
-   |    | generation   | collected Claims.                             |
-   +----+--------------+-----------------------------------------------+
-   | ER | Evidence     | A Relying Party relays Evidence to a          |
-   |    | relayed      | Verifier.                                     |
-   +----+--------------+-----------------------------------------------+
-   | RG | Result       | A Verifier appraises Evidence and             |
-   |    | generation   | generates an Attestation Result.              |
+    +====+==============+=============================================+
+    | ID | Event        | Explanation of event                        |
+    +====+==============+=============================================+
+    | VG | Value        | A value to appear in a Claim was created.   |
+    |    | generated    | In some cases, a value may have technically |
+    |    |              | existed before an Attester became aware of  |
+    |    |              | it but the Attester might have no idea how  |
+    |    |              | long it has had that value.  In such a      |
+    |    |              | case, the Value created time is the time at |
+    |    |              | which the Claim containing the copy of the  |
+    |    |              | value was created.                          |
+    +----+--------------+---------------------------------------------+
+    | HD | Handle       | A centrally generated identifier for time-  |
+    |    | distribution | bound recentness across a domain of devices |
+    |    |              | is successfully distributed to Attesters.   |
+    +----+--------------+---------------------------------------------+
+    | NS | Nonce sent   | A nonce not predictable to an Attester      |
+    |    |              | (recentness & uniqueness) is sent to an     |
+    |    |              | Attester.                                   |
+    +----+--------------+---------------------------------------------+
+    | NR | Nonce        | A nonce is relayed to an Attester by        |
+    |    | relayed      | another entity.                             |
+    +----+--------------+---------------------------------------------+
+    | EG | Evidence     | An Attester creates Evidence from collected |
+    |    | generation   | Claims.                                     |
+    +----+--------------+---------------------------------------------+
+    | ER | Evidence     | A Relying Party relays Evidence to a        |
+    |    | relayed      | Verifier.                                   |
+    +----+--------------+---------------------------------------------+
+    | RG | Result       | A Verifier appraises Evidence and generates |
 
 
 
@@ -1794,24 +1794,24 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 32]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
-   +----+--------------+-----------------------------------------------+
-   | RR | Result       | A Relying Party relays an                     |
-   |    | relayed      | Attestation Result to a Relying               |
-   |    |              | Party.                                        |
-   +----+--------------+-----------------------------------------------+
-   | RA | Result       | The Relying Party appraises                   |
-   |    | appraised    | Attestation Results.                          |
-   +----+--------------+-----------------------------------------------+
-   | OP | Operation    | The Relying Party performs some               |
-   |    | performed    | operation requested by the Attester.          |
-   |    |              | For example, acting upon some                 |
-   |    |              | message just received across a                |
-   |    |              | session created earlier at time(RA).          |
-   +----+--------------+-----------------------------------------------+
-   | RX | Result       | An Attestation Result should no               |
-   |    | expiry       | longer be accepted, according to the          |
-   |    |              | Verifier that generated it.                   |
-   +----+--------------+-----------------------------------------------+
+    |    | generation   | an Attestation Result.                      |
+    +----+--------------+---------------------------------------------+
+    | RR | Result       | A Relying Party relays an Attestation       |
+    |    | relayed      | Result to a Relying Party.                  |
+    +----+--------------+---------------------------------------------+
+    | RA | Result       | The Relying Party appraises Attestation     |
+    |    | appraised    | Results.                                    |
+    +----+--------------+---------------------------------------------+
+    | OP | Operation    | The Relying Party performs some operation   |
+    |    | performed    | requested by the Attester.  For example,    |
+    |    |              | acting upon some message just received      |
+    |    |              | across a session created earlier at         |
+    |    |              | time(RA).                                   |
+    +----+--------------+---------------------------------------------+
+    | RX | Result       | An Attestation Result should no longer be   |
+    |    | expiry       | accepted, according to the Verifier that    |
+    |    |              | generated it.                               |
+    +----+--------------+---------------------------------------------+
 
                                   Table 1
 
@@ -1825,9 +1825,9 @@ Internet-Draft              RATS Arch & Terms             September 2020
    The following example illustrates a hypothetical Passport Model
    solution that uses timestamps and requires roughly synchronized
    clocks between the Attester, Verifier, and Relying Party, which
-   depends on using a secure clock synchronization mechanism.
-
-
+   depends on using a secure clock synchronization mechanism.  As a
+   result, the receiver of a conceptual message containing a timestamp
+   can directly compare it to its own clock and timestamps.
 
 
 
@@ -1912,48 +1912,48 @@ Internet-Draft              RATS Arch & Terms             September 2020
    solution that uses nonces and thus does not require that any clocks
    are synchronized.
 
+   As a result, the receiver of a conceptual message containing a
+   timestamp cannot directly compare it to its own clock or timestamps.
+   Thus we use a suffix (a for Attester, v for verifier, and r for
+   Relying Party) on the IDs below indicating which clock generated
+   them, since times from different clocks cannot be compared.  Only the
+   delta between two events from the sender can be used by the receiver.
+
       .----------.                     .----------.  .---------------.
       | Attester |                     | Verifier |  | Relying Party |
       '----------'                     '----------'  '---------------'
-        time(VG)                             |               |
+        time(VG_a)                           |               |
            |                                 |               |
            ~                                 ~               ~
            |                                 |               |
-           |<---Nonce1--------------------time(NS)           |
-        time(EG)                             |               |
-           |----Evidence-------------------->|               |
-           |     {Nonce1, time(EG)-time(VG)} |               |
-           |                              time(RG)           |
-           |<---Attestation Result-----------|               |
-           |     {time(RX)-time(RG)}         |               |
+           |<--Nonce1---------------------time(NS_v)         |
+        time(EG_a)                           |               |
+           |---Evidence--------------------->|               |
+           | {Nonce1, time(EG_a)-time(VG_a)} |               |
+           |                              time(RG_v)         |
+           |<--Attestation Result------------|               |
+           |   {time(RX_v)-time(RG_v)}       |               |
            ~                                                 ~
            |                                                 |
-           |<---Nonce2------------------------------------time(NS')
-        time(RR)
-           |----Attestation Result{time(RX)-time(RG)}---->time(RA)
-           |    Nonce2, time(RR)-time(EG)                    |
+           |<--Nonce2-------------------------------------time(NS_r)
+        time(RRa)
+           |---Attestation Result{time(RX_v)-time(RG_v)}->time(RA_r)
+           |   Nonce2, time(RR_a)-time(EG_a)                 |
            ~                                                 ~
            |                                                 |
-           |                                              time(OP)
+           |                                              time(OP_r)
 
    In this example solution, the Verifier can check whether the Evidence
-   is fresh at time(RG) by verifying that "time(RG) - time(NS) <
+   is fresh at "time(RG_v)" by verifying that "time(RG_v)-time(NS_v) <
    Threshold".
 
    The Verifier cannot, however, simply rely on a Nonce to determine
    whether the value of a claim is recent, since the claim value might
    have been generated long before the nonce was sent by the Verifier.
    However, if the Verifier decides that the Attester can be trusted to
-   correctly provide the delta time(EG)-time(VG), then it can determine
-   recency by checking "time(RG)-time(NS) + time(EG)-time(VG) <
-   Threshold".
-
-
-
-
-
-
-
+   correctly provide the delta "time(EG_a)-time(VG_a)", then it can
+   determine recency by checking "time(RG_v)-time(NS_v) + time(EG_a)-
+   time(VG_a) < Threshold".
 
 
 
@@ -1965,17 +1965,18 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Similarly if, based on an Attestation Result from a Verifier it
    trusts, the Relying Party decides that the Attester can be trusted to
    correctly provide time deltas, then it can determine whether the
-   Attestation Result is fresh by checking "time(OP) - time(NS') +
-   time(RR)-time(EG) < Threshold".  Although the Nonce2 and time(RR)-
-   time(EG) values cannot be inside the Attestation Result, they might
-   be signed by the Attester such that the Attestation Result vouches
-   for the Attester's signing capability.
+   Attestation Result is fresh by checking "time(OP_r)-time(NS_r) +
+   time(RR_a)-time(EG_a) < Threshold".  Although the Nonce2 and
+   "time(RR_a)-time(EG_a)" values cannot be inside the Attestation
+   Result, they might be signed by the Attester such that the
+   Attestation Result vouches for the Attester's signing capability.
 
    The Relying Party must still be careful, however, to not allow
    continued use beyond the period for which it deems the Attestation
    Result to remain valid.  Thus, if the Attestation Result sends a
-   validity lifetime in terms of time(RX)-time(RG), then the Relying
-   Party can check "time(OP) - time(NS') < time(RX)-time(RG)".
+   validity lifetime in terms of "time(RX_v)-time(RG_v)", then the
+   Relying Party can check "time(OP_r)-time(NS_r) < time(RX_v)-
+   time(RG_v)".
 
 16.3.  Example 3: Timestamp-based Background-Check Model Example
 
@@ -2003,13 +2004,12 @@ Internet-Draft              RATS Arch & Terms             September 2020
    The time considerations in this example are equivalent to those
    discussed under Example 1 above.
 
-16.4.  Example 4: Nonce-based Background-Check Model Example
 
-   The following example illustrates a hypothetical Background-Check
-   Model solution that uses nonces and thus does not require that any
-   clocks are synchronized.  In this example solution, a nonce is
-   generated by a Verifier at the request of a Relying Party, when the
-   Relying Party needs to send one to an Attester.
+
+
+
+
+
 
 
 
@@ -2018,37 +2018,46 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 36]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+16.4.  Example 4: Nonce-based Background-Check Model Example
+
+   The following example illustrates a hypothetical Background-Check
+   Model solution that uses nonces and thus does not require that any
+   clocks are synchronized.  In this example solution, a nonce is
+   generated by a Verifier at the request of a Relying Party, when the
+   Relying Party needs to send one to an Attester.
+
    .----------.         .---------------.              .----------.
    | Attester |         | Relying Party |              | Verifier |
    '----------'         '---------------'              '----------'
-     time(VG)                   |                           |
+     time(VG_a)                 |                           |
         |                       |                           |
         ~                       ~                           ~
         |                       |                           |
-        |                       |<-----Nonce-------------time(NS)
-        |<---Nonce-----------time(NR)                       |
-     time(EG)                   |                           |
+        |                       |<-------Nonce-----------time(NS_v)
+        |<---Nonce-----------time(NR_r)                     |
+     time(EG_a)                 |                           |
         |----Evidence{Nonce}--->|                           |
-        |                    time(ER)--Evidence{Nonce}----->|
-        |                       |                        time(RG)
-        |                    time(RA)<-Attestation Result---|
-        |                       |      {time(RX)-time(RG)}  |
+        |                    time(ER_r)--Evidence{Nonce}--->|
+        |                       |                        time(RG_v)
+        |                    time(RA_r)<-Attestation Result-|
+        |                       |   {time(RX_v)-time(RG_v)} |
         ~                       ~                           ~
         |                       |                           |
-        |                    time(OP)                       |
+        |                    time(OP_r)                     |
 
    The Verifier can check whether the Evidence is fresh, and whether a
    claim value is recent, the same as in Example 2 above.
 
    However, unlike in Example 2, the Relying Party can use the Nonce to
    determine whether the Attestation Result is fresh, by verifying that
-   "time(OP) - time(NR) < Threshold".
+   "time(OP_r)-time(NR_r) < Threshold".
 
    The Relying Party must still be careful, however, to not allow
    continued use beyond the period for which it deems the Attestation
    Result to remain valid.  Thus, if the Attestation Result sends a
-   validity lifetime in terms of time(RX)-time(RG), then the Relying
-   Party can check "time(OP) - time(ER) < time(RX)-time(RG)".
+   validity lifetime in terms of "time(RX_v)-time(RG_v)", then the
+   Relying Party can check "time(OP_r)-time(ER_r) < time(RX_v)-
+   time(RG_v)".
 
 17.  References
 
@@ -2058,21 +2067,18 @@ Internet-Draft              RATS Arch & Terms             September 2020
               (JWT)", RFC 7519, DOI 10.17487/RFC7519, May 2015,
               <https://www.rfc-editor.org/info/rfc7519>.
 
-   [RFC8392]  Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
-              "CBOR Web Token (CWT)", RFC 8392, DOI 10.17487/RFC8392,
-              May 2018, <https://www.rfc-editor.org/info/rfc8392>.
-
-17.2.  Informative References
-
-
-
-
 
 
 Birkholz, et al.          Expires 5 March 2021                 [Page 37]
 
 Internet-Draft              RATS Arch & Terms             September 2020
 
+
+   [RFC8392]  Jones, M., Wahlstroem, E., Erdtman, S., and H. Tschofenig,
+              "CBOR Web Token (CWT)", RFC 8392, DOI 10.17487/RFC8392,
+              May 2018, <https://www.rfc-editor.org/info/rfc8392>.
+
+17.2.  Informative References
 
    [CTAP]     FIDO Alliance, "Client to Authenticator Protocol", n.d.,
               <https://fidoalliance.org/specs/fido-v2.0-id-20180227/
@@ -2117,12 +2123,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    [WebAuthN] W3C, "Web Authentication: An API for accessing Public Key
               Credentials", n.d., <https://www.w3.org/TR/webauthn-1/>.
 
-Authors' Addresses
-
-   Henk Birkholz
-   Fraunhofer SIT
-   Rheinstrasse 75
-
 
 
 Birkholz, et al.          Expires 5 March 2021                 [Page 38]
@@ -2130,6 +2130,11 @@ Birkholz, et al.          Expires 5 March 2021                 [Page 38]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+Authors' Addresses
+
+   Henk Birkholz
+   Fraunhofer SIT
+   Rheinstrasse 75
    64295 Darmstadt
    Germany
 
@@ -2161,11 +2166,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Huawei Technologies
 
    Email: william.panwei@huawei.com
-
-
-
-
-
 
 
 
