@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-08-29T01:47:56.960052+00:00",
+  "timestamp": "2020-09-01T12:17:23.868164+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -16282,6 +16282,288 @@
           "createdAt": "2020-08-25T14:32:30Z",
           "updatedAt": "2020-08-25T14:32:30Z",
           "comments": []
+        }
+      ]
+    },
+    {
+      "number": 140,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDc1NzAyMDI0",
+      "title": "Fix Evidence Appraisal Policy term to be consistent",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/140",
+      "state": "MERGED",
+      "author": "dthaler",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Change \"Evidence Appraisal Policy\" -> \"Appraisal Policy for Evidence\"\r\n\r\nFixes editorial nit reported to me by Tolga Acar\r\n\r\nSigned-off-by: Dave Thaler <dthaler@ntdev.microsoft.com>",
+      "createdAt": "2020-08-29T01:48:13Z",
+      "updatedAt": "2020-09-01T00:26:34Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "7542286b15cccf0c600618d4b4ec83b4e68982df",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "fix",
+      "headRefOid": "7d3a185249a6c83a48b28b7c7923fc02982b0cc0",
+      "closedAt": "2020-08-29T19:50:09Z",
+      "mergedAt": "2020-08-29T19:50:09Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc4MDk1NjM4",
+          "commit": {
+            "abbreviatedOid": "7d3a185"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "looks good.",
+          "createdAt": "2020-08-29T03:56:07Z",
+          "updatedAt": "2020-08-29T03:56:07Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc4MTAyMjE1",
+          "commit": {
+            "abbreviatedOid": "7d3a185"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-08-29T06:12:14Z",
+          "updatedAt": "2020-08-29T06:12:14Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 141,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDc2NDU4ODgy",
+      "title": "Tighten up terminology definitions.",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/141",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-08-31T18:25:15Z",
+      "updatedAt": "2020-08-31T18:25:15Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
+      "headRepository": "laurencelundblade/architecture",
+      "headRefName": "patch-4",
+      "headRefOid": "0a925a9570caf0ce7d3fbf902e64029bf12c2f4e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 142,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDc2NDcyNTE5",
+      "title": "Generalize Attester Description",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/142",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Be clear Attesters don't just do measurements and that they can exist anywhere.",
+      "createdAt": "2020-08-31T18:53:26Z",
+      "updatedAt": "2020-09-01T02:39:00Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
+      "headRepository": "laurencelundblade/architecture",
+      "headRefName": "patch-5",
+      "headRefOid": "e4d698db8a1163e721e0a48585a29748497c9f4b",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5MzYxNzM4",
+          "commit": {
+            "abbreviatedOid": "e4d698d"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-01T02:38:59Z",
+          "updatedAt": "2020-09-01T02:39:00Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nThere is no limit to or requirement of places an Attesting Environment can exist, but they typically are in Trusted Execution Environments (TEE), embedded Secure Elements\r\n```",
+              "createdAt": "2020-09-01T02:38:59Z",
+              "updatedAt": "2020-09-01T02:39:00Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 143,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDc2NDgxMTIy",
+      "title": "Refer to Owner rather than administrator.",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/143",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Also, my assumption is that all messages, configs and such go over one of the arrows in the figure. There are no back channels for things that are vital to or a major part of attestation. Seems like it would be a poor document if the major parts of attestation are not explicitly carried in the flows depicted.",
+      "createdAt": "2020-08-31T19:02:04Z",
+      "updatedAt": "2020-09-01T01:44:48Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
+      "headRepository": "laurencelundblade/architecture",
+      "headRefName": "patch-6",
+      "headRefOid": "e1cbb8e5dca91a3ef2d44f46106a3089c5e012e3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5MzA0MDI2",
+          "commit": {
+            "abbreviatedOid": "e1cbb8e"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-01T01:44:48Z",
+          "updatedAt": "2020-09-01T01:44:48Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "I prefer \u2018might be\u2019 here, and configuration may be just one of the possible mechanisms. Suggest changing it back.",
+              "createdAt": "2020-09-01T01:44:48Z",
+              "updatedAt": "2020-09-01T01:44:48Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 144,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDc2NzM3NzU0",
+      "title": "Annotate incomparable timestamps with a clock-specific suffix",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/144",
+      "state": "OPEN",
+      "author": "dthaler",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Per offline discussion between Henk and Dave, trying this annotation to see if it helps\r\n\r\nAlso try combining VG and AA into VC since nothing in doc uses AA, and any example could use either VG or AA, so combining makes any example work for both.\r\n\r\nSigned-off-by: Dave Thaler <dthaler@ntdev.microsoft.com>",
+      "createdAt": "2020-09-01T00:48:53Z",
+      "updatedAt": "2020-09-01T07:08:29Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "clocks",
+      "headRefOid": "0f44a09ad5d5ee6be126f6048a5d439b510ee6a3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5MzU5NzY1",
+          "commit": {
+            "abbreviatedOid": "0f44a09"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2020-09-01T02:32:15Z",
+          "updatedAt": "2020-09-01T02:32:25Z",
+          "comments": [
+            {
+              "originalPosition": 121,
+              "body": "Here is a little weird to me. Because even when the actual time(NSr) > actual time(RXv), 'time(OPr)-time(NSr) < time(RXv)-time(RGv)' may still be true. If so this comparsion makes no sense.\r\nOne better expression here, I think, is that 'time(OPr)-time(NSr) + time(RRa)-time(EGa) < time(RXv)-time(RGv)'.",
+              "createdAt": "2020-09-01T02:32:15Z",
+              "updatedAt": "2020-09-01T02:32:25Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5NDQzMDg3",
+          "commit": {
+            "abbreviatedOid": "0f44a09"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-01T06:45:52Z",
+          "updatedAt": "2020-09-01T06:45:52Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\n| VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value generated time is the time at which the Claim containing the copy of the value was created.\r\n```",
+              "createdAt": "2020-09-01T06:45:52Z",
+              "updatedAt": "2020-09-01T07:08:29Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5NDQzMjMz",
+          "commit": {
+            "abbreviatedOid": "0f44a09"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-01T06:46:07Z",
+          "updatedAt": "2020-09-01T06:46:07Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "Less growing pains, more consistency?",
+              "createdAt": "2020-09-01T06:46:07Z",
+              "updatedAt": "2020-09-01T06:46:26Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5NDQ2ODUw",
+          "commit": {
+            "abbreviatedOid": "0f44a09"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-01T06:52:32Z",
+          "updatedAt": "2020-09-01T06:52:32Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "The underlying question here is. Is it necessary that some Verifiers are informed about the \"timeliness\" of the \"new VG\"?\r\n\r\nAs Dave already highlighted, we discussed this a bit and the sanity check ask is the following:\r\n\r\nIf we collapse VG and AA semantics, it is not distinguishable for Verifier, if a corresponding Value generated time is about Attester awareness/Claim generation or Value Generation. Is that okay or does that create uncertainty that could result in degradation of evidence trustworthiness?",
+              "createdAt": "2020-09-01T06:52:32Z",
+              "updatedAt": "2020-09-01T06:52:32Z"
+            }
+          ]
         }
       ]
     }
