@@ -1826,7 +1826,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    All times are relative to the local clocks, indicated by an "a"
    (Attester), "v" (Verifier), or "r" (Relying Party) suffix.
 
-   How and if clocks are synchronized only depends upon the model.
+   How and if clocks are synchronized depends upon the model.
 
 16.1.  Example 1: Timestamp-based Passport Model Example
 
