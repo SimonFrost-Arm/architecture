@@ -5,14 +5,14 @@
 RATS Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Informational                                 D. Thaler
-Expires: 19 February 2021                                      Microsoft
+Expires: 5 March 2021                                          Microsoft
                                                            M. Richardson
                                                 Sandelman Software Works
                                                                 N. Smith
                                                                    Intel
                                                                   W. Pan
                                                      Huawei Technologies
-                                                          18 August 2020
+                                                        1 September 2020
 
 
                Remote Attestation Procedures Architecture
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 1]
+Birkholz, et al.          Expires 5 March 2021                  [Page 1]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Internet-Drafts are draft documents valid for a maximum of six months
@@ -63,7 +63,7 @@ Internet-Draft              RATS Arch & Terms                August 2020
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 February 2021.
+   This Internet-Draft will expire on 5 March 2021.
 
 Copyright Notice
 
@@ -90,7 +90,8 @@ Table of Contents
      3.4.  Critical Infrastructure Control . . . . . . . . . . . . .   7
      3.5.  Trusted Execution Environment (TEE) Provisioning  . . . .   7
      3.6.  Hardware Watchdog . . . . . . . . . . . . . . . . . . . .   8
-   4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   8
+     3.7.  FIDO Biometric Authentication . . . . . . . . . . . . . .   8
+   4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   9
      4.1.  Appraisal Policies  . . . . . . . . . . . . . . . . . . .  10
      4.2.  Two Types of Environments of an Attester  . . . . . . . .  10
      4.3.  Layered Attestation Environments  . . . . . . . . . . . .  11
@@ -105,15 +106,15 @@ Table of Contents
      7.2.  Attester  . . . . . . . . . . . . . . . . . . . . . . . .  21
      7.3.  Relying Party Owner . . . . . . . . . . . . . . . . . . .  21
      7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
-     7.5.  Endorser and Verifier Owner . . . . . . . . . . . . . . .  22
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 2]
+Birkholz, et al.          Expires 5 March 2021                  [Page 2]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
+     7.5.  Endorser and Verifier Owner . . . . . . . . . . . . . . .  22
    8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  22
      8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  22
      8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  22
@@ -164,10 +165,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-
-Birkholz, et al.        Expires 19 February 2021                [Page 3]
+Birkholz, et al.          Expires 5 March 2021                  [Page 3]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    The Verifier appraises Evidence via Appraisal Policies and creates
@@ -221,9 +221,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 4]
+Birkholz, et al.          Expires 5 March 2021                  [Page 4]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Claim:  A piece of asserted information, often in the form of a name/
@@ -277,9 +277,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 5]
+Birkholz, et al.          Expires 5 March 2021                  [Page 5]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 3.1.  Network Endpoint Assessment
@@ -333,9 +333,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 6]
+Birkholz, et al.          Expires 5 March 2021                  [Page 6]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 3.3.  Confidential Data Retrieval
@@ -389,9 +389,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021                [Page 7]
+Birkholz, et al.          Expires 5 March 2021                  [Page 7]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
       running trusted applications that can be updated
@@ -420,35 +420,45 @@ Internet-Draft              RATS Arch & Terms                August 2020
       permission to continue operating (i.e., not reboot) for a period
       of time
 
+3.7.  FIDO Biometric Authentication
+
+   In the Fast IDentity Online (FIDO) protocol [WebAuthN], [CTAP], the
+   device in the user's hand authenticates the human user, whether by
+   biometrics (such as fingerprints), or by PIN and password.  FIDO
+   authentication puts a large amount of trust in the device compared to
+   typical password authentication because it is the device that
+   verifies the biometric, PIN and password inputs from the user, not
+   the server.  For the Relying Party to know that the authentication is
+   trustworthy, the Relying Party needs to know that the Authenticator
+   part of the device is trustworthy.  The FIDO protocol employs remote
+   attestation for this.
+
+   The FIDO protocol supports several remote attestation protocols and a
+   mechanism by which new ones can be registered and added.  Remote
+   attestation defined by RATS is thus a candidate for use in the FIDO
+   protocol.
+
+   Other biometric authentication protocols such as the Chinese IFAA
+   standard and WeChat Pay as well as Google Pay make use of attestation
+   in one form or another.
+
+
+
+
+Birkholz, et al.          Expires 5 March 2021                  [Page 8]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
+   Attester:  Every FIDO Authenticator contains an Attester.
+
+   Relying Party:  Any web site, mobile application back end or service
+      that does biometric authentication.
+
 4.  Architectural Overview
 
    Figure 1 depicts the data that flows between different roles,
    independent of protocol or use case.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.        Expires 19 February 2021                [Page 8]
-
-Internet-Draft              RATS Arch & Terms                August 2020
-
 
                  ************   ************     ****************
                  * Endorser *   * Verifier *     * Relying Party*
@@ -481,30 +491,26 @@ Internet-Draft              RATS Arch & Terms                August 2020
    An Attester creates Evidence that is conveyed to a Verifier.
 
    The Verifier uses the Evidence, and any Endorsements from Endorsers,
-   by applying an Evidence Appraisal Policy to assess the
+   by applying an Appraisal Policy for Evidence to assess the
    trustworthiness of the Attester, and generates Attestation Results
    for use by Relying Parties.  The Appraisal Policy for Evidence might
    be obtained from an Endorser along with the Endorsements, or might be
    obtained via some other mechanism such as being configured in the
    Verifier by an administrator.
 
+
+
+
+Birkholz, et al.          Expires 5 March 2021                  [Page 9]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    The Relying Party uses Attestation Results by applying its own
    Appraisal Policy to make application-specific decisions such as
    authorization decisions.  The Appraisal Policy for Attestation
    Results might, for example, be configured in the Relying Party by an
    administrator.
-
-
-
-
-
-
-
-
-Birkholz, et al.        Expires 19 February 2021                [Page 9]
-
-Internet-Draft              RATS Arch & Terms                August 2020
-
 
 4.1.  Appraisal Policies
 
@@ -551,15 +557,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-
-
-
-
-
-
-Birkholz, et al.        Expires 19 February 2021               [Page 10]
+Birkholz, et al.          Expires 5 March 2021                 [Page 10]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
                     .--------------------------------.
@@ -613,9 +613,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 11]
+Birkholz, et al.          Expires 5 March 2021                 [Page 11]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
                .----------.                    .----------.
@@ -669,9 +669,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 12]
+Birkholz, et al.          Expires 5 March 2021                 [Page 12]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    procedure in Layered Attestation is sometimes called "staging".  It
@@ -725,9 +725,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 13]
+Birkholz, et al.          Expires 5 March 2021                 [Page 13]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    For example, a carrier-grade router consists of a chassis and
@@ -781,9 +781,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 14]
+Birkholz, et al.          Expires 5 March 2021                 [Page 14]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
                       .-----------------------------.
@@ -837,9 +837,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 15]
+Birkholz, et al.          Expires 5 March 2021                 [Page 15]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 5.  Topological Models
@@ -893,9 +893,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 16]
+Birkholz, et al.          Expires 5 March 2021                 [Page 16]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
          +-------------+
@@ -949,9 +949,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 17]
+Birkholz, et al.          Expires 5 March 2021                 [Page 17]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    constrained node whose purpose is to serve a given type resource
@@ -1005,9 +1005,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 18]
+Birkholz, et al.          Expires 5 March 2021                 [Page 18]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
          +-------------+
@@ -1061,9 +1061,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 19]
+Birkholz, et al.          Expires 5 March 2021                 [Page 19]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    For example, an entity that both connects to a wide-area network and
@@ -1117,9 +1117,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 20]
+Birkholz, et al.          Expires 5 March 2021                 [Page 20]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 7.2.  Attester
@@ -1173,9 +1173,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 21]
+Birkholz, et al.          Expires 5 March 2021                 [Page 21]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    1.  The key material used to authenticate and integrity protect the
@@ -1229,9 +1229,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 22]
+Birkholz, et al.          Expires 5 March 2021                 [Page 22]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Appraisal Policies that may not be specific to the device instance,
@@ -1285,9 +1285,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 23]
+Birkholz, et al.          Expires 5 March 2021                 [Page 23]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Thus, Attestation Results often need to include detailed information
@@ -1341,9 +1341,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 24]
+Birkholz, et al.          Expires 5 March 2021                 [Page 24]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    To enable remote attestation to be added to existing protocols,
@@ -1397,9 +1397,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 25]
+Birkholz, et al.          Expires 5 March 2021                 [Page 25]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
                    Evidence           Attestation Results
@@ -1453,9 +1453,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 26]
+Birkholz, et al.          Expires 5 March 2021                 [Page 26]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    The first approach is to rely on synchronized and trustworthy clocks,
@@ -1509,9 +1509,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 27]
+Birkholz, et al.          Expires 5 March 2021                 [Page 27]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 11.  Privacy Considerations
@@ -1565,9 +1565,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 28]
+Birkholz, et al.          Expires 5 March 2021                 [Page 28]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 12.1.  Attester and Attestation Key Protection
@@ -1621,9 +1621,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 29]
+Birkholz, et al.          Expires 5 March 2021                 [Page 29]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 12.1.2.  Attestation Key Provisioning Processes
@@ -1677,9 +1677,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 30]
+Birkholz, et al.          Expires 5 March 2021                 [Page 30]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    *  denial of service protection,
@@ -1733,9 +1733,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 31]
+Birkholz, et al.          Expires 5 March 2021                 [Page 31]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 15.  Contributors
@@ -1789,9 +1789,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 32]
+Birkholz, et al.          Expires 5 March 2021                 [Page 32]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    +----+--------------+-----------------------------------------------+
@@ -1845,9 +1845,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 33]
+Birkholz, et al.          Expires 5 March 2021                 [Page 33]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
       .----------.                     .----------.  .---------------.
@@ -1901,9 +1901,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 34]
+Birkholz, et al.          Expires 5 March 2021                 [Page 34]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
 16.2.  Example 2: Nonce-based Passport Model Example
@@ -1957,9 +1957,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 35]
+Birkholz, et al.          Expires 5 March 2021                 [Page 35]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Similarly if, based on an Attestation Result from a Verifier it
@@ -2013,9 +2013,9 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 36]
+Birkholz, et al.          Expires 5 March 2021                 [Page 36]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
 
    .----------.         .---------------.              .----------.
@@ -2069,10 +2069,15 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-Birkholz, et al.        Expires 19 February 2021               [Page 37]
+Birkholz, et al.          Expires 5 March 2021                 [Page 37]
 
-Internet-Draft              RATS Arch & Terms                August 2020
+Internet-Draft              RATS Arch & Terms             September 2020
 
+
+   [CTAP]     FIDO Alliance, "Client to Authenticator Protocol", n.d.,
+              <https://fidoalliance.org/specs/fido-v2.0-id-20180227/
+              fido-client-to-authenticator-protocol-v2.0-id-
+              20180227.html>.
 
    [I-D.birkholz-rats-tuda]
               Fuchs, A., Birkholz, H., McDonald, I., and C. Bormann,
@@ -2109,25 +2114,26 @@ Internet-Draft              RATS Arch & Terms                August 2020
               <https://trustedcomputinggroup.org/wp-content/uploads/
               TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf>.
 
+   [WebAuthN] W3C, "Web Authentication: An API for accessing Public Key
+              Credentials", n.d., <https://www.w3.org/TR/webauthn-1/>.
+
 Authors' Addresses
 
    Henk Birkholz
    Fraunhofer SIT
    Rheinstrasse 75
+
+
+
+Birkholz, et al.          Expires 5 March 2021                 [Page 38]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    64295 Darmstadt
    Germany
 
    Email: henk.birkholz@sit.fraunhofer.de
-
-
-
-
-
-
-
-Birkholz, et al.        Expires 19 February 2021               [Page 38]
-
-Internet-Draft              RATS Arch & Terms                August 2020
 
 
    Dave Thaler
@@ -2175,10 +2181,4 @@ Internet-Draft              RATS Arch & Terms                August 2020
 
 
 
-
-
-
-
-
-
-Birkholz, et al.        Expires 19 February 2021               [Page 39]
+Birkholz, et al.          Expires 5 March 2021                 [Page 39]
