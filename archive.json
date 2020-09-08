@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-01T20:57:20.634206+00:00",
+  "timestamp": "2020-09-08T15:02:14.998229+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -12547,21 +12547,23 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDMwNTQ4Mzc3",
       "title": "More description of Endorsements",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/94",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wontfix"
+      ],
       "body": "Addresses issue #65",
       "createdAt": "2020-06-08T01:07:52Z",
-      "updatedAt": "2020-08-25T14:52:48Z",
+      "updatedAt": "2020-09-08T14:06:59Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "d69dd4103c1431ac695319299912e3d62f98eb36",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "master",
       "headRefOid": "0f6383b5ec79e987cffd42b5d9d1e4eab1681b46",
-      "closedAt": null,
+      "closedAt": "2020-09-08T14:06:59Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -13127,6 +13129,66 @@
               "body": "The trusting of an Attester by a Verifier is to me one of the most fundamental things about attestation and I think it needs to be address prominently and clearly in the architecture document.\r\n\r\nI don't know of anyway practical way to establish this trust other than with crypto which of course means some key material in the Attester and related key material in the Verifier.\r\n\r\nIf an Endorsement is not the one true way the Verifier gets the key it needs, then the architecture should indicate an input to the Verifier by which it does get the key.\r\n\r\nI do take it that you agree that these are all valid ways for the Verifier to get the key\r\n - In an X.509 certificate\r\n - A CMS-encrypted flat file of keys\r\n - A flash drive from the Attester maker walked into the server room containing the Verifier\r\n - TLS-secured access to a database of millions of keys at the Attester manufacturer\r\n - Many more...\r\n\r\nAnother option here is to abandon the term Endorsement. It does seem to have some problematic preconception (I keep seem to be guessing wrong, probably because I don't go to the right TCG meetings). Instead of Endorsement these are the verifier inputs:\r\n  - Keys\r\n  - Known-good / Reference values\r\n  - Implicit claims\r\n  - Policy configuration, scripts and such.\r\n\r\n\r\n\r\n",
               "createdAt": "2020-06-23T05:40:35Z",
               "updatedAt": "2020-06-23T05:40:35Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgyODAyMjI2",
+          "commit": {
+            "abbreviatedOid": "b2500a7"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-04T16:32:53Z",
+          "updatedAt": "2020-09-04T16:32:53Z",
+          "comments": [
+            {
+              "originalPosition": 41,
+              "body": "r6 contains \"Endorser:\" definition.",
+              "createdAt": "2020-09-04T16:32:53Z",
+              "updatedAt": "2020-09-04T16:32:54Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgyODA0MzE4",
+          "commit": {
+            "abbreviatedOid": "b2500a7"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-04T16:36:30Z",
+          "updatedAt": "2020-09-04T16:36:54Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "779 should read: \"Thus, when Evidence and Endorsements are used together...\"",
+              "createdAt": "2020-09-04T16:36:30Z",
+              "updatedAt": "2020-09-04T16:36:54Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgyODU4NjEw",
+          "commit": {
+            "abbreviatedOid": "0f6383b"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-04T18:13:22Z",
+          "updatedAt": "2020-09-04T18:14:54Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "> The trusting of an Attester by a Verifier is to me one of the most fundamental things about attestation and I think it \r\n> needs to be address prominently and clearly in the architecture document.\r\n\r\nOf course.\r\n\r\n> I don't know of anyway practical way to establish this trust other than with crypto which of course means some key material in the Attester and related key material in the Verifier.\r\n\r\nYes.\r\n\r\n> If an Endorsement is not the one true way the Verifier gets the key it needs, then the architecture should indicate an input to the Verifier by which it does get the key.\r\n\r\nIf you have an Endorsement, the Verifier needs a way to get the manufacturer's key and establish trust in it.\r\nWithout an Endorsement, that same mechanism applies to the Attester's key directly.\r\nEndorsements just provide scalability since you can put one key in your trust anchor store rather than (say) 1 per Attester.\r\n\r\nAn Endorsement is simply one external key (typically a manufacturer but need not be) vouching for the Attesting Environment's key.\r\n\r\n> I do take it that you agree that these are all valid ways for the Verifier to get the key\r\n[...]\r\n\r\nYes\r\n\r\n> Another option here is to abandon the term Endorsement.\r\n\r\nI would disagree with that option.  The notion of an external key vouching for the Attesting Environment's key is a key concept.   As you state, it's not the only input to the Verifier but that doesn't mean the term isn't an important concept to explain.",
+              "createdAt": "2020-09-04T18:13:22Z",
+              "updatedAt": "2020-09-04T18:14:54Z"
             }
           ]
         }
@@ -15212,16 +15274,16 @@
     {
       "number": 130,
       "id": "MDExOlB1bGxSZXF1ZXN0NDQ3MDc0MjE4",
-      "title": "Revice Privacy Considerations",
+      "title": "Revise Privacy Considerations",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/130",
       "state": "OPEN",
       "author": "laurencelundblade",
-      "authorAssociation": "FIRST_TIME_CONTRIBUTOR",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2020-07-09T20:21:37Z",
-      "updatedAt": "2020-07-17T18:01:26Z",
+      "updatedAt": "2020-09-08T14:09:23Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "d69dd4103c1431ac695319299912e3d62f98eb36",
@@ -15411,6 +15473,39 @@
               "updatedAt": "2020-07-17T18:01:26Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgyNzk1MjI0",
+          "commit": {
+            "abbreviatedOid": "f49005e"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-04T16:24:19Z",
+          "updatedAt": "2020-09-04T16:24:19Z",
+          "comments": [
+            {
+              "originalPosition": 29,
+              "body": "\"In cases where Evidence is owned by the Relying Party Owner, consideration for privacy may be of lesser importance. In other cases where Evidence is owned by the Attester, such as when a mobile phone is used to access a large number of web sites, applications or services, consideration for privacy may be of greater importance.\"",
+              "createdAt": "2020-09-04T16:24:19Z",
+              "updatedAt": "2020-09-04T16:24:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDg0MTc5MDQw",
+          "commit": {
+            "abbreviatedOid": "f49005e"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "consider comments and try something else.",
+          "createdAt": "2020-09-08T14:09:23Z",
+          "updatedAt": "2020-09-08T14:09:23Z",
+          "comments": []
         }
       ]
     },
@@ -16352,13 +16447,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2020-08-31T18:25:15Z",
-      "updatedAt": "2020-09-01T12:36:41Z",
+      "updatedAt": "2020-09-08T14:47:37Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "patch-4",
-      "headRefOid": "0a925a9570caf0ce7d3fbf902e64029bf12c2f4e",
+      "headRefOid": "aa7bef97371d8a4b76994207748f0f7db2090cb4",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -16381,7 +16476,7 @@
               "originalPosition": 5,
               "body": "I liked the previous phrasing better. E.g. +1 \"informs\", -1 \"and such\"",
               "createdAt": "2020-09-01T12:33:13Z",
-              "updatedAt": "2020-09-01T12:33:14Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
             }
           ]
         },
@@ -16399,57 +16494,215 @@
           "comments": [
             {
               "originalPosition": 14,
-              "body": "```suggestion\r\n: The output generated by a Verifier, typically including information about an Attester, where the Verifier vouches for the validity of the results\r\n```",
-              "createdAt": "2020-09-01T12:33:38Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
-            },
-            {
-              "originalPosition": 14,
               "body": "not a sentence (applies multiple times)",
               "createdAt": "2020-09-01T12:33:50Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
-            },
-            {
-              "originalPosition": 19,
-              "body": "```suggestion\r\n: A role performed by an entity (typically a device) whose Evidence must be appraised in order to infer the extent to which the Attester is considered trustworthy, such as when deciding whether it is authorized to perform some operation\r\n```",
-              "createdAt": "2020-09-01T12:34:04Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
             },
             {
               "originalPosition": 23,
-              "body": "```suggestion\r\nClaim:\r\n: A piece of asserted information, often in the form of a name/value pair\r\n(Compare /claim/ in {{RFC7519}})\r\n```",
+              "body": "```suggestion\r\nClaim:\r\n: A piece of asserted information, often in the form of a name/value pair. Compare /claim/ in {{RFC7519}}.\r\n```",
               "createdAt": "2020-09-01T12:34:35Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
-            },
-            {
-              "originalPosition": 28,
-              "body": "```suggestion\r\n: A secure statement that an Endorser (typically a manufacturer) vouches for the integrity of an Attester. It may include implied Claims\r\n```",
-              "createdAt": "2020-09-01T12:35:00Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
-            },
-            {
-              "originalPosition": 33,
-              "body": "```suggestion\r\n: An entity (typically a manufacturer) whose Endorsements are required for Verifiers to appraise the authenticity of Evidence\r\n```",
-              "createdAt": "2020-09-01T12:35:12Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
             },
             {
               "originalPosition": 47,
-              "body": "```suggestion\r\n: An entity (typically an administrator), that is authorized to configure Appraisal Policy for Attestation Results in a Relying Party\r\n```",
+              "body": "```suggestion\r\n: An entity (typically an administrator) that is authorized to configure Appraisal Policy for Attestation Results in a Relying Party\r\n```",
               "createdAt": "2020-09-01T12:35:36Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
             },
             {
               "originalPosition": 53,
               "body": "```suggestion\r\n and produces Attestation Results to be used by a Relying Party\r\n```",
               "createdAt": "2020-09-01T12:35:48Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
             },
             {
               "originalPosition": 58,
-              "body": "```suggestion\r\n: An entity (typically an administrator), that is authorized to configure Appraisal Policy for Evidence in a Verifier\r\n```",
+              "body": "```suggestion\r\n: An entity (typically an administrator) that is authorized to configure Appraisal Policy for Evidence in a Verifier\r\n```",
               "createdAt": "2020-09-01T12:36:08Z",
-              "updatedAt": "2020-09-01T12:36:41Z"
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgyNzc3MjQ0",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-04T16:04:29Z",
+          "updatedAt": "2020-09-04T16:17:32Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "\"A set of rules that informs a Verifier regarding the evaluation of the Evidence.\" or \"A set of rules that informs a Verifier regarding the appraisal of the Evidence.\"",
+              "createdAt": "2020-09-04T16:04:29Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "\"The output generated by a Verifier, that typically includes information about the Attester, that is meaningful to a Relying Party and where the Verifier vouches for the validity of the Attestation Results.\"",
+              "createdAt": "2020-09-04T16:11:44Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "Note use of 'appraisal' in section below on Attestation. Should use common wording if we mean similar things.",
+              "createdAt": "2020-09-04T16:13:01Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "+1",
+              "createdAt": "2020-09-04T16:13:44Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 23,
+              "body": "Should have a period after {{RFC7519}}) since it was removed from 'pair'",
+              "createdAt": "2020-09-04T16:15:09Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 47,
+              "body": "Maybe there is a convention for not including period at the end of a sentence?",
+              "createdAt": "2020-09-04T16:16:26Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 53,
+              "body": "'that' instead of 'and' produces",
+              "createdAt": "2020-09-04T16:17:13Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgzMjAzNzEy",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-07T02:06:50Z",
+          "updatedAt": "2020-09-07T02:06:50Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Ned's wording plus mention of reference values: \"A set of rules and optional reference values that informs a Verifier regarding the appraisal of the Evidence.\" Mention of reference values will greatly help the reader make sense quicker IMO.",
+              "createdAt": "2020-09-07T02:06:50Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgzMjA0MjU5",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-07T02:09:32Z",
+          "updatedAt": "2020-09-07T02:09:33Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Tightening up Ned's text further: \"The output generated by a Verifier, that is information about the Attester, that is used by a Relying Party and where the Verifier vouches for the Attestation Results.\"",
+              "createdAt": "2020-09-07T02:09:33Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDgzMjA0MzQ4",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-07T02:10:00Z",
+          "updatedAt": "2020-09-07T02:10:00Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "+1\r\n",
+              "createdAt": "2020-09-07T02:10:00Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDg0MTY2OTYy",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-08T13:57:01Z",
+          "updatedAt": "2020-09-08T13:57:02Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n: A set of rules that informs a Verifier regarding the appraisal of the Evidence, e.g., \"byte-compare Claims in little-endian with reference values in big-endian\". Compare /security policy/ in {{RFC4949}}.\r\n```",
+              "createdAt": "2020-09-08T13:57:02Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDg0MTcwNTU1",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-08T14:00:31Z",
+          "updatedAt": "2020-09-08T14:00:31Z",
+          "comments": [
+            {
+              "originalPosition": 23,
+              "body": "Aligned with Appraisal Policy and adapted use of period again",
+              "createdAt": "2020-09-08T14:00:31Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDg0MTcyNzM0",
+          "commit": {
+            "abbreviatedOid": "0a925a9"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-08T14:02:49Z",
+          "updatedAt": "2020-09-08T14:03:25Z",
+          "comments": [
+            {
+              "originalPosition": 47,
+              "body": "RFC 4949 which we reference, uses periods.",
+              "createdAt": "2020-09-08T14:02:49Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "The term \"implied\" Claims is not defined and is confusing in my opinion.",
+              "createdAt": "2020-09-08T14:03:18Z",
+              "updatedAt": "2020-09-08T14:14:19Z"
             }
           ]
         }
@@ -17027,6 +17280,32 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 147,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDgyMTA5MzEz",
+      "title": "add reference values to diagram",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/147",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "change diagram to add reference values as a distinct input to verifier\r\nThis will go with a TBD pull request from @dthaler about where the text goes, in an effort to close up #141 ",
+      "createdAt": "2020-09-08T15:01:25Z",
+      "updatedAt": "2020-09-08T15:01:25Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "add-reference-values-to-diagram",
+      "headRefOid": "7925505f9e73c938702862d40a8013bbc6508ee5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
