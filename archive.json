@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-08T15:02:14.998229+00:00",
+  "timestamp": "2020-09-18T21:52:50.579799+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -16447,7 +16447,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2020-08-31T18:25:15Z",
-      "updatedAt": "2020-09-08T14:47:37Z",
+      "updatedAt": "2020-09-18T21:07:32Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
@@ -17293,13 +17293,122 @@
       "labels": [],
       "body": "change diagram to add reference values as a distinct input to verifier\r\nThis will go with a TBD pull request from @dthaler about where the text goes, in an effort to close up #141 ",
       "createdAt": "2020-09-08T15:01:25Z",
-      "updatedAt": "2020-09-08T15:01:25Z",
+      "updatedAt": "2020-09-18T21:05:51Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "add-reference-values-to-diagram",
       "headRefOid": "7925505f9e73c938702862d40a8013bbc6508ee5",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 148,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDgzMzg1NTg2",
+      "title": "System Examples Appendix",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/148",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Here's a first rough draft of an appendix of end-end system examples that show how Endorsements, Verifier, Passport/Background and such apply (or don't apply) to some examples.   I think this conveys many of the things I've been trying largely unsuccessfully and relieves the main text of trying to explain them. I think this an important addition.\r\n\r\nIt is still a rough draft to see if there is interest.",
+      "createdAt": "2020-09-10T04:50:17Z",
+      "updatedAt": "2020-09-18T21:15:47Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
+      "headRepository": "laurencelundblade/architecture",
+      "headRefName": "SystemExamples",
+      "headRefOid": "0816c723ed20c9257f435f4e6ad389804e2537bf",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkxNzgzMTgx",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2020-09-18T21:10:40Z",
+          "updatedAt": "2020-09-18T21:15:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "I think that by \"System\", you mean something specific, yet the text is rather general.  I suggest making the example even more specific: pick one of Smartphone. Desktop PC. VoIP phone. Smart IoT Speaker.",
+              "createdAt": "2020-09-18T21:10:40Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "Assumes factory generated keys, which is a reasonable choice.  I suggest making this choice explicit.",
+              "createdAt": "2020-09-18T21:11:19Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "\"This is part of the OS\" is probably incorrect for many situations.  ",
+              "createdAt": "2020-09-18T21:12:03Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\n* Author software that runs on the device that calls the attestation API to obtain Attestation Evidence\r\n```",
+              "createdAt": "2020-09-18T21:12:54Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 61,
+              "body": "This is a second example.  Maybe we can process each example as a separate PR?",
+              "createdAt": "2020-09-18T21:13:42Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 70,
+              "body": "I don't think that this level of detail about key generate belongs in the RATS architecture, even as an appendix.",
+              "createdAt": "2020-09-18T21:14:21Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "This example says far less (either choice) about key generation, which validates my belief that the level of detail in the first two cases was inappropriate.",
+              "createdAt": "2020-09-18T21:15:24Z",
+              "updatedAt": "2020-09-18T21:15:47Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 149,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDg4ODYyNjYz",
+      "title": "Revise description of attester<->verifier trust",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/149",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This adds a paragraph on the primary trust flow to the Attester sub section.  Previously that subsection only discussed secondary trust flow (confidentiality flow)\r\n\r\nI'm pretty sure that just about every real attestation use involves the Verifier coming to trust the Attester by receipt of a nonce (or equivalent) signed or authenticated by a key in and protected by the Attester. I don't see how a Verifier can trust an Attester in any other way for just about every attestation use case. I've revised the text to say that.\r\n\r\nI think all the discussion about ROM code and HW defenses is now covered in Security Consideration.\r\n\r\nThe addresses #132 ",
+      "createdAt": "2020-09-17T18:49:51Z",
+      "updatedAt": "2020-09-18T21:19:16Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
+      "headRepository": "laurencelundblade/architecture",
+      "headRefName": "AttesterTrust",
+      "headRefOid": "4f4dc2462c860eb0d789b6d5ebd17cf4b3413bf8",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
