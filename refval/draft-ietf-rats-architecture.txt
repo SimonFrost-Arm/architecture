@@ -231,9 +231,10 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
    Reference Value Provider:  An entity (typically a manufacturer) whose
       Reference Values help Verifiers appraise the authenticity of
-      Evidence
+      Evidence.
 
-   Reference Values:  XXX
+   Reference Values:  A set of values against which values of Claims can
+      be compared as part of applying an Appraisal Policy for Evidence.
 
    Relying Party:  A role performed by an entity that depends on the
       validity of information about an Attester, for purposes of
@@ -273,7 +274,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    audit, anomaly detection, record maintenance and/or trending reports
    (logging).  The network operator may also want a policy by which full
    access is only granted to devices that meet some definition of
-   hygiene, and so wants to get claims about such information and verify
 
 
 
@@ -282,6 +282,7 @@ Birkholz, et al.          Expires 22 March 2021                 [Page 5]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+   hygiene, and so wants to get claims about such information and verify
    their validity.  Remote attestation is desired to prevent vulnerable
    or compromised devices from getting access to the network and
    potentially harming others.
@@ -329,7 +330,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
    Attester:  An entity desiring to retrieve confidential data
 
-   Relying Party:  An entity that holds confidential data for retrieval
 
 
 
@@ -338,6 +338,7 @@ Birkholz, et al.          Expires 22 March 2021                 [Page 6]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+   Relying Party:  An entity that holds confidential data for retrieval
       by other entities
 
 3.4.  Critical Infrastructure Control
@@ -383,7 +384,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    does not allow it to reboot to prevent updates from being applied.
    This is a significant problem, because it allows a fleet of devices
    to be held hostage for ransom.
-
 
 
 
