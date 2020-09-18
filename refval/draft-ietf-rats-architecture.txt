@@ -513,7 +513,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    against constraints specified in its Appraisal Policy.  Such
    constraints might involve a comparison for equality against a
    Reference Value, or a check for being in a range bounded by Reference
-   Values, or membership in a set of reference values, or a check
+   Values, or membership in a set of Reference Values, or a check
    against values in other claims, or any other test.
 
 4.2.  Reference Values
@@ -1238,7 +1238,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    but merely specific to the manufacturer providing the Endorsement.
    For example, an Appraisal Policy might simply check that devices from
    a given manufacturer have information matching a set of known-good
-   reference values, or an Appraisal Policy might have a set of more
+   Reference Values, or an Appraisal Policy might have a set of more
    complex logic on how to appraise the validity of information.
 
    However, while an Appraisal Policy that treats all devices from a
@@ -1278,7 +1278,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
    simply authorize any party supplying a compliant Attestation Result
    signed by a trusted Verifier.  A more complex policy might also
    entail comparing information provided in the result against known-
-   good reference values, or applying more complex logic on such
+   good Reference Values, or applying more complex logic on such
    information.
 
 
