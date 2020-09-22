@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-18T21:52:50.579799+00:00",
+  "timestamp": "2020-09-22T20:59:24.328741+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -1813,6 +1813,22 @@
       "body": "7.5 says that the way for an Endorser to trust and Verifier is to use attestation.\r\n\r\nWhile I won't categorically say this should never be done, it seems like this is overly complex and a somewhat misuse of attestation.\r\n\r\nI think of the Verifier as a service like a web site, not an implementation like a TEE, so TLS or similar, not attestations, seems like the more efficient and conventional way to do this.  \r\n\r\nI think attestation is associated with actual HW and SW, for example the Dell server, Intel CPU and Web stack used to run the service. The operator of a Verifier gets to change those around without having to tell the people using the service.\r\n\r\nOn the other hand, if a Verification Service changes owners, say from Chinese to American, then Endorser concerned about confidential stuff in the Endorsements really wants to know.\r\n\r\nI also think that Verifier Owner should not be lumped in with Endorser. The Verifier Owner is very likely to be tightly coupled organizationally with the Verifier, where the Endorser is not likely to be.\r\n \r\n",
       "createdAt": "2020-08-03T19:16:09Z",
       "updatedAt": "2020-08-03T19:16:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 151,
+      "id": "MDU6SXNzdWU3MDY2ODczNzQ=",
+      "title": "Endorsements definition is too narrow given PR150 clarification",
+      "url": "https://github.com/ietf-rats-wg/architecture/issues/151",
+      "state": "OPEN",
+      "author": "nedmsmith",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Since PR150 clarifies the difference between reference values and endorsements. It seems more clear that endorsements describe properties of the Attesting Environment (which includes creation / signing of Evidence) and therefore describes \"signing capability\". However, Attesting Environments also collect claims securely. Therefore, the current definition of Endorsements is still too narrow. \r\n\r\nSuggested text: \"Endorsement:  A secure statement that some entity (typically a manufacturer) vouches for the integrity of an Attesting Environment's various capabilities such as Claims collection and Evidence signing\"",
+      "createdAt": "2020-09-22T20:56:10Z",
+      "updatedAt": "2020-09-22T20:56:10Z",
       "closedAt": null,
       "comments": []
     }
@@ -17286,25 +17302,33 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDgyMTA5MzEz",
       "title": "add reference values to diagram",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/147",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mcr",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "change diagram to add reference values as a distinct input to verifier\r\nThis will go with a TBD pull request from @dthaler about where the text goes, in an effort to close up #141 ",
       "createdAt": "2020-09-08T15:01:25Z",
-      "updatedAt": "2020-09-18T21:05:51Z",
+      "updatedAt": "2020-09-18T22:44:55Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "add-reference-values-to-diagram",
       "headRefOid": "7925505f9e73c938702862d40a8013bbc6508ee5",
-      "closedAt": null,
+      "closedAt": "2020-09-18T22:44:55Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I incorporated this (after trying to pretty it up some more) in PR #150.",
+          "createdAt": "2020-09-18T22:17:20Z",
+          "updatedAt": "2020-09-18T22:17:20Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -17319,13 +17343,13 @@
       "labels": [],
       "body": "Here's a first rough draft of an appendix of end-end system examples that show how Endorsements, Verifier, Passport/Background and such apply (or don't apply) to some examples.   I think this conveys many of the things I've been trying largely unsuccessfully and relieves the main text of trying to explain them. I think this an important addition.\r\n\r\nIt is still a rough draft to see if there is interest.",
       "createdAt": "2020-09-10T04:50:17Z",
-      "updatedAt": "2020-09-18T21:15:47Z",
+      "updatedAt": "2020-09-21T22:53:36Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "SystemExamples",
-      "headRefOid": "0816c723ed20c9257f435f4e6ad389804e2537bf",
+      "headRefOid": "4060b4b0643d5174a06031b72f010ca159b74c1d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -17348,43 +17372,385 @@
               "originalPosition": 5,
               "body": "I think that by \"System\", you mean something specific, yet the text is rather general.  I suggest making the example even more specific: pick one of Smartphone. Desktop PC. VoIP phone. Smart IoT Speaker.",
               "createdAt": "2020-09-18T21:10:40Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 16,
               "body": "Assumes factory generated keys, which is a reasonable choice.  I suggest making this choice explicit.",
               "createdAt": "2020-09-18T21:11:19Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 17,
               "body": "\"This is part of the OS\" is probably incorrect for many situations.  ",
               "createdAt": "2020-09-18T21:12:03Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 26,
               "body": "```suggestion\r\n* Author software that runs on the device that calls the attestation API to obtain Attestation Evidence\r\n```",
               "createdAt": "2020-09-18T21:12:54Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 61,
               "body": "This is a second example.  Maybe we can process each example as a separate PR?",
               "createdAt": "2020-09-18T21:13:42Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 70,
               "body": "I don't think that this level of detail about key generate belongs in the RATS architecture, even as an appendix.",
               "createdAt": "2020-09-18T21:14:21Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
             },
             {
               "originalPosition": 118,
               "body": "This example says far less (either choice) about key generation, which validates my belief that the level of detail in the first two cases was inappropriate.",
               "createdAt": "2020-09-18T21:15:24Z",
-              "updatedAt": "2020-09-18T21:15:47Z"
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkxODE5NDI0",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "I agree with Michael's comments.\r\nAlso I fear that adding such examples will only result in people wanting to add 20 other examples to the doc, since even taken together they only cover a narrow subset of common waysto compose the building blocks  (e.g., there are no Passport model examples), and that's not even counting layered attestation and composite devices.  As such, just like Michael's use cases document is not in the arch doc, a separate document might be better in my view.",
+          "createdAt": "2020-09-18T22:41:37Z",
+          "updatedAt": "2020-09-18T23:16:37Z",
+          "comments": [
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\nThree companies or organizations participate in this example.\r\n```",
+              "createdAt": "2020-09-18T22:41:37Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\n* Securely sends the private keys and certificates to the device Original Equipment Manufacturer (OEM) in batches to be used in manufacturing\r\n```\r\n\r\nAlso, I realize this is just an example. but the fact that private keys are sent between entities means this example is less secure than other examples would be, where only public keys need be sent between entities.   I'm not sure it's a good idea to highlight examples of sending private keys around when more secure examples exist.",
+              "createdAt": "2020-09-18T22:43:43Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 17,
+              "body": "```suggestion\r\n* Authors the device software that is the Attester and ships it to the OEMs. This is a part of the OS.\r\n```",
+              "createdAt": "2020-09-18T22:44:40Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\n* Physically makes the device to the OS vendor's security requirements\r\n```",
+              "createdAt": "2020-09-18T22:46:22Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\nThe application vendor implements some application with a back-end cloud service. It performs the following:\r\n```",
+              "createdAt": "2020-09-18T22:46:54Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\n* Author software that runs on the device that obtains Attestation Evidence\r\n```\r\n\r\n",
+              "createdAt": "2020-09-18T22:47:52Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 28,
+              "body": "I can't parse this sentence.  Allow application service to do what?   I can't tell if this is talking about a Verifier/Relying Party combo, or where the Relying Party is.",
+              "createdAt": "2020-09-18T22:48:53Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 38,
+              "body": "The endorsement is the device's certificate issued by the operating system vendor.",
+              "createdAt": "2020-09-18T22:50:05Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "```suggestion\r\n: The hardware made by the device OEM and the software made by the OS vendor\r\n```",
+              "createdAt": "2020-09-18T22:50:31Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\n: A protocol message generated by the Attester that is then sent to the application vendor cloud service.\r\n```",
+              "createdAt": "2020-09-18T22:51:27Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 54,
+              "body": "```suggestion\r\n: are also the application vendor cloud service; since the Verifier and Relying Party are both part of the application vendor cloud service, this example is a Background Check model.\r\n```",
+              "createdAt": "2020-09-18T22:52:31Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 58,
+              "body": "```suggestion\r\n: represented by internal API calls or state, since the Verifier is combined with the Relying Party\r\n```",
+              "createdAt": "2020-09-18T22:53:29Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 65,
+              "body": "```suggestion\r\nThe chip vendor that makes the chip. They also make the software that is the Attester. It does the following:\r\n```",
+              "createdAt": "2020-09-18T22:56:18Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 66,
+              "body": "```suggestion\r\n* Manufactures the chip\r\n```",
+              "createdAt": "2020-09-18T22:56:31Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 67,
+              "body": "```suggestion\r\n* Authors the Attester software that runs on the chip\r\n```",
+              "createdAt": "2020-09-18T22:56:48Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 74,
+              "body": "```suggestion\r\n* Adds their own software to the device over the top of software the chip vendor supplied\r\n```",
+              "createdAt": "2020-09-18T22:58:11Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 76,
+              "body": "```suggestion\r\n* Attestation Evidence is included whenever the IoT device communicates with the cloud service\r\n```",
+              "createdAt": "2020-09-18T22:58:29Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 78,
+              "body": "```suggestion\r\n* The cloud service sends the key ID and HMAC to the chip vendor's verification service\r\n```",
+              "createdAt": "2020-09-18T22:58:59Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "```suggestion\r\n: The hardware and software made by the chip vendor\r\n```",
+              "createdAt": "2020-09-18T22:59:36Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 100,
+              "body": "This is hard to understand.  What \"part\" is run by each?",
+              "createdAt": "2020-09-18T23:00:17Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 104,
+              "body": "```suggestion\r\n: are also the application vendor cloud service; since the Verifier and Relying Party are part of the same service, this is the Background Check model.\r\n```",
+              "createdAt": "2020-09-18T23:00:46Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 108,
+              "body": "```suggestion\r\n: represented by internal APIs or state, since the Verifier is the same as the Relying Party\r\n```",
+              "createdAt": "2020-09-18T23:01:14Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 110,
+              "body": "```suggestion\r\n## System Example Based on a Third-Party Verification Service\r\n```",
+              "createdAt": "2020-09-18T23:01:28Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 112,
+              "body": "```suggestion\r\nThree companies or organizations participate in this example:\r\n```",
+              "createdAt": "2020-09-18T23:01:43Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 63,
+              "body": "```suggestion\r\nTwo companies or organizations participate in this example.\r\n```",
+              "createdAt": "2020-09-18T23:02:02Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 115,
+              "body": "```suggestion\r\n* Manufactures devices using hardware and software of their choice that includes an Attester\r\n```",
+              "createdAt": "2020-09-18T23:02:42Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 116,
+              "body": "As I observed on the first example, this is less secure than other examples would be where the key is generated by the device itself and the private key is never seen by anyone including the manufacturer, only the public key.",
+              "createdAt": "2020-09-18T23:03:51Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "\"implicit claims\" is still an undefined term",
+              "createdAt": "2020-09-18T23:04:24Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 121,
+              "body": "```suggestion\r\n* Receives service requests from devices. The service requests include Attestation Evidence.\r\n```",
+              "createdAt": "2020-09-18T23:05:00Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 123,
+              "body": "```suggestion\r\n* Sends the Attestation Evidence to a third-party verification service.\r\n* Receives Attestation Results from third-party verification service.\r\n```",
+              "createdAt": "2020-09-18T23:05:23Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 129,
+              "body": "```suggestion\r\n* Performs the Verification of the Attestation Evidence which involves: verifying the signature on the Attestation Evidence and comparison of claims to reference values provided along with the Endorsement.\r\n```\r\n\r\nAlso, if this is intended to be a complete list, it's insecure, since nothing in this sentence does a freshness check for example.",
+              "createdAt": "2020-09-18T23:07:01Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 144,
+              "body": "```suggestion\r\n: The hardware and software made by the device maker\r\n```",
+              "createdAt": "2020-09-18T23:09:09Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 140,
+              "body": "See PR #150 ",
+              "createdAt": "2020-09-18T23:09:30Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 146,
+              "body": "```suggestion\r\nEvidence:\r\n```",
+              "createdAt": "2020-09-18T23:10:18Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 44,
+              "body": "```suggestion\r\nEvidence:\r\n```",
+              "createdAt": "2020-09-18T23:10:47Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 152,
+              "body": "```suggestion\r\n: A third-party Attestation service that can process Evidence from many different device makers and provide results to many different Relying Parties.\r\n```",
+              "createdAt": "2020-09-18T23:11:10Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 156,
+              "body": "No, the Relying Party is the payment service itself.  The operator of it is the Relying Party Owner.",
+              "createdAt": "2020-09-18T23:11:49Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            },
+            {
+              "originalPosition": 160,
+              "body": "```suggestion\r\n: A detailed set of claims with 1) claims copied forward from the Evidence, 2) implied claims copied through from the Endorsement, and 3) new claims created to report the result of comparison to reference values\r\n```",
+              "createdAt": "2020-09-18T23:12:20Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDMwNTk2",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:43:11Z",
+          "updatedAt": "2020-09-21T22:43:12Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "By \"system\" I mean an end-end set of entities that make up a complete function system with nothing left out. The suggestion of Smartphone doesn't work because it is only a small part of the \"system\". I'm OK with a different word, perhaps \"End-to-end Complete Examples\"?\r\n",
+              "createdAt": "2020-09-21T22:43:11Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDMxMjAz",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:44:40Z",
+          "updatedAt": "2020-09-21T22:44:41Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "They are  not factory generated at least not in the factory that makes the devices.  They are generated by the OS vendor, hopefully in a secure cryptographic operations center.\r\n",
+              "createdAt": "2020-09-21T22:44:40Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDMyNzMz",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:48:11Z",
+          "updatedAt": "2020-09-21T22:48:11Z",
+          "comments": [
+            {
+              "originalPosition": 16,
+              "body": "This is the only way it can work in this particular example.\r\n\r\nI don't want to name companies, but some people are really doing this.",
+              "createdAt": "2020-09-21T22:48:11Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDMzODk4",
+          "commit": {
+            "abbreviatedOid": "0816c72"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:51:14Z",
+          "updatedAt": "2020-09-21T22:51:14Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "I think it is reasonable in this example.  Think of an OS vendor like Google supplying both the TEE which has the attester and Android.  \r\n\r\nIn some cases the TEE is made by another, but adding that would complicate the example a lot for little gain.",
+              "createdAt": "2020-09-21T22:51:14Z",
+              "updatedAt": "2020-09-21T22:51:31Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDM0NzIy",
+          "commit": {
+            "abbreviatedOid": "4060b4b"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:53:35Z",
+          "updatedAt": "2020-09-21T22:53:36Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "I can see it either way. I picked the root because the root flows directly from the Endorser to the Verifier, where as the device's cert does not flow directly.",
+              "createdAt": "2020-09-21T22:53:35Z",
+              "updatedAt": "2020-09-21T22:53:36Z"
             }
           ]
         }
@@ -17402,7 +17768,7 @@
       "labels": [],
       "body": "This adds a paragraph on the primary trust flow to the Attester sub section.  Previously that subsection only discussed secondary trust flow (confidentiality flow)\r\n\r\nI'm pretty sure that just about every real attestation use involves the Verifier coming to trust the Attester by receipt of a nonce (or equivalent) signed or authenticated by a key in and protected by the Attester. I don't see how a Verifier can trust an Attester in any other way for just about every attestation use case. I've revised the text to say that.\r\n\r\nI think all the discussion about ROM code and HW defenses is now covered in Security Consideration.\r\n\r\nThe addresses #132 ",
       "createdAt": "2020-09-17T18:49:51Z",
-      "updatedAt": "2020-09-18T21:19:16Z",
+      "updatedAt": "2020-09-21T23:07:50Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
@@ -17414,7 +17780,145 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkxODI5MDgz",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2020-09-18T23:20:50Z",
+          "updatedAt": "2020-09-18T23:25:06Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "\"provisioned into it by the Endorser\" is not true in general.   For example, it's not true in the case where the Attester is an IoT device that generates its own key pair at the factory, and the public key is then extracted and used to generate a certificate issued by an Endorser (the manufacturer or whoever else), and the certificate itself isn't provisioned on the device but can be looked up on demand by the Verifier.  In this case, there is no \"key material\" provisioned into the Attester by any entity other than the Attester itself.\r\n\r\nLine 723 and 754 are incorrect for the same reason.",
+              "createdAt": "2020-09-18T23:20:50Z",
+              "updatedAt": "2020-09-18T23:25:06Z"
+            },
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nThe proof is by the signing or authenticating of Evidence (see {{freshness}}).\r\n```",
+              "createdAt": "2020-09-18T23:21:57Z",
+              "updatedAt": "2020-09-18T23:25:06Z"
+            },
+            {
+              "originalPosition": 9,
+              "body": "This would need to be a markdown cross reference.",
+              "createdAt": "2020-09-18T23:23:15Z",
+              "updatedAt": "2020-09-18T23:25:06Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "Hard to review since line breaks were removed.  Please revert line breaks.",
+              "createdAt": "2020-09-18T23:23:50Z",
+              "updatedAt": "2020-09-18T23:25:06Z"
+            },
+            {
+              "originalPosition": 45,
+              "body": "Keep examples in a separate PR",
+              "createdAt": "2020-09-18T23:25:00Z",
+              "updatedAt": "2020-09-18T23:25:06Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDM2MTA2",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T22:57:04Z",
+          "updatedAt": "2020-09-21T22:57:05Z",
+          "comments": [
+            {
+              "originalPosition": 45,
+              "body": "Yes. Github mistake.\r\n",
+              "createdAt": "2020-09-21T22:57:04Z",
+              "updatedAt": "2020-09-21T22:57:05Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkzMDQwMTI3",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-21T23:07:49Z",
+          "updatedAt": "2020-09-21T23:07:50Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "We probably should come up with better phrase -- \"establish key material\" or \"set up key material\" or \"personalization\"? It seems awkward to explain all the options each time it needs to be mentioned.\r\n\r\nEven if the key material is generated on the device, you still have to do real work to 1) provide integrity when the public key is coming off the device and 2) make sure you are only taking keys off of real devices (no imposter, forgery or midnight runs). \r\n\r\nI have seen the term \"provision\" used to mean the whole process at a high level.\r\n\r\nI know you keep bringing this up. I very much agree that what you suggest is the best way and should be allowed for and encouraged in the architecture doc, but I also know that are many situations where it can't be done. For example, it can't be done with symmetric keys. It can be done when you are putting keys into fuses on a chip that has no HW key generation feature. It can't be done when keys are supplied by someone other than the manufacturer.\r\n\r\nSo it seems we need some term or wording to describe this that covers all the scenarios.\r\n\r\n\r\n\r\n\r\n\r\n",
+              "createdAt": "2020-09-21T23:07:49Z",
+              "updatedAt": "2020-09-21T23:07:50Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 150,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDg5NTU5NjY1",
+      "title": "Update Reference Values discussion",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/150",
+      "state": "OPEN",
+      "author": "dthaler",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Need Peter to confirm he agrees, but I believe these changes are consistent with the points that Peter and I were both making during the last call.\r\n\r\nSigned-off-by: Dave Thaler <dthaler@ntdev.microsoft.com>",
+      "createdAt": "2020-09-18T22:00:11Z",
+      "updatedAt": "2020-09-22T20:48:01Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "refval",
+      "headRefOid": "4862535b767f1696a7a8cf03105ccd2187df112a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkxODIwNDYy",
+          "commit": {
+            "abbreviatedOid": "4862535"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-09-18T22:45:22Z",
+          "updatedAt": "2020-09-18T22:45:22Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDkyMzAwNzI5",
+          "commit": {
+            "abbreviatedOid": "4862535"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-09-21T06:18:24Z",
+          "updatedAt": "2020-09-21T06:18:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
