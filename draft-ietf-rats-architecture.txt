@@ -210,9 +210,9 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Claim:  A piece of asserted information, often in the form of a name/
       value pair.  (Compare /claim/ in [RFC7519])
 
-   Endorsement:  A secure statement that some entity (typically a
-      manufacturer) vouches for the integrity of an Attester's signing
-      capability
+   Endorsement:  A secure statement that an Endorser vouches for the
+      integrity of an Attester's various capabilities such as Claims
+      collection and Evidence signing
 
    Endorser:  An entity (typically a manufacturer) whose Endorsements
       help Verifiers appraise the authenticity of Evidence
