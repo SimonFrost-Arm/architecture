@@ -210,8 +210,8 @@ Internet-Draft              RATS Arch & Terms             September 2020
       value pair.  (Compare /claim/ in [RFC7519])
 
    Endorsement:  A secure statement that an Endorser vouches for the
-      integrity of an Attesting Environment's various capabilities such
-      as Claims collection and Evidence signing
+      integrity of an Attester's various capabilities such as Claims
+      collection and Evidence signing
 
    Endorser:  An entity (typically a manufacturer) whose Endorsements
       help Verifiers appraise the authenticity of Evidence
