@@ -115,7 +115,7 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
 
      7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
-     7.5.  Endorser and Verifier Owner . . . . . . . . . . . . . . .  22
+     7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  22
    8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  22
      8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  22
      8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  22
@@ -1191,13 +1191,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
        material and the Attesting Environment with equivalent strength
        protections.
 
-7.5.  Endorser and Verifier Owner
+7.5.  Endorser, Reference Value Provider, and Verifier Owner
 
-   In some scenarios, the Endorser and Verifier Owner may need to trust
-   the Verifier before giving the Endorsement and Appraisal Policy to
-   it.  This can be done similarly to how a Relying Party might
-   establish trust in a Verifier as discussed above, and in such a case,
-   mutual attestation might even be needed as discussed in Section 7.3.
+   In some scenarios, the Endorser, Reference Value Provider, and
+   Verifier Owner may need to trust the Verifier before giving the
+   Endorsement, Reference Values, or Appraisal Policy to it.  This can
+   be done similarly to how a Relying Party might establish trust in a
+   Verifier as discussed above, and in such a case, mutual attestation
+   might even be needed as discussed in Section 7.3.
 
 8.  Conceptual Messages
 
@@ -1225,7 +1226,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    then an Endorsement might be a manufacturer certificate that signs a
    public key whose corresponding private key is only known inside the
    device's hardware.  Thus, when Evidence and such an Endorsement are
-   used together, an appraisal procedure can be conducted based on
 
 
 
@@ -1234,6 +1234,7 @@ Birkholz, et al.          Expires 29 March 2021                [Page 22]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+   used together, an appraisal procedure can be conducted based on
    Appraisal Policies that may not be specific to the device instance,
    but merely specific to the manufacturer providing the Endorsement.
    For example, an Appraisal Policy might simply check that devices from
@@ -1279,7 +1280,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    signed by a trusted Verifier.  A more complex policy might also
    entail comparing information provided in the result against Reference
    Values, or applying more complex logic on such information.
-
 
 
 
