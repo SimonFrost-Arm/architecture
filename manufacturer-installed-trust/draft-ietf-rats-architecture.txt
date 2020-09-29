@@ -1165,11 +1165,11 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Attester is critical to the secure operation an Attestation system,
    but is not the subject of standardization within this architecture.
 
-   See Section 12 for discussion on security strength.  The Verifier
-   trusts (or more specifically, the Verifier's security policy is
-   written in a way that configures the Verifier to trust) a
+   The Verifier trusts (or more specifically, the Verifier's security
+   policy is written in a way that configures the Verifier to trust) a
    manufacturer, or the manufacturer's hardware, so as to be able to
    appraise the trustworthiness of that manufacturer's devices.  In
+   solutions with weaker security, a Verifier might be configured to
 
 
 
@@ -1178,7 +1178,6 @@ Birkholz, et al.          Expires 2 April 2021                 [Page 21]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
-   solutions with weaker security, a Verifier might be configured to
    implicitly trust firmware or even software (e.g., a hypervisor).
    That is, it might appraise the trustworthiness of an application
    component, operating system component, or service under the
@@ -1206,6 +1205,8 @@ Internet-Draft              RATS Arch & Terms             September 2020
        material and the Attesting Environment with equivalent strength
        protections.
 
+   See Section 12 for discussion on security strength.
+
 7.5.  Endorser, Reference Value Provider, and Verifier Owner
 
    In some scenarios, the Endorser, Reference Value Provider, and
@@ -1225,7 +1226,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    its relevance, compliance, and timeliness.  Claims need to be
    collected in a manner that is reliable.  Evidence needs to be
    securely associated with the target environment so that the Verifier
-   cannot be tricked into accepting claims originating from a different
 
 
 
@@ -1234,6 +1234,7 @@ Birkholz, et al.          Expires 2 April 2021                 [Page 22]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
+   cannot be tricked into accepting claims originating from a different
    environment (that may be more trustworthy).  Evidence also must be
    protected from man-in-the-middle attackers who may observe, change or
    misdirect Evidence as it travels from Attester to Verifier.  The
@@ -1280,7 +1281,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    a Verifier's Appraisal Policy, or a rich set of Claims about the
    Attester, against which the Relying Party applies its Appraisal
    Policy for Attestation Results.
-
 
 
 
