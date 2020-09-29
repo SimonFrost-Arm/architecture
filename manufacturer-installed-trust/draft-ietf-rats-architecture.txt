@@ -114,34 +114,34 @@ Birkholz, et al.          Expires 2 April 2021                  [Page 2]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
-     7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  22
+     7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
      7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  22
    8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  22
-     8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  23
+     8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  22
      8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  23
-     8.3.  Attestation Results . . . . . . . . . . . . . . . . . . .  24
+     8.3.  Attestation Results . . . . . . . . . . . . . . . . . . .  23
    9.  Claims Encoding Formats . . . . . . . . . . . . . . . . . . .  24
    10. Freshness . . . . . . . . . . . . . . . . . . . . . . . . . .  26
    11. Privacy Considerations  . . . . . . . . . . . . . . . . . . .  28
-   12. Security Considerations . . . . . . . . . . . . . . . . . . .  29
+   12. Security Considerations . . . . . . . . . . . . . . . . . . .  28
      12.1.  Attester and Attestation Key Protection  . . . . . . . .  29
        12.1.1.  On-Device Attester and Key Protection  . . . . . . .  29
        12.1.2.  Attestation Key Provisioning Processes . . . . . . .  30
-     12.2.  Integrity Protection . . . . . . . . . . . . . . . . . .  31
-   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
-   14. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  32
+     12.2.  Integrity Protection . . . . . . . . . . . . . . . . . .  30
+   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  31
+   14. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  31
    15. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  32
    16. Appendix A: Time Considerations . . . . . . . . . . . . . . .  32
-     16.1.  Example 1: Timestamp-based Passport Model Example  . . .  34
+     16.1.  Example 1: Timestamp-based Passport Model Example  . . .  33
      16.2.  Example 2: Nonce-based Passport Model Example  . . . . .  35
-     16.3.  Example 3: Handle-based Passport Model Example . . . . .  37
+     16.3.  Example 3: Handle-based Passport Model Example . . . . .  36
      16.4.  Example 4: Timestamp-based Background-Check Model
             Example  . . . . . . . . . . . . . . . . . . . . . . . .  38
-     16.5.  Example 5: Nonce-based Background-Check Model Example  .  39
-   17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  40
-     17.1.  Normative References . . . . . . . . . . . . . . . . . .  40
-     17.2.  Informative References . . . . . . . . . . . . . . . . .  40
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  41
+     16.5.  Example 5: Nonce-based Background-Check Model Example  .  38
+   17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  39
+     17.1.  Normative References . . . . . . . . . . . . . . . . . .  39
+     17.2.  Informative References . . . . . . . . . . . . . . . . .  39
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  40
 
 1.  Introduction
 
@@ -1124,22 +1124,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
 7.2.  Attester
 
-   The manufacturer of the Attester arranges for its Attesting
-   Environment to be provisioned with key material.
-
-   The signing key material is typically in the form of an asymmetric
-   key pair (e.g., an RSA or ECDSA private key and a manufacturer signed
-   IDevID certificate) secured in the Attester.
-
-   The Verifier is provided with an appropriate trust anchor, or
-   provided with a database of public keys (rather than certificates),
-   or even carefully secured lists of symmetric keys.  The nature of how
-   the Verifier manages to validate the signatures produced by the
-   Attester is critical to the secure operation an Attestation system,
-   but is not the subject of standardization within this architecture.
-
-   See Section 12 for discussion on security strength.
-
    In some scenarios, Evidence might contain sensitive information such
    as Personally Identifiable Information.  Thus, an Attester must trust
    entities to which it conveys Evidence, to not reveal sensitive data
@@ -1165,11 +1149,27 @@ Internet-Draft              RATS Arch & Terms             September 2020
    side's Evidence must be considered safe to share with an untrusted
    entity, in order to bootstrap the sequence.
 
+7.4.  Verifier
 
+   The manufacturer of the Attester arranges for its Attesting
+   Environment to be provisioned with key material.
 
+   The signing key material is typically in the form of an asymmetric
+   key pair (e.g., an RSA or ECDSA private key and a manufacturer signed
+   IDevID certificate) secured in the Attester.
 
+   The Verifier is provided with an appropriate trust anchor, or
+   provided with a database of public keys (rather than certificates),
+   or even carefully secured lists of symmetric keys.  The nature of how
+   the Verifier manages to validate the signatures produced by the
+   Attester is critical to the secure operation an Attestation system,
+   but is not the subject of standardization within this architecture.
 
-
+   See Section 12 for discussion on security strength.  The Verifier
+   trusts (or more specifically, the Verifier's security policy is
+   written in a way that configures the Verifier to trust) a
+   manufacturer, or the manufacturer's hardware, so as to be able to
+   appraise the trustworthiness of that manufacturer's devices.  In
 
 
 
@@ -1178,12 +1178,6 @@ Birkholz, et al.          Expires 2 April 2021                 [Page 21]
 Internet-Draft              RATS Arch & Terms             September 2020
 
 
-7.4.  Verifier
-
-   The Verifier trusts (or more specifically, the Verifier's security
-   policy is written in a way that configures the Verifier to trust) a
-   manufacturer, or the manufacturer's hardware, so as to be able to
-   appraise the trustworthiness of that manufacturer's devices.  In
    solutions with weaker security, a Verifier might be configured to
    implicitly trust firmware or even software (e.g., a hypervisor).
    That is, it might appraise the trustworthiness of an application
@@ -1223,17 +1217,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
 8.  Conceptual Messages
 
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 22]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
 8.1.  Evidence
 
    Evidence is a set of claims about the target environment that reveal
@@ -1243,6 +1226,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
    collected in a manner that is reliable.  Evidence needs to be
    securely associated with the target environment so that the Verifier
    cannot be tricked into accepting claims originating from a different
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 22]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    environment (that may be more trustworthy).  Evidence also must be
    protected from man-in-the-middle attackers who may observe, change or
    misdirect Evidence as it travels from Attester to Verifier.  The
@@ -1280,16 +1271,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    may need device-specific information such as a public key for the
    device or component or user on the device.
 
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 23]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
 8.3.  Attestation Results
 
    Attestation Results are the input used by the Relying Party to decide
@@ -1299,6 +1280,15 @@ Internet-Draft              RATS Arch & Terms             September 2020
    a Verifier's Appraisal Policy, or a rich set of Claims about the
    Attester, against which the Relying Party applies its Appraisal
    Policy for Attestation Results.
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 23]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
    A result that indicates non-compliance can be used by an Attester (in
    the passport model) or a Relying Party (in the background-check
@@ -1337,15 +1327,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    The following diagram illustrates a relationship to which remote
    attestation is desired to be added:
 
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 24]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
       +-------------+               +------------+ Evaluate
       |             |-------------->|            | request
       |  Attester   |  Access some  |   Relying  | against
@@ -1357,6 +1338,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
    In this diagram, the protocol between Attester and a Relying Party
    can be any new or existing protocol (e.g., HTTP(S), COAP(S), ROLIE
    [RFC8322], 802.1x, OPC UA, etc.), depending on the use case.  Such
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 24]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    protocols typically already have mechanisms for passing security
    information for purposes of authentication and authorization.  Common
    formats include JWTs [RFC7519], CWTs [RFC8392], and X.509
@@ -1389,6 +1378,17 @@ Internet-Draft              RATS Arch & Terms             September 2020
    that encode the same information into the claims format needed by the
    Relying Party.
 
+   The following diagram illustrates that Evidence and Attestation
+   Results might each have multiple possible encoding formats, so that
+   they can be conveyed by various existing protocols.  It also
+   motivates why the Verifier might also be responsible for accepting
+   Evidence that encodes claims in one format, while issuing Attestation
+   Results that encode claims in a different format.
+
+
+
+
+
 
 
 
@@ -1401,13 +1401,6 @@ Birkholz, et al.          Expires 2 April 2021                 [Page 25]
 
 Internet-Draft              RATS Arch & Terms             September 2020
 
-
-   The following diagram illustrates that Evidence and Attestation
-   Results might each have multiple possible encoding formats, so that
-   they can be conveyed by various existing protocols.  It also
-   motivates why the Verifier might also be responsible for accepting
-   Evidence that encodes claims in one format, while issuing Attestation
-   Results that encode claims in a different format.
 
                    Evidence           Attestation Results
    .--------------.   CWT                    CWT   .-------------------.
@@ -1439,25 +1432,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Attestation Result was generated using the latest Appraisal Policy
    for Evidence.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 26]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    Freshness is assessed based on a policy defined by the consuming
    entity, Verifier or Relying Party, that compares the estimated epoch
    against an "expiry" threshold defined locally to that policy.  There
@@ -1474,6 +1448,15 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
    There are two common approaches for determining the epoch of an
    Evidence or Attestation Result.
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 26]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
    The first approach is to rely on synchronized and trustworthy clocks,
    and include a signed timestamp (see [I-D.birkholz-rats-tuda]) along
@@ -1506,14 +1489,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Implicit and explicit timekeeping can be combined into hybrid
    mechanisms.  For example, if clocks exist and are considered
    trustworthy but are not synchronized, a nonce-based exchange may be
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 27]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    used to determine the (relative) time offset between the involved
    peers, followed by any number of timestamp based exchanges.  In
    another setup where all Roles (Attesters, Verifiers and Relying
@@ -1531,6 +1506,13 @@ Internet-Draft              RATS Arch & Terms             September 2020
    established to the remote Verifier and a nonce is obtained.
 
    A more detailed discussion with examples appears in Section 16.
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 27]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
 11.  Privacy Considerations
 
@@ -1556,20 +1538,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    claims if it knew that only certain values were accepted by the
    Relying Party.
 
-
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 28]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    Evidence and Attestation Results data structures are expected to
    support integrity protection encoding (e.g., COSE, JOSE, X.509) and
    optionally might support confidentiality protection (e.g., COSE,
@@ -1588,6 +1556,19 @@ Internet-Draft              RATS Arch & Terms             September 2020
    purpose.
 
 12.  Security Considerations
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 28]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
 12.1.  Attester and Attestation Key Protection
 
@@ -1613,19 +1594,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    that the signing key is not captured and used elsewhere to forge
    evidence.
 
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 29]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    In many cases the user or owner of the device must not be able to
    modify or exfiltrate keys from the Attesting Environment of the
    Attester.  For example the owner or user of a mobile phone or FIDO
@@ -1650,6 +1618,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
    clock glitching, faulting injection and RF and power side channel
    attacks.
 
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 29]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
 12.1.2.  Attestation Key Provisioning Processes
 
    Attestation key provisioning is the process that occurs in the
@@ -1673,14 +1649,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Cryptography can also be used to support confidentiality, but keys
    that are used to then provision attestation keys must somehow have
    been provisioned securely beforehand (a recursive problem).
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 30]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
    In many cases both some physical security and some cryptography will
    be necessary and useful to establish confidentiality.
@@ -1707,6 +1675,13 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
    *  end-to-end encryption,
 
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 30]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    *  denial of service protection,
 
    *  authentication,
@@ -1731,13 +1706,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    create Evidence about the integrity of the entity providing the
    Appraisal Policy needs to be considered.
 
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 31]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    The security of conveyed information may be applied at different
    layers, whether by a conveyance protocol, or an information encoding
    format.  This architecture expects attestation messages (i.e.,
@@ -1757,6 +1725,18 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Special thanks go to Joerg Borchert, Nancy Cam-Winget, Jessica
    Fitzgerald-McKay, Thomas Fossati, Diego Lopez, Laurence Lundblade,
    Paul Rowe, Hannes Tschofenig, Frank Xia, and David Wooten.
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 31]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
 15.  Contributors
 
@@ -1786,14 +1766,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
     |    |              | long it has had that value.  In such a      |
     |    |              | case, the Value created time is the time at |
     |    |              | which the Claim containing the copy of the  |
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 32]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
     |    |              | value was created.                          |
     +----+--------------+---------------------------------------------+
     | HD | Handle       | A centrally generated identifier for time-  |
@@ -1814,6 +1786,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
     |    | generation   | Claims.                                     |
     +----+--------------+---------------------------------------------+
     | ER | Evidence     | A Relying Party relays Evidence to a        |
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 32]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
     |    | relayed      | Verifier.                                   |
     +----+--------------+---------------------------------------------+
     | RG | Result       | A Verifier appraises Evidence and generates |
@@ -1843,13 +1823,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    built.  This list is not intended to be complete, but is just
    representative enough to highlight various timing considerations.
 
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 33]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    All times are relative to the local clocks, indicated by an "a"
    (Attester), "v" (Verifier), or "r" (Relying Party) suffix.
 
@@ -1863,6 +1836,19 @@ Internet-Draft              RATS Arch & Terms             September 2020
    depends on using a secure clock synchronization mechanism.  As a
    result, the receiver of a conceptual message containing a timestamp
    can directly compare it to its own clock and timestamps.
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 33]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
 
       .----------.                     .----------.  .---------------.
       | Attester |                     | Verifier |  | Relying Party |
@@ -1898,14 +1884,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    the maximum permitted clock skew between the Verifier and the
    Attester.
 
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 34]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    The Relying Party can check whether the Attestation Result is fresh
    when appraising it at time(RA_r) by checking "time(RA_r) - time(RG_v)
    < Threshold", where the Relying Party's threshold is large enough to
@@ -1919,6 +1897,15 @@ Internet-Draft              RATS Arch & Terms             September 2020
    However, if the Attestation Result contains an expiry time time(RX_v)
    then it could explicitly check "time(OP_r) < time(RX_v)".
 
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 34]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
 16.2.  Example 2: Nonce-based Passport Model Example
 
    The following example illustrates a hypothetical Passport Model
@@ -1931,36 +1918,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Relying Party) on the IDs below indicating which clock generated
    them, since times from different clocks cannot be compared.  Only the
    delta between two events from the sender can be used by the receiver.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 35]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
       .----------.                     .----------.  .---------------.
       | Attester |                     | Verifier |  | Relying Party |
@@ -1998,6 +1955,13 @@ Internet-Draft              RATS Arch & Terms             September 2020
    determine recency by checking "time(RG_v)-time(NS_v) + time(EG_a)-
    time(VG_a) < Threshold".
 
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 35]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    Similarly if, based on an Attestation Result from a Verifier it
    trusts, the Relying Party decides that the Attester can be trusted to
    correctly provide time deltas, then it can determine whether the
@@ -2010,14 +1974,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    The Relying Party must still be careful, however, to not allow
    continued use beyond the period for which it deems the Attestation
    Result to remain valid.  Thus, if the Attestation Result sends a
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 36]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
-
    validity lifetime in terms of "time(RX_v)-time(RG_v)", then the
    Relying Party can check "time(OP_r)-time(NS_r) < time(RX_v)-
    time(RG_v)".
@@ -2054,6 +2010,14 @@ Internet-Draft              RATS Arch & Terms             September 2020
    a current handle and corresponding former handle are valid in
    Evidence appraisal: "validity-duration = time(HR'_v) + offset -
    time(HR_v)".  The offset is typically based on a network's round trip
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 36]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    time.  Analogously, the generation of valid Evidence is only
    possible, if the age of the handle used is lower than the validity-
    duration: "time(HR_v) - time(EG_a) < validity-duration".
@@ -2063,16 +2027,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
    Evidence generation is younger than the duration of the distribution
    interval - "(time(HR'_v)-time(HR_v)) - (time(HR_a)-time(EG_a)) <
    validity-duration".
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 37]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
    Due to the validity-duration of handles, multiple different pieces of
    Evidence can be generated based on the same handle.  The resulting
@@ -2112,23 +2066,19 @@ Internet-Draft              RATS Arch & Terms             September 2020
            |                                              time(OP_r)
            |                                                 |
 
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 37]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
 16.4.  Example 4: Timestamp-based Background-Check Model Example
 
    The following example illustrates a hypothetical Background-Check
    Model solution that uses timestamps and requires roughly synchronized
    clocks between the Attester, Verifier, and Relying Party.
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 38]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
    .----------.         .---------------.                .----------.
    | Attester |         | Relying Party |                | Verifier |
@@ -2158,6 +2108,28 @@ Internet-Draft              RATS Arch & Terms             September 2020
    generated by a Verifier at the request of a Relying Party, when the
    Relying Party needs to send one to an Attester.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 38]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    .----------.         .---------------.              .----------.
    | Attester |         | Relying Party |              | Verifier |
    '----------'         '---------------'              '----------'
@@ -2176,15 +2148,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
         ~                       ~                           ~
         |                       |                           |
         |                    time(OP_r)                     |
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 39]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
    The Verifier can check whether the Evidence is fresh, and whether a
    claim value is recent, the same as in Example 2 above.
@@ -2214,6 +2177,15 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
 17.2.  Informative References
 
+
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 39]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    [CTAP]     FIDO Alliance, "Client to Authenticator Protocol", n.d.,
               <https://fidoalliance.org/specs/fido-v2.0-id-20180227/
               fido-client-to-authenticator-protocol-v2.0-id-
@@ -2233,14 +2205,6 @@ Internet-Draft              RATS Arch & Terms             September 2020
               ietf-teep-architecture-12, 13 July 2020,
               <http://www.ietf.org/internet-drafts/draft-ietf-teep-
               architecture-12.txt>.
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 40]
-
-Internet-Draft              RATS Arch & Terms             September 2020
-
 
    [OPCUA]    OPC Foundation, "OPC Unified Architecture Specification,
               Part 2: Security Model, Release 1.03", OPC 10000-2 , 25
@@ -2270,6 +2234,14 @@ Authors' Addresses
    Henk Birkholz
    Fraunhofer SIT
    Rheinstrasse 75
+
+
+
+Birkholz, et al.          Expires 2 April 2021                 [Page 40]
+
+Internet-Draft              RATS Arch & Terms             September 2020
+
+
    64295 Darmstadt
    Germany
 
@@ -2288,14 +2260,6 @@ Authors' Addresses
    Canada
 
    Email: mcr+ietf@sandelman.ca
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 41]
-
-Internet-Draft              RATS Arch & Terms             September 2020
 
 
    Ned Smith
@@ -2329,24 +2293,4 @@ Internet-Draft              RATS Arch & Terms             September 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 2 April 2021                 [Page 42]
+Birkholz, et al.          Expires 2 April 2021                 [Page 41]
