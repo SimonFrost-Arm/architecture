@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-25T13:58:47.824963+00:00",
+  "timestamp": "2020-09-29T14:10:16.392696+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -46,7 +46,7 @@
     {
       "name": "wontfix",
       "description": "This will not be worked on",
-      "color": "ffffff"
+      "color": "bc6e32"
     },
     {
       "name": "after-ietf108",
@@ -16475,10 +16475,12 @@
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wontfix"
+      ],
       "body": "",
       "createdAt": "2020-08-31T18:25:15Z",
-      "updatedAt": "2020-09-18T21:07:32Z",
+      "updatedAt": "2020-09-25T14:40:45Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
@@ -16489,7 +16491,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we already dealt with this in a different PR.\r\nI want to close this one.\r\n",
+          "createdAt": "2020-09-25T14:33:14Z",
+          "updatedAt": "2020-09-25T14:33:14Z"
+        }
+      ],
       "reviews": [
         {
           "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDc5NjkzODky",
@@ -17829,13 +17839,13 @@
       "labels": [],
       "body": "This adds a paragraph on the primary trust flow to the Attester sub section.  Previously that subsection only discussed secondary trust flow (confidentiality flow)\r\n\r\nI'm pretty sure that just about every real attestation use involves the Verifier coming to trust the Attester by receipt of a nonce (or equivalent) signed or authenticated by a key in and protected by the Attester. I don't see how a Verifier can trust an Attester in any other way for just about every attestation use case. I've revised the text to say that.\r\n\r\nI think all the discussion about ROM code and HW defenses is now covered in Security Consideration.\r\n\r\nThe addresses #132 ",
       "createdAt": "2020-09-17T18:49:51Z",
-      "updatedAt": "2020-09-25T13:50:16Z",
+      "updatedAt": "2020-09-28T03:48:48Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "AttesterTrust",
-      "headRefOid": "9bb01637fe3e3b55c3e1d58c50245d2504e69b8e",
+      "headRefOid": "42787b382066bc7b9a4a80a19d38a5be2984bf79",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -17858,31 +17868,31 @@
               "originalPosition": 4,
               "body": "\"provisioned into it by the Endorser\" is not true in general.   For example, it's not true in the case where the Attester is an IoT device that generates its own key pair at the factory, and the public key is then extracted and used to generate a certificate issued by an Endorser (the manufacturer or whoever else), and the certificate itself isn't provisioned on the device but can be looked up on demand by the Verifier.  In this case, there is no \"key material\" provisioned into the Attester by any entity other than the Attester itself.\r\n\r\nLine 723 and 754 are incorrect for the same reason.",
               "createdAt": "2020-09-18T23:20:50Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             },
             {
               "originalPosition": 5,
               "body": "```suggestion\r\nThe proof is by the signing or authenticating of Evidence (see {{freshness}}).\r\n```",
               "createdAt": "2020-09-18T23:21:57Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             },
             {
               "originalPosition": 9,
               "body": "This would need to be a markdown cross reference.",
               "createdAt": "2020-09-18T23:23:15Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             },
             {
               "originalPosition": 33,
               "body": "Hard to review since line breaks were removed.  Please revert line breaks.",
               "createdAt": "2020-09-18T23:23:50Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             },
             {
               "originalPosition": 45,
               "body": "Keep examples in a separate PR",
               "createdAt": "2020-09-18T23:25:00Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             }
           ]
         },
@@ -17902,7 +17912,7 @@
               "originalPosition": 45,
               "body": "Yes. Github mistake.\r\n",
               "createdAt": "2020-09-21T22:57:04Z",
-              "updatedAt": "2020-09-23T04:35:15Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             }
           ]
         },
@@ -17922,7 +17932,7 @@
               "originalPosition": 4,
               "body": "We probably should come up with better phrase -- \"establish key material\" or \"set up key material\" or \"personalization\"? It seems awkward to explain all the options each time it needs to be mentioned.\r\n\r\nEven if the key material is generated on the device, you still have to do real work to 1) provide integrity when the public key is coming off the device and 2) make sure you are only taking keys off of real devices (no imposter, forgery or midnight runs). \r\n\r\nI have seen the term \"provision\" used to mean the whole process at a high level.\r\n\r\nI know you keep bringing this up. I very much agree that what you suggest is the best way and should be allowed for and encouraged in the architecture doc, but I also know that are many situations where it can't be done. For example, it can't be done with symmetric keys. It can't be done when you are putting keys into fuses on a chip that has no HW key generation feature. It can't be done when keys are supplied by someone other than the manufacturer.\r\n\r\nSo it seems we need some term or wording to describe this that covers all the scenarios.\r\n\r\n\r\n\r\n\r\n\r\n",
               "createdAt": "2020-09-21T23:07:49Z",
-              "updatedAt": "2020-09-24T19:39:49Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             }
           ]
         },
@@ -17942,7 +17952,7 @@
               "originalPosition": 4,
               "body": "A common problem.\r\n\r\nMaybe: \"Attesters prove their trustworthiness to Verifiers via their key material that is established in their Attesting Environments under the control and authority of a trusted Endorsers.\" (might have an effect on the following sentences)",
               "createdAt": "2020-09-25T13:50:07Z",
-              "updatedAt": "2020-09-25T13:50:16Z"
+              "updatedAt": "2020-09-28T03:48:48Z"
             }
           ]
         }
@@ -17953,24 +17963,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDg5NTU5NjY1",
       "title": "Update Reference Values discussion",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/150",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "dthaler",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Need Peter to confirm he agrees, but I believe these changes are consistent with the points that Peter and I were both making during the last call.\r\n\r\nSigned-off-by: Dave Thaler <dthaler@ntdev.microsoft.com>",
       "createdAt": "2020-09-18T22:00:11Z",
-      "updatedAt": "2020-09-25T13:58:40Z",
+      "updatedAt": "2020-09-25T14:13:39Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "refval",
-      "headRefOid": "9b369196487424dec1631907c595a14b551af48e",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "542c1e6a550c0ff8b296b2f9ea6d3f6e1d6b5c2a",
+      "closedAt": "2020-09-25T14:13:36Z",
+      "mergedAt": "2020-09-25T14:13:36Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "1a20421e6a8389594e864e275a2b4e0b46a58a06"
+      },
       "comments": [
         {
           "author": "laurencelundblade",
@@ -18023,19 +18035,19 @@
               "originalPosition": 12,
               "body": "Add \"also called known-good values\"",
               "createdAt": "2020-09-23T19:06:24Z",
-              "updatedAt": "2020-09-25T13:58:20Z"
+              "updatedAt": "2020-09-25T14:06:11Z"
             },
             {
               "originalPosition": 43,
               "body": "Remove \"known-good\", assuming \"known-good\" is mentioned as an AKA for Reference Values.",
               "createdAt": "2020-09-23T19:07:26Z",
-              "updatedAt": "2020-09-25T13:58:20Z"
+              "updatedAt": "2020-09-25T14:06:11Z"
             },
             {
               "originalPosition": 52,
               "body": "Remove \"known-good\", assuming \"known-good\" is mentioned as an AKA for Reference Values.",
               "createdAt": "2020-09-23T19:07:39Z",
-              "updatedAt": "2020-09-25T13:58:20Z"
+              "updatedAt": "2020-09-25T14:06:11Z"
             }
           ]
         },
@@ -18068,7 +18080,7 @@
               "originalPosition": 43,
               "body": "Done",
               "createdAt": "2020-09-25T13:58:24Z",
-              "updatedAt": "2020-09-25T13:58:25Z"
+              "updatedAt": "2020-09-25T14:06:11Z"
             }
           ]
         },
@@ -18088,7 +18100,27 @@
               "originalPosition": 12,
               "body": "Expanded definition",
               "createdAt": "2020-09-25T13:58:40Z",
-              "updatedAt": "2020-09-25T13:58:40Z"
+              "updatedAt": "2020-09-25T14:06:11Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk2NDQ0OTI0",
+          "commit": {
+            "abbreviatedOid": "9b36919"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-25T13:58:52Z",
+          "updatedAt": "2020-09-25T13:58:53Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "Done",
+              "createdAt": "2020-09-25T13:58:52Z",
+              "updatedAt": "2020-09-25T14:06:11Z"
             }
           ]
         }
@@ -18099,24 +18131,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDkxMTk3NjMw",
       "title": "Update draft-ietf-rats-architecture.md",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/152",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "nedmsmith",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Suggested new text for Endorsements definition to make it slightly more broad, but constrained to the operations of an Attesting Environment (which is a subset of an Attester that also might contain Target Environments and other environments) which is focus for why a Verifier cares to get Endorsements. ",
       "createdAt": "2020-09-22T21:11:00Z",
-      "updatedAt": "2020-09-25T13:40:25Z",
+      "updatedAt": "2020-09-25T14:19:36Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "Issue151",
-      "headRefOid": "e2e7fb7a429d51bf2434bf47de5cb829c7b51232",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "90ecae9e27c73871b14749c6db2365bebdff7ecb",
+      "closedAt": "2020-09-25T14:19:33Z",
+      "mergedAt": "2020-09-25T14:19:33Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "8c11fe62a88c24827e317bb49e617348ffbb7a85"
+      },
       "comments": [],
       "reviews": [
         {
@@ -18148,7 +18182,7 @@
               "originalPosition": 5,
               "body": "s/some entity/an Endorser/",
               "createdAt": "2020-09-24T19:34:17Z",
-              "updatedAt": "2020-09-24T19:34:17Z"
+              "updatedAt": "2020-09-25T14:19:11Z"
             }
           ]
         },
@@ -18177,6 +18211,46 @@
           "createdAt": "2020-09-25T13:40:25Z",
           "updatedAt": "2020-09-25T13:40:25Z",
           "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk2NDY0NDY4",
+          "commit": {
+            "abbreviatedOid": "e2e7fb7"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-09-25T14:16:36Z",
+          "updatedAt": "2020-09-25T14:17:17Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n: A secure statement that an Endorser vouches for the integrity of an Attesting Environment's various capabilities such as Claims collection and Evidence signing\r\n```",
+              "createdAt": "2020-09-25T14:16:37Z",
+              "updatedAt": "2020-09-25T14:19:11Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk2NDY2Mzg4",
+          "commit": {
+            "abbreviatedOid": "d7b9336"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-09-25T14:18:47Z",
+          "updatedAt": "2020-09-25T14:18:55Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n: A secure statement that an Endorser vouches for the integrity of an Attester's various capabilities such as Claims collection and Evidence signing\r\n```",
+              "createdAt": "2020-09-25T14:18:47Z",
+              "updatedAt": "2020-09-25T14:19:11Z"
+            }
+          ]
         }
       ]
     },
@@ -18192,7 +18266,7 @@
       "labels": [],
       "body": "TLS authentication is sufficient for establishing trust in the various entities before sending them privacy sensitive data. TLS is also widely supported today and attestation between servers is not. Most likely TLS will be the mechanism. This PR adds mention to in addition to attestation.",
       "createdAt": "2020-09-24T19:30:38Z",
-      "updatedAt": "2020-09-24T19:44:54Z",
+      "updatedAt": "2020-09-29T13:38:39Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
@@ -18212,6 +18286,46 @@
           "updatedAt": "2020-09-24T19:44:53Z"
         }
       ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NDc4NDQ4",
+          "commit": {
+            "abbreviatedOid": "a9f1c1c"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Looks good for me.",
+          "createdAt": "2020-09-29T13:38:39Z",
+          "updatedAt": "2020-09-29T13:38:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 154,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDk0ODYwOTc5",
+      "title": "attempt to rewrite #149 to simplify manufacturer/endorser",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/154",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "attempt to bring the manufacturer/attester/verifier full circle without insisting that endorsements always occuring.\r\n",
+      "createdAt": "2020-09-29T14:09:52Z",
+      "updatedAt": "2020-09-29T14:09:52Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "8c11fe62a88c24827e317bb49e617348ffbb7a85",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "manufacturer-installed-trust",
+      "headRefOid": "eaacd407755066d129f7bedd913ebd124c73f590",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
