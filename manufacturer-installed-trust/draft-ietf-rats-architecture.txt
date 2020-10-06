@@ -118,7 +118,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
      7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  23
    8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  23
      8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  23
-     8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  23
+     8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  24
      8.3.  Attestation Results . . . . . . . . . . . . . . . . . . .  24
    9.  Claims Encoding Formats . . . . . . . . . . . . . . . . . . .  25
    10. Freshness . . . . . . . . . . . . . . . . . . . . . . . . . .  27
@@ -1157,10 +1157,26 @@ Internet-Draft              RATS Arch & Terms               October 2020
    appraise the trustworthiness of that manufacturer's devices.  In a
    typical solution, a Verifier comes to trust an Attester indirectly by
    having an Endorser (such as a manufacturer) vouch for the Attester's
-   ability to securely generate Evidence.  In some solutions, a Verifier
-   might be configured to directly trust an Attester by having the
-   Verifier have the Attester's key material (rather than the
-   Endorser's) in its trust anchor store.
+   ability to securely generate Evidence.
+
+   In some solutions, a Verifier might be configured to directly trust
+   an Attester by having the Verifier have the Attester's key material
+   (rather than the Endorser's) in its trust anchor store.
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 9 April 2021                 [Page 21]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
 
    Such direct trust must first be established at the time of trust
    anchor store configuration either by checking with an Endorser at
@@ -1170,13 +1186,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    devices the Endorser might vouch for, such as all devices
    manufactured by the same manufacturer in the case that the Endorser
    is a manufacturer.
-
-
-
-Birkholz, et al.          Expires 9 April 2021                 [Page 21]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
 
    Such narrowing is often important since physical possession of a
    device can also be used to conduct a number of attacks, and so a
@@ -1217,6 +1226,14 @@ Internet-Draft              RATS Arch & Terms               October 2020
    protection can be used to convey unprotected Evidence, assuming the
    following properties exists:
 
+
+
+
+Birkholz, et al.          Expires 9 April 2021                 [Page 22]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
+
    1.  The key material used to authenticate and integrity protect the
        conveyance channel is trusted by the Verifier to speak for the
        Attesting Environment(s) that collected claims about the Target
@@ -1225,14 +1242,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    2.  All unprotected Evidence that is conveyed is supplied exclusively
        by the Attesting Environment that has the key material that
        protects the conveyance channel
-
-
-
-
-Birkholz, et al.          Expires 9 April 2021                 [Page 22]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
 
    3.  The Root of Trust protects both the conveyance channel key
        material and the Attesting Environment with equivalent strength
@@ -1267,6 +1276,20 @@ Internet-Draft              RATS Arch & Terms               October 2020
    time or interval when changes in operational status, health, and so
    forth occur.
 
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 9 April 2021                 [Page 23]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
+
 8.2.  Endorsements
 
    An Endorsement is a secure statement that some entity (e.g., a
@@ -1282,13 +1305,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    a given manufacturer have information matching a set of Reference
    Values, or an Appraisal Policy might have a set of more complex logic
    on how to appraise the validity of information.
-
-
-
-Birkholz, et al.          Expires 9 April 2021                 [Page 23]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
 
    However, while an Appraisal Policy that treats all devices from a
    given manufacturer the same may be appropriate for some use cases, it
@@ -1321,22 +1337,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    even indicate that the Evidence itself cannot be authenticated as
    being correct.
 
-   An Attestation Result that indicates compliance can be used by a
-   Relying Party to make authorization decisions based on the Relying
-   Party's Appraisal Policy.  The simplest such policy might be to
-   simply authorize any party supplying a compliant Attestation Result
-   signed by a trusted Verifier.  A more complex policy might also
-   entail comparing information provided in the result against Reference
-   Values, or applying more complex logic on such information.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1345,6 +1345,14 @@ Birkholz, et al.          Expires 9 April 2021                 [Page 24]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
+
+   An Attestation Result that indicates compliance can be used by a
+   Relying Party to make authorization decisions based on the Relying
+   Party's Appraisal Policy.  The simplest such policy might be to
+   simply authorize any party supplying a compliant Attestation Result
+   signed by a trusted Verifier.  A more complex policy might also
+   entail comparing information provided in the result against Reference
+   Values, or applying more complex logic on such information.
 
    Thus, Attestation Results often need to include detailed information
    about the Attester, for use by Relying Parties, much like physical
@@ -1383,14 +1391,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    information for purposes of authentication and authorization.  Common
    formats include JWTs [RFC7519], CWTs [RFC8392], and X.509
    certificates.
-
-
-
-
-
-
-
-
 
 
 
