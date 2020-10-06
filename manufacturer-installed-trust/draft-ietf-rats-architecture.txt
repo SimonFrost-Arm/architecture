@@ -1206,7 +1206,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    security comes when information can be vouched for by hardware or by
    ROM code, especially if such hardware is physically resistant to
    hardware tampering.  In most cases, components that have to be
-   vouched for via Endorsements because no Evidence can be created about
+   vouched for via Endorsements because no Evidence is generated about
    them are referred to as a roots of trust.
 
    The manufacturer of the Attester arranges for its Attesting
