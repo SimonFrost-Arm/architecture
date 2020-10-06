@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-09-29T14:10:16.392696+00:00",
+  "timestamp": "2020-10-06T12:53:33.353538+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -1780,9 +1780,17 @@
       "labels": [],
       "body": "Reviewing the trust relationships described in the architecture document got me thinking about sharpening a distinction between device attestation (e.g., EAT for phone) and service authenticity (e.g. HTTPS for a web site):\r\n\r\n**Device Attestation**\r\n\r\n- Focus is on the implementation, the HW and SW\r\n- The legal entity of interest is the device manufacturer\r\n- The claims are about the HW and the SW, not the device owner\r\n- Example: a mobile phone (not its owner/user)\r\n- Example: integrity of a remote device\r\n\r\n**Service Authenticity**\r\n\r\n- Focus is on the provider of the service, not the HW or SW\r\n- The legal entity of interest is the service provider\r\n- There is no equivalent of claims, but if there was they would be about the business or person operating the service\r\n- Example: a web site\r\n- Example: an email provider (IMAP service)\r\n\r\nService providers (e.g., web sites) use whatever HW and SW they want to use. As a user of the service we don\u2019t care what HW and SW they select. We trust the service provider to pick good HW and SW and to configure and operate it correctly. They might change the HW and the SW and as a user we won\u2019t know.  For example we trust Bank of Xxx to operate their banking web site correctly with little concern for their HW. This is why attestation of the HW and SW is not so useful to the user of a service.\r\n\r\nUsers of mobile phones and IoT devices are not trustworthy to pick secure HW and SW. They are not professionals like the people running web sites. There is little accountability against them if they pick bad SW and HW. Therefor we want attestation for these usage scenarios. This is why EAT, FIDO and Android Attestation exist.\r\n\r\nI don\u2019t think the line between device attestation and service authenticity is completely black and white. In some use cases attestation may be bent to provide some service authenticity. But I don\u2019t think it makes sense to add attestation to the millions of web sites out there, add support for it to browsers and make attestation an extra layer of security for web browsing.\r\n\r\nI think it is fine for a service provider to use attestation inside their service to monitor integrity and such of the HW and SW providing the service. But usually that won\u2019t be manifest outside the service. It could be awkward for the user to the service to have to re evaluate the service every time the service provider changes HW.\r\n\r\nAnother way to look at this is from a certification / regulatory view. If the thing you're looking at is a candidate for implementation certification such as Common Criteria, FIPS, FIDO certification, then it probably lines up with device attestation. On the other hand, if the thing your are looking at lines up with regulation (e.g., banking regulation, GDPR,...) and to some degree OWASP, then it probably lines up with service authenticity. \r\n\r\nI think the RATS architecture document should probably have text that describes when attestation is applicable and when it is not, for example saying something like \u201cattestation is not a replacement or augmentation for HTTPS/TLS\"",
       "createdAt": "2020-08-03T19:01:30Z",
-      "updatedAt": "2020-08-03T19:01:30Z",
+      "updatedAt": "2020-10-06T12:29:55Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "In the last editors session, the editor's rough consensus was that https does not provide the authenticity but it provides a secure channel. Instead, authenticity is checked via successful authentication rooted in identity documents (I hope I captured appropriately, please bash).\r\n\r\nTaking that into account, how does this effect this issue?\r\n\r\nLooking at the last paragraph, \"Remote attestation procedures are not a replacement for secure authentication, they are based on secure authentication.\" might be missing vital parts. Does anything need to be added or modified here?",
+          "createdAt": "2020-10-06T12:29:55Z",
+          "updatedAt": "2020-10-06T12:29:55Z"
+        }
+      ]
     },
     {
       "number": 135,
@@ -1828,7 +1836,7 @@
       "labels": [],
       "body": "Since PR150 clarifies the difference between reference values and endorsements. It seems more clear that endorsements describe properties of the Attesting Environment (which includes creation / signing of Evidence) and therefore describes \"signing capability\". However, Attesting Environments also collect claims securely. Therefore, the current definition of Endorsements is still too narrow. \r\n\r\nSuggested text: \"Endorsement:  A secure statement that some entity (typically a manufacturer) vouches for the integrity of an Attesting Environment's various capabilities such as Claims collection and Evidence signing\"",
       "createdAt": "2020-09-22T20:56:10Z",
-      "updatedAt": "2020-09-24T17:06:58Z",
+      "updatedAt": "2020-10-06T12:20:54Z",
       "closedAt": null,
       "comments": [
         {
@@ -1844,6 +1852,37 @@
           "body": "I don\u2019t think we have a clear definition for \u2018implicit claims\u2019. While I agree Endorsements are likely to be implicit claims, it isn\u2019t clear that a Reference Values Provider (RVP) couldn\u2019t also supply implicit claims. This become a consideration given we\u2019ve narrowed the scope of what an Endorser can say. This is the risk we take when trying to be too specific about the roles / messages in an architecture. It is sometimes better to allow wording that can be interpreted broadly then include specific examples.\r\n\r\nFrom: Laurence Lundblade <notifications@github.com>\r\nReply-To: ietf-rats-wg/architecture <reply@reply.github.com>\r\nDate: Wednesday, September 23, 2020 at 12:23 PM\r\nTo: ietf-rats-wg/architecture <architecture@noreply.github.com>\r\nCc: \"Smith, Ned\" <ned.smith@intel.com>, Author <author@noreply.github.com>\r\nSubject: Re: [ietf-rats-wg/architecture] Endorsements definition is too narrow given PR150 clarification (#151)\r\n\r\n\r\nDefinitely agree that the separation of Ref Vals makes the nature of Endorsements much more clear in the way Ned suggests. Now they are primarily attestation keys and implicit claims which both describe the Attester.\r\n\r\nHowever, I think the one-liner definition of Endorsement should stay as is and further description should go in the Endorsements section in the Conceptual Messages section.\r\n\r\nI also think Endorsements should always be described as being produced by an Endorser. Then the Endorser is sometimes a manufacturer.\r\n\r\nIt should be mentioned that Endorsements can contain implicit claims (in the Endorsements section, not the one-liner definition).\r\n\r\n\u2014\r\nYou are receiving this because you authored the thread.\r\nReply to this email directly, view it on GitHub<https://github.com/ietf-rats-wg/architecture/issues/151#issuecomment-697922912>, or unsubscribe<https://github.com/notifications/unsubscribe-auth/ABPMCSHVQ2MNDJJEP27SYRLSHJDKLANCNFSM4RWHRZUA>.\r\n",
           "createdAt": "2020-09-24T17:06:58Z",
           "updatedAt": "2020-09-24T17:06:58Z"
+        },
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "So we started to use the following phrase/concept:\r\n\r\nClaims in Endorsements \"vouch for\" characteristics of an Attesting Environment, which an Attester cannot create Evidence for. As a contributor I think \"vouching for\" reads significant more intuitive than \"implicit\".\r\n\r\nDoes anyone disagree with that?\r\n\r\nDo we need to add explicit text that spells out these semantics?",
+          "createdAt": "2020-10-06T12:20:54Z",
+          "updatedAt": "2020-10-06T12:20:54Z"
+        }
+      ]
+    },
+    {
+      "number": 155,
+      "id": "MDU6SXNzdWU3MTUwNzU3ODc=",
+      "title": "\"Root of Trust\" or \"root of trust\"",
+      "url": "https://github.com/ietf-rats-wg/architecture/issues/155",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I think it should be root of trust because it is not a defined term like Attester or Verifier.",
+      "createdAt": "2020-10-05T18:45:37Z",
+      "updatedAt": "2020-10-06T12:12:08Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "body": "Lower case is fine, I think. Any objections?",
+          "createdAt": "2020-10-06T12:12:08Z",
+          "updatedAt": "2020-10-06T12:12:08Z"
         }
       ]
     }
@@ -16480,13 +16519,13 @@
       ],
       "body": "",
       "createdAt": "2020-08-31T18:25:15Z",
-      "updatedAt": "2020-09-25T14:40:45Z",
+      "updatedAt": "2020-09-29T17:37:17Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "patch-4",
-      "headRefOid": "aa7bef97371d8a4b76994207748f0f7db2090cb4",
+      "headRefOid": "5538867efbc803137cb8922f234a9a9eb6cbc72e",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -16517,7 +16556,7 @@
               "originalPosition": 5,
               "body": "I liked the previous phrasing better. E.g. +1 \"informs\", -1 \"and such\"",
               "createdAt": "2020-09-01T12:33:13Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16537,31 +16576,25 @@
               "originalPosition": 14,
               "body": "not a sentence (applies multiple times)",
               "createdAt": "2020-09-01T12:33:50Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 23,
               "body": "```suggestion\r\nClaim:\r\n: A piece of asserted information, often in the form of a name/value pair. Compare /claim/ in {{RFC7519}}.\r\n```",
               "createdAt": "2020-09-01T12:34:35Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
-            },
-            {
-              "originalPosition": 47,
-              "body": "```suggestion\r\n: An entity (typically an administrator) that is authorized to configure Appraisal Policy for Attestation Results in a Relying Party\r\n```",
-              "createdAt": "2020-09-01T12:35:36Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 53,
-              "body": "```suggestion\r\n and produces Attestation Results to be used by a Relying Party\r\n```",
+              "body": "```suggestion\r\n that produces Attestation Results to be used by a Relying Party.\r\n```",
               "createdAt": "2020-09-01T12:35:48Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 58,
               "body": "```suggestion\r\n: An entity (typically an administrator) that is authorized to configure Appraisal Policy for Evidence in a Verifier\r\n```",
               "createdAt": "2020-09-01T12:36:08Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16581,43 +16614,43 @@
               "originalPosition": 5,
               "body": "\"A set of rules that informs a Verifier regarding the evaluation of the Evidence.\" or \"A set of rules that informs a Verifier regarding the appraisal of the Evidence.\"",
               "createdAt": "2020-09-04T16:04:29Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 14,
               "body": "\"The output generated by a Verifier, that typically includes information about the Attester, that is meaningful to a Relying Party and where the Verifier vouches for the validity of the Attestation Results.\"",
               "createdAt": "2020-09-04T16:11:44Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 5,
               "body": "Note use of 'appraisal' in section below on Attestation. Should use common wording if we mean similar things.",
               "createdAt": "2020-09-04T16:13:01Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 19,
               "body": "+1",
               "createdAt": "2020-09-04T16:13:44Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 23,
               "body": "Should have a period after {{RFC7519}}) since it was removed from 'pair'",
               "createdAt": "2020-09-04T16:15:09Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 47,
               "body": "Maybe there is a convention for not including period at the end of a sentence?",
               "createdAt": "2020-09-04T16:16:26Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 53,
               "body": "'that' instead of 'and' produces",
               "createdAt": "2020-09-04T16:17:13Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16637,7 +16670,7 @@
               "originalPosition": 5,
               "body": "Ned's wording plus mention of reference values: \"A set of rules and optional reference values that informs a Verifier regarding the appraisal of the Evidence.\" Mention of reference values will greatly help the reader make sense quicker IMO.",
               "createdAt": "2020-09-07T02:06:50Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16657,7 +16690,7 @@
               "originalPosition": 14,
               "body": "Tightening up Ned's text further: \"The output generated by a Verifier, that is information about the Attester, that is used by a Relying Party and where the Verifier vouches for the Attestation Results.\"",
               "createdAt": "2020-09-07T02:09:33Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16677,7 +16710,7 @@
               "originalPosition": 19,
               "body": "+1\r\n",
               "createdAt": "2020-09-07T02:10:00Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16697,7 +16730,7 @@
               "originalPosition": 5,
               "body": "```suggestion\r\n: A set of rules that informs a Verifier regarding the appraisal of the Evidence, e.g., \"byte-compare Claims in little-endian with reference values in big-endian\". Compare /security policy/ in {{RFC4949}}.\r\n```",
               "createdAt": "2020-09-08T13:57:02Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16717,7 +16750,7 @@
               "originalPosition": 23,
               "body": "Aligned with Appraisal Policy and adapted use of period again",
               "createdAt": "2020-09-08T14:00:31Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         },
@@ -16737,13 +16770,33 @@
               "originalPosition": 47,
               "body": "RFC 4949 which we reference, uses periods.",
               "createdAt": "2020-09-08T14:02:49Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
             },
             {
               "originalPosition": 28,
               "body": "The term \"implied\" Claims is not defined and is confusing in my opinion.",
               "createdAt": "2020-09-08T14:03:18Z",
-              "updatedAt": "2020-09-08T14:14:19Z"
+              "updatedAt": "2020-09-29T17:37:17Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NzEzNzI5",
+          "commit": {
+            "abbreviatedOid": "aa7bef9"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T17:21:04Z",
+          "updatedAt": "2020-09-29T17:21:05Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\n: The output generated by a Verifier. Attestation Results are information about an Attester that is used by a Relying Party and where the Verifier vouches for the Attestation Results.\r\n```",
+              "createdAt": "2020-09-29T17:21:04Z",
+              "updatedAt": "2020-09-29T17:37:17Z"
             }
           ]
         }
@@ -17839,13 +17892,13 @@
       "labels": [],
       "body": "This adds a paragraph on the primary trust flow to the Attester sub section.  Previously that subsection only discussed secondary trust flow (confidentiality flow)\r\n\r\nI'm pretty sure that just about every real attestation use involves the Verifier coming to trust the Attester by receipt of a nonce (or equivalent) signed or authenticated by a key in and protected by the Attester. I don't see how a Verifier can trust an Attester in any other way for just about every attestation use case. I've revised the text to say that.\r\n\r\nI think all the discussion about ROM code and HW defenses is now covered in Security Consideration.\r\n\r\nThe addresses #132 ",
       "createdAt": "2020-09-17T18:49:51Z",
-      "updatedAt": "2020-09-28T03:48:48Z",
+      "updatedAt": "2020-10-02T19:35:55Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "AttesterTrust",
-      "headRefOid": "42787b382066bc7b9a4a80a19d38a5be2984bf79",
+      "headRefOid": "6a0c6d32c9cd3b94774c4438745832fa0e711c6b",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -17868,31 +17921,31 @@
               "originalPosition": 4,
               "body": "\"provisioned into it by the Endorser\" is not true in general.   For example, it's not true in the case where the Attester is an IoT device that generates its own key pair at the factory, and the public key is then extracted and used to generate a certificate issued by an Endorser (the manufacturer or whoever else), and the certificate itself isn't provisioned on the device but can be looked up on demand by the Verifier.  In this case, there is no \"key material\" provisioned into the Attester by any entity other than the Attester itself.\r\n\r\nLine 723 and 754 are incorrect for the same reason.",
               "createdAt": "2020-09-18T23:20:50Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             },
             {
               "originalPosition": 5,
               "body": "```suggestion\r\nThe proof is by the signing or authenticating of Evidence (see {{freshness}}).\r\n```",
               "createdAt": "2020-09-18T23:21:57Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             },
             {
               "originalPosition": 9,
               "body": "This would need to be a markdown cross reference.",
               "createdAt": "2020-09-18T23:23:15Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             },
             {
               "originalPosition": 33,
               "body": "Hard to review since line breaks were removed.  Please revert line breaks.",
               "createdAt": "2020-09-18T23:23:50Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             },
             {
               "originalPosition": 45,
               "body": "Keep examples in a separate PR",
               "createdAt": "2020-09-18T23:25:00Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             }
           ]
         },
@@ -17912,7 +17965,7 @@
               "originalPosition": 45,
               "body": "Yes. Github mistake.\r\n",
               "createdAt": "2020-09-21T22:57:04Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             }
           ]
         },
@@ -17932,7 +17985,7 @@
               "originalPosition": 4,
               "body": "We probably should come up with better phrase -- \"establish key material\" or \"set up key material\" or \"personalization\"? It seems awkward to explain all the options each time it needs to be mentioned.\r\n\r\nEven if the key material is generated on the device, you still have to do real work to 1) provide integrity when the public key is coming off the device and 2) make sure you are only taking keys off of real devices (no imposter, forgery or midnight runs). \r\n\r\nI have seen the term \"provision\" used to mean the whole process at a high level.\r\n\r\nI know you keep bringing this up. I very much agree that what you suggest is the best way and should be allowed for and encouraged in the architecture doc, but I also know that are many situations where it can't be done. For example, it can't be done with symmetric keys. It can't be done when you are putting keys into fuses on a chip that has no HW key generation feature. It can't be done when keys are supplied by someone other than the manufacturer.\r\n\r\nSo it seems we need some term or wording to describe this that covers all the scenarios.\r\n\r\n\r\n\r\n\r\n\r\n",
               "createdAt": "2020-09-21T23:07:49Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
             }
           ]
         },
@@ -17952,7 +18005,167 @@
               "originalPosition": 4,
               "body": "A common problem.\r\n\r\nMaybe: \"Attesters prove their trustworthiness to Verifiers via their key material that is established in their Attesting Environments under the control and authority of a trusted Endorsers.\" (might have an effect on the following sentences)",
               "createdAt": "2020-09-25T13:50:07Z",
-              "updatedAt": "2020-09-28T03:48:48Z"
+              "updatedAt": "2020-09-29T14:30:07Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTMzOTIw",
+          "commit": {
+            "abbreviatedOid": "42787b3"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:29:51Z",
+          "updatedAt": "2020-09-29T14:29:51Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n\r\n```",
+              "createdAt": "2020-09-29T14:29:51Z",
+              "updatedAt": "2020-09-29T14:30:07Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTM2MzY4",
+          "commit": {
+            "abbreviatedOid": "6a0c6d3"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:32:07Z",
+          "updatedAt": "2020-09-29T14:32:08Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nAttesters prove their trustworthiness to Verifiers via Evidence signed using key material that is established in their Attesting Environments, and some way of ensuring freshness (see {{freshness}}).\r\n```",
+              "createdAt": "2020-09-29T14:32:07Z",
+              "updatedAt": "2020-09-29T14:32:08Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAxMzgxNTU0",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-02T19:06:46Z",
+          "updatedAt": "2020-10-02T19:06:47Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "Other than line breaks, I agree with the new content.",
+              "createdAt": "2020-10-02T19:06:46Z",
+              "updatedAt": "2020-10-02T19:06:47Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAxMzgyNjYy",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-02T19:08:40Z",
+          "updatedAt": "2020-10-02T19:08:41Z",
+          "comments": [
+            {
+              "originalPosition": 52,
+              "body": "Need to disambiguate 'root' as it could refer to a root CA or a root of trust component.",
+              "createdAt": "2020-10-02T19:08:40Z",
+              "updatedAt": "2020-10-02T19:08:41Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAxMzg0NTU4",
+          "commit": {
+            "abbreviatedOid": "4f4dc24"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-02T19:11:43Z",
+          "updatedAt": "2020-10-02T19:35:55Z",
+          "comments": [
+            {
+              "originalPosition": 50,
+              "body": "It isn't clear which attestation role the operating system vendor is assuming. As an endorser that provisions the attestation private key and the mfg CA that issues the attestation ID certificate, this often isn't an operating system vendor. Since this is an example, the vendor very well could be, but that isn't usually how it works. ",
+              "createdAt": "2020-10-02T19:11:43Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 42,
+              "body": "Was there consensus that this belongs in the architecture draft?",
+              "createdAt": "2020-10-02T19:12:47Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 53,
+              "body": "It is difficult to follow who the subject of the sentence is. If it is the operating system vendor from line 1326 then it doesn't make sense for the OS vendor to know private keys for attesting environments. This draft shouldn't give the impression that it advocates doing that.",
+              "createdAt": "2020-10-02T19:14:49Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 60,
+              "body": "I expected the OEM would be in charge of the key creation and certificate issuance since it is a use case where the OEM is 'driving'.",
+              "createdAt": "2020-10-02T19:17:30Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 75,
+              "body": "Unclear if root refers to a root CA or root of trust / Attesting Environment.",
+              "createdAt": "2020-10-02T19:18:59Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 103,
+              "body": "manufactures - typo?",
+              "createdAt": "2020-10-02T19:21:25Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 107,
+              "body": "Is the attestation evidence in the form of an HMAC? Is the Verifier supplying a query to the mfr'r web service in the form of an HMAC and key ID?",
+              "createdAt": "2020-10-02T19:23:45Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 111,
+              "body": "This deployment case seems to be 80% overlapping the previous one.",
+              "createdAt": "2020-10-02T19:26:35Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 177,
+              "body": "we don't define the term implicit claims (yet) therefore needs some explanation here.\r\nAlso need to resolve if \"Endorser\" can supply \"reference values\" or if only \"Reverence Value Provider\" does that.",
+              "createdAt": "2020-10-02T19:28:16Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 197,
+              "body": "I assume 'implied claims' are the same as 'implicit claims' and 'static claims'?",
+              "createdAt": "2020-10-02T19:32:20Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
+            },
+            {
+              "originalPosition": 185,
+              "body": "presumably the protocol message contains Evidence?",
+              "createdAt": "2020-10-02T19:35:26Z",
+              "updatedAt": "2020-10-02T19:35:56Z"
             }
           ]
         }
@@ -18259,24 +18472,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDkyNjU1NzA0",
       "title": "TLS authentication for secondary trust",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/153",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "TLS authentication is sufficient for establishing trust in the various entities before sending them privacy sensitive data. TLS is also widely supported today and attestation between servers is not. Most likely TLS will be the mechanism. This PR adds mention to in addition to attestation.",
       "createdAt": "2020-09-24T19:30:38Z",
-      "updatedAt": "2020-09-29T13:38:39Z",
+      "updatedAt": "2020-09-29T14:20:25Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "patch-7",
-      "headRefOid": "a9f1c1c0db28db01485efd21755ba4dfb688a3cb",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "23247917aaee358188ac2b8269669159059d7b65",
+      "closedAt": "2020-09-29T14:20:25Z",
+      "mergedAt": "2020-09-29T14:20:24Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "564d0db568896280a4c05fe9944876cd12c696ba"
+      },
       "comments": [
         {
           "author": "laurencelundblade",
@@ -18299,6 +18514,26 @@
           "createdAt": "2020-09-29T13:38:39Z",
           "updatedAt": "2020-09-29T13:38:39Z",
           "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTE5MDQ3",
+          "commit": {
+            "abbreviatedOid": "a9f1c1c"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:16:21Z",
+          "updatedAt": "2020-09-29T14:16:21Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n\r\nAs another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate. \r\nThere is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.\r\n```",
+              "createdAt": "2020-09-29T14:16:21Z",
+              "updatedAt": "2020-09-29T14:17:56Z"
+            }
+          ]
         }
       ]
     },
@@ -18314,19 +18549,385 @@
       "labels": [],
       "body": "attempt to bring the manufacturer/attester/verifier full circle without insisting that endorsements always occuring.\r\n",
       "createdAt": "2020-09-29T14:09:52Z",
-      "updatedAt": "2020-09-29T14:09:52Z",
+      "updatedAt": "2020-10-06T12:53:02Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "8c11fe62a88c24827e317bb49e617348ffbb7a85",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "manufacturer-installed-trust",
-      "headRefOid": "eaacd407755066d129f7bedd913ebd124c73f590",
+      "headRefOid": "906aed2bcc63f999560bf3bf5af6741af84b5d07",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTI2ODg5",
+          "commit": {
+            "abbreviatedOid": "eaacd40"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:23:31Z",
+          "updatedAt": "2020-09-29T14:23:32Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nThe manufacturer of the Attester arranges for the Attester to be provisioned with key material.\r\n```",
+              "createdAt": "2020-09-29T14:23:31Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTI4NDY3",
+          "commit": {
+            "abbreviatedOid": "eaacd40"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:24:58Z",
+          "updatedAt": "2020-09-29T14:24:59Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nThe key material is typically in the form of asymmetric keypairs (e.g., an RSA or ECDSA private key\r\n```",
+              "createdAt": "2020-09-29T14:24:58Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTMwMzY5",
+          "commit": {
+            "abbreviatedOid": "b89fd6b"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:26:37Z",
+          "updatedAt": "2020-09-29T14:26:37Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nAs an Endorser, this manufacturer also arranges for the Verifier to be able to verify signatures from this key material.\r\n```",
+              "createdAt": "2020-09-29T14:26:37Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTMxNTc2",
+          "commit": {
+            "abbreviatedOid": "b89fd6b"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:27:45Z",
+          "updatedAt": "2020-09-29T14:27:45Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "\"these Endorsements\" doesn't make sense in context since you haven't mentioned any Endorsements, and the trust anchor provisioned in the Verifier need not be from an Endorsement",
+              "createdAt": "2020-09-29T14:27:45Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTM0Nzg4",
+          "commit": {
+            "abbreviatedOid": "03f5b7b"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:30:38Z",
+          "updatedAt": "2020-09-29T14:30:38Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nThe key material is typically in the form of asymmetric key pair (e.g., an RSA or ECDSA private key\r\n```",
+              "createdAt": "2020-09-29T14:30:38Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTM4MDU5",
+          "commit": {
+            "abbreviatedOid": "3b7a71e"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:33:36Z",
+          "updatedAt": "2020-09-29T14:33:36Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nThe key material may instead be in other forms, including databases of public keys (rather than certificates), or even carefully secured lists of symmetric keys.\r\n```",
+              "createdAt": "2020-09-29T14:33:36Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTM4OTAw",
+          "commit": {
+            "abbreviatedOid": "1a95fa2"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:34:20Z",
+          "updatedAt": "2020-09-29T14:34:39Z",
+          "comments": [
+            {
+              "originalPosition": 7,
+              "body": "```suggestion\r\nThe key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key\r\n```",
+              "createdAt": "2020-09-29T14:34:20Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTQzOTQ4",
+          "commit": {
+            "abbreviatedOid": "e3066ac"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:38:59Z",
+          "updatedAt": "2020-09-29T14:39:00Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\nThe manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.\r\n```",
+              "createdAt": "2020-09-29T14:38:59Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTQ4Njk5",
+          "commit": {
+            "abbreviatedOid": "e3066ac"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:43:19Z",
+          "updatedAt": "2020-09-29T14:43:19Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\nThe signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key\r\nand a manufacturer signed IDevID certificate) secured in the Attester.\r\n\r\nThe Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.\r\n```",
+              "createdAt": "2020-09-29T14:43:19Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTUyMTE2",
+          "commit": {
+            "abbreviatedOid": "ba87907"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T14:46:23Z",
+          "updatedAt": "2020-09-29T14:46:24Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2020-09-29T14:46:23Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDk4NTY5ODYx",
+          "commit": {
+            "abbreviatedOid": "1abfe29"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-09-29T15:00:31Z",
+          "updatedAt": "2020-09-29T15:00:32Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nprovided about it by the lower-layer firmware or software is true.\r\n```",
+              "createdAt": "2020-09-29T15:00:31Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAxMzc2NTg0",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-02T18:58:42Z",
+          "updatedAt": "2020-10-02T18:58:42Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyMzE0NTM5",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-05T18:29:50Z",
+          "updatedAt": "2020-10-05T18:29:50Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "I think most of the above text applies only to local attestation because of the phrase \"implicitly trust firmware...\" and no mention of signed evidence.\r\n\r\nSince the main subject of this document is remote attestation, I think this paragraph should be move down several paragraphs and clearly prefaced to indicate it is about local attestation that is distinct from the main topic of remote attestation. Perhaps:\r\n\r\n> There is also a non-remote attestation use case where the Attester and Verifier are directly connected such that cryptographic proof of trustworthiness is unnecessary (e.g., they are on the same chip).\r\n\r\nThe sentence about root of trust is an exception as I think it applies to both local and remote attestation.",
+              "createdAt": "2020-10-05T18:29:50Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyMzE3NzY0",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-05T18:34:31Z",
+          "updatedAt": "2020-10-05T18:34:31Z",
+          "comments": [
+            {
+              "originalPosition": 38,
+              "body": "The anchor for {{security-considerations}} needs to be added.",
+              "createdAt": "2020-10-05T18:34:31Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyMzI0NTE0",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "laurencelundblade",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-05T18:44:12Z",
+          "updatedAt": "2020-10-05T18:44:12Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "I would like to add:\r\n\r\n> In remote attestation, the Verifier comes to trust the Attester transitively through the Endorser and/or Attester manufacturer.",
+              "createdAt": "2020-10-05T18:44:12Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyNTI4MTkw",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-06T01:38:45Z",
+          "updatedAt": "2020-10-06T01:41:12Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "I think all of the text above is actually about remote (and local, but the main scope is remote) attestation.",
+              "createdAt": "2020-10-06T01:38:45Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            },
+            {
+              "originalPosition": 26,
+              "body": "```suggestion\r\nand a manufacturer-signed IDevID certificate) secured in the Attester.\r\n```\r\n\r\nIs there a citation for \"IDevID\"?",
+              "createdAt": "2020-10-06T01:39:26Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            },
+            {
+              "originalPosition": 30,
+              "body": "While that is typical, in some corner cases that would be false, so would only be ok in my opinion if \"typically\" were added to that suggestion.",
+              "createdAt": "2020-10-06T01:40:40Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyODk2NTE3",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-06T12:42:19Z",
+          "updatedAt": "2020-10-06T12:42:20Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "While the text refers to HW & SW, as well as elaborates on a specific security considerations unique to a \"hardware root of trust\", I think it is very much applicable to remote attestation as a whole.\r\n\r\nI'd like to see feedback on a specific question, though:\r\n\r\nHow is a conveyance of data without any \"cryptographic proof of trustworthiness\" still an attestation procedure at all? \"Local\" attestation is typically realized via policies that reside in HW roots of trusts. These policies are deployed on an Attester by a trusted party and are semantically close related with the duties of a Verifier, I think (therefore the \"local\" attestation). ",
+              "createdAt": "2020-10-06T12:42:19Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAyOTAzMDc1",
+          "commit": {
+            "abbreviatedOid": "029a745"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-06T12:50:03Z",
+          "updatedAt": "2020-10-06T12:50:03Z",
+          "comments": [
+            {
+              "originalPosition": 30,
+              "body": "I would simply remove the term \"transitively\", tbh. Also, the entity here is the manufacturer, which takes on the role of Endorser. I propose to remove the and/or and rephrase as follows:\r\n\r\n> In remote attestation procedures, a Verifier comes to trust a Attester with the help of Endorsers. The role of Endorser is often taken on by an Attester's manufacturer.\r\n\r\nI did not include the \"typical\" proposed by Dave here for now. Is that still needed with the new phrasing? While I think so, I also think it would help to understand what Dave means with \"n some corner cases that would be false\". We might have already elaborated on this, but my memory fails me right now.",
+              "createdAt": "2020-10-06T12:50:03Z",
+              "updatedAt": "2020-10-06T12:53:02Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
