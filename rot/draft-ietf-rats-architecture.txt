@@ -84,19 +84,18 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Reference Use Cases . . . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Network Endpoint Assessment . . . . . . . . . . . . . . .   6
+     3.1.  Network Endpoint Assessment . . . . . . . . . . . . . . .   5
      3.2.  Confidential Machine Learning (ML) Model Protection . . .   6
-     3.3.  Confidential Data Retrieval . . . . . . . . . . . . . . .   7
+     3.3.  Confidential Data Retrieval . . . . . . . . . . . . . . .   6
      3.4.  Critical Infrastructure Control . . . . . . . . . . . . .   7
      3.5.  Trusted Execution Environment (TEE) Provisioning  . . . .   7
-     3.6.  Hardware Watchdog . . . . . . . . . . . . . . . . . . . .   8
+     3.6.  Hardware Watchdog . . . . . . . . . . . . . . . . . . . .   7
      3.7.  FIDO Biometric Authentication . . . . . . . . . . . . . .   8
-   4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   9
+   4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   8
      4.1.  Appraisal Policies  . . . . . . . . . . . . . . . . . . .  10
-     4.2.  Reference Values  . . . . . . . . . . . . . . . . . . . .  10
-     4.3.  Two Types of Environments of an Attester  . . . . . . . .  10
-     4.4.  Layered Attestation Environments  . . . . . . . . . . . .  11
-     4.5.  Composite Device  . . . . . . . . . . . . . . . . . . . .  13
+     4.2.  Two Types of Environments of an Attester  . . . . . . . .  10
+     4.3.  Layered Attestation Environments  . . . . . . . . . . . .  11
+     4.4.  Composite Device  . . . . . . . . . . . . . . . . . . . .  13
    5.  Topological Models  . . . . . . . . . . . . . . . . . . . . .  16
      5.1.  Passport Model  . . . . . . . . . . . . . . . . . . . . .  16
      5.2.  Background-Check Model  . . . . . . . . . . . . . . . . .  17
@@ -106,6 +105,7 @@ Table of Contents
      7.1.  Relying Party . . . . . . . . . . . . . . . . . . . . . .  20
      7.2.  Attester  . . . . . . . . . . . . . . . . . . . . . . . .  21
      7.3.  Relying Party Owner . . . . . . . . . . . . . . . . . . .  21
+     7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
 
 
 
@@ -114,8 +114,7 @@ Birkholz, et al.          Expires 9 April 2021                  [Page 2]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-     7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
-     7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  23
+     7.5.  Endorser and Verifier Owner . . . . . . . . . . . . . . .  23
    8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  23
      8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  23
      8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  23
@@ -162,6 +161,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Model" are illustrated.  The purpose is to define useful terminology
    for attestation and enable readers to map their solution architecture
    to the canonical attestation architecture provided here.  Having a
+   common terminology that provides well-understood meanings for common
 
 
 
@@ -170,7 +170,6 @@ Birkholz, et al.          Expires 9 April 2021                  [Page 3]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-   common terminology that provides well-understood meanings for common
    themes such as roles, device composition, topological models, and
    appraisal is vital for semantic interoperability across solutions and
    platforms involving multiple vendors and providers.
@@ -221,6 +220,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
+
 Birkholz, et al.          Expires 9 April 2021                  [Page 4]
 
 Internet-Draft              RATS Arch & Terms               October 2020
@@ -228,18 +228,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
       appraised by a Verifier.  Evidence may include configuration data,
       measurements, telemetry, or inferences.
-
-   Reference Value Provider:  An entity (typically a manufacturer) whose
-      Reference Values help Verifiers appraise the authenticity of
-      Evidence.
-
-   Reference Values:  A set of values against which values of Claims can
-      be compared as part of applying an Appraisal Policy for Evidence.
-      Reference Values are sometimes referred to in other documents as
-      known-good values, golden measurements, or nominal values,
-      although those terms typically assume comparison for equality,
-      whereas here Reference Values might be more general and be used in
-      any sort of comparison.
 
    Relying Party:  A role performed by an entity that depends on the
       validity of information about an Attester, for purposes of
@@ -271,17 +259,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Each use case includes a description followed by a summary of the
    Attester and a Relying Party roles.
 
-
-
-
-
-
-
-Birkholz, et al.          Expires 9 April 2021                  [Page 5]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
-
 3.1.  Network Endpoint Assessment
 
    Network operators want a trustworthy report that includes identity
@@ -294,6 +271,16 @@ Internet-Draft              RATS Arch & Terms               October 2020
    their validity.  Remote attestation is desired to prevent vulnerable
    or compromised devices from getting access to the network and
    potentially harming others.
+
+
+
+
+
+
+Birkholz, et al.          Expires 9 April 2021                  [Page 5]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
 
    Typically, solutions start with a specific component (called a "root
    of trust") that provides device identity and protected storage for
@@ -326,18 +313,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Relying Party:  A server or service holding ML models it desires to
       protect
 
-
-
-
-
-
-
-
-Birkholz, et al.          Expires 9 April 2021                  [Page 6]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
-
 3.3.  Confidential Data Retrieval
 
    This is a generalization of the ML model use case above, where the
@@ -352,6 +327,16 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
    Relying Party:  An entity that holds confidential data for retrieval
       by other entities
+
+
+
+
+
+
+Birkholz, et al.          Expires 9 April 2021                  [Page 6]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
 
 3.4.  Critical Infrastructure Control
 
@@ -386,14 +371,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    TAM's policy.
 
    Attester:  A device with a trusted execution environment capable of
-
-
-
-Birkholz, et al.          Expires 9 April 2021                  [Page 7]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
-
       running trusted applications that can be updated
 
    Relying Party:  A Trusted Application Manager
@@ -409,6 +386,13 @@ Internet-Draft              RATS Arch & Terms               October 2020
    secure enclave itself, as described in [TCGarch] section 43.3.  The
    Attestation Results are returned to the device, and provided to the
    enclave.
+
+
+
+Birkholz, et al.          Expires 9 April 2021                  [Page 7]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
 
    If the watchdog does not receive regular, and fresh, Attestation
    Results as to the systems' health, then it forces a reboot.
@@ -442,14 +426,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    standard and WeChat Pay as well as Google Pay make use of attestation
    in one form or another.
 
-
-
-
-Birkholz, et al.          Expires 9 April 2021                  [Page 8]
-
-Internet-Draft              RATS Arch & Terms               October 2020
-
-
    Attester:  Every FIDO Authenticator contains an Attester.
 
    Relying Party:  Any web site, mobile application back end or service
@@ -460,33 +436,47 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Figure 1 depicts the data that flows between different roles,
    independent of protocol or use case.
 
-    ************   *************    ************    *****************
-    * Endorser *   * Reference *    * Verifier *    * Relying Party *
-    ************   * Value     *    *  Owner   *    *  Owner        *
-       |           * Provider  *    ************    *****************
-       |           *************          |                 |
-       |                  |               |                 |
-       |Endorsements      |Reference      |Appraisal        |Appraisal
-       |                  |Values         |Policy           |Policy for
-       |                  |               |for              |Attestation
-       .-----------.      |               |Evidence         |Results
-                   |      |               |                 |
-                   |      |               |                 |
-                   v      v               v                 |
-                 .---------------------------.              |
-          .----->|          Verifier         |------.       |
-          |      '---------------------------'      |       |
-          |                                         |       |
-          |                              Attestation|       |
-          |                              Results    |       |
-          | Evidence                                |       |
-          |                                         |       |
-          |                                         v       v
-    .----------.                                .---------------.
-    | Attester |                                | Relying Party |
-    '----------'                                '---------------'
 
-                      Figure 1: Conceptual Data Flow
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 9 April 2021                  [Page 8]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
+
+                 ************   ************     ****************
+                 * Endorser *   * Verifier *     * Relying Party*
+                 ************   *  Owner   *     *  Owner       *
+                       |        ************     ****************
+                       |              |                 |
+           Endorsements|              |                 |
+                       |              |Appraisal        |
+                       |              |Policy           |
+                       |              |for              | Appraisal
+                       |              |Evidence         | Policy for
+                       |              |                 | Attestation
+                       |              |                 |  Results
+                       v              v                 |
+                     .-----------------.                |
+              .----->|     Verifier    |------.         |
+              |      '-----------------'      |         |
+              |                               |         |
+              |                    Attestation|         |
+              |                    Results    |         |
+              | Evidence                      |         |
+              |                               |         |
+              |                               v         v
+        .----------.                      .-----------------.
+        | Attester |                      | Relying Party   |
+        '----------'                      '-----------------'
+
+                       Figure 1: Conceptual Data Flow
 
    An Attester creates Evidence that is conveyed to a Verifier.
 
@@ -498,6 +488,16 @@ Internet-Draft              RATS Arch & Terms               October 2020
    might be obtained via some other mechanism such as being configured
    in the Verifier by the Verifier Owner.
 
+   The Relying Party uses Attestation Results by applying its own
+   Appraisal Policy to make application-specific decisions such as
+   authorization decisions.  The Appraisal Policy for Attestation
+   Results is configured in the Relying Party by the Relying Party
+   Owner, and/or is programmed into the Relying Party.
+
+
+
+
+
 
 
 
@@ -506,40 +506,32 @@ Birkholz, et al.          Expires 9 April 2021                  [Page 9]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-   The Relying Party uses Attestation Results by applying its own
-   Appraisal Policy to make application-specific decisions such as
-   authorization decisions.  The Appraisal Policy for Attestation
-   Results is configured in the Relying Party by the Relying Party
-   Owner, and/or is programmed into the Relying Party.
-
 4.1.  Appraisal Policies
 
    The Verifier, when appraising Evidence, or the Relying Party, when
    appraising Attestation Results, checks the values of some claims
    against constraints specified in its Appraisal Policy.  Such
    constraints might involve a comparison for equality against a
-   Reference Value, or a check for being in a range bounded by Reference
-   Values, or membership in a set of Reference Values, or a check
+   reference value, or a check for being in a range bounded by reference
+   values, or membership in a set of reference values, or a check
    against values in other claims, or any other test.
 
-4.2.  Reference Values
+   Such reference values might be specified as part of the Appraisal
+   Policy itself, or might be obtained from a separate source, such as
+   an Endorsement, and then used by the Appraisal Policy.
 
-   Reference Values used in appraisal might be specified as part of the
-   Appraisal Policy itself, or might be obtained from a separate source,
-   such as an Endorsement, and then used by the Appraisal Policy.
-
-   The actual data format and semantics of any Reference Values are
+   The actual data format and semantics of any reference values are
    specific to claims and implementations.  This architecture document
    does not define any general purpose format for them or general means
    for comparison.
 
-4.3.  Two Types of Environments of an Attester
+4.2.  Two Types of Environments of an Attester
 
    An Attester consists of at least one Attesting Environment and at
    least one Target Environment.  In some implementations, the Attesting
    and Target Environments might be combined.  Other implementations
    might have multiple Attesting and Target Environments, such as in the
-   examples described in more detail in Section 4.4 and Section 4.5.
+   examples described in more detail in Section 4.3 and Section 4.4.
    Other examples may exist, and the examples discussed could even be
    combined into even more complex implementations.
 
@@ -554,6 +546,14 @@ Internet-Draft              RATS Arch & Terms               October 2020
    on the places that an Attesting Environment can exist, but they
    typically are in Trusted Execution Environments (TEE), embedded
    Secure Elements (eSE), and BIOS firmware.  An execution environment
+   may not, by default, be capable of claims collection for a given
+   Target Environment.  Execution environments that are designed to be
+   capable of claims collection are referred to in this document as
+   Attesting Environments.
+
+
+
+
 
 
 
@@ -561,11 +561,6 @@ Birkholz, et al.          Expires 9 April 2021                 [Page 10]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
-
-   may not, by default, be capable of claims collection for a given
-   Target Environment.  Execution environments that are designed to be
-   capable of claims collection are referred to in this document as
-   Attesting Environments.
 
                     .--------------------------------.
                     |                                |
@@ -597,7 +592,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
                     Figure 2: Two Types of Environments
 
-4.4.  Layered Attestation Environments
+4.3.  Layered Attestation Environments
 
    By definition, the Attester role creates Evidence.  An Attester may
    consist of one or more nested or staged environments, adding
@@ -610,6 +605,11 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Figure 3 depicts an example of a device that includes (A) a BIOS
    stored in read-only memory in this example, (B) an updatable
    bootloader, and (C) an operating system kernel.
+
+
+
+
+
 
 
 
@@ -699,7 +699,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Attesting Environment might even have multiple Target Environments
    that it measures, rather than only one as shown in Figure 3.
 
-4.5.  Composite Device
+4.4.  Composite Device
 
    A Composite Device is an entity composed of multiple sub-entities
    such that its trustworthiness has to be determined by the appraisal
@@ -1234,14 +1234,13 @@ Birkholz, et al.          Expires 9 April 2021                 [Page 22]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-7.5.  Endorser, Reference Value Provider, and Verifier Owner
+7.5.  Endorser and Verifier Owner
 
-   In some scenarios, the Endorser, Reference Value Provider, and
-   Verifier Owner may need to trust the Verifier before giving the
-   Endorsement, Reference Values, or Appraisal Policy to it.  This can
-   be done similarly to how a Relying Party might establish trust in a
-   Verifier as discussed above, and in such a case, mutual attestation
-   might even be needed as discussed in Section 7.3.
+   In some scenarios, the Endorser and Verifier Owner may need to trust
+   the Verifier before giving the Endorsement and Appraisal Policy to
+   it.  This can be done similarly to how a Relying Party might
+   establish trust in a Verifier as discussed above, and in such a case,
+   mutual attestation might even be needed as discussed in Section 7.3.
 
 8.  Conceptual Messages
 
@@ -1273,15 +1272,16 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Appraisal Policies that may not be specific to the device instance,
    but merely specific to the manufacturer providing the Endorsement.
    For example, an Appraisal Policy might simply check that devices from
-   a given manufacturer have information matching a set of Reference
-   Values, or an Appraisal Policy might have a set of more complex logic
-   on how to appraise the validity of information.
+   a given manufacturer have information matching a set of known-good
+   reference values, or an Appraisal Policy might have a set of more
+   complex logic on how to appraise the validity of information.
 
    However, while an Appraisal Policy that treats all devices from a
    given manufacturer the same may be appropriate for some use cases, it
    would be inappropriate to use such an Appraisal Policy as the sole
    means of authorization for use cases that wish to constrain _which_
    compliant devices are considered authorized for some purpose.  For
+   example, an enterprise using remote attestation for Network Endpoint
 
 
 
@@ -1290,7 +1290,6 @@ Birkholz, et al.          Expires 9 April 2021                 [Page 23]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-   example, an enterprise using remote attestation for Network Endpoint
    Assessment may not wish to let every healthy laptop from the same
    manufacturer onto the network, but instead only want to let devices
    that it legally owns onto the network.  Thus, an Endorsement may be
@@ -1321,8 +1320,9 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Party's Appraisal Policy.  The simplest such policy might be to
    simply authorize any party supplying a compliant Attestation Result
    signed by a trusted Verifier.  A more complex policy might also
-   entail comparing information provided in the result against Reference
-   Values, or applying more complex logic on such information.
+   entail comparing information provided in the result against known-
+   good reference values, or applying more complex logic on such
+   information.
 
    Thus, Attestation Results often need to include detailed information
    about the Attester, for use by Relying Parties, much like physical
