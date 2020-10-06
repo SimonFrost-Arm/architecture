@@ -1207,7 +1207,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    ROM code, especially if such hardware is physically resistant to
    hardware tampering.  In most cases, components that have to be
    vouched for via Endorsements because no Evidence is generated about
-   them are referred to as a roots of trust.
+   them are referred to as roots of trust.
 
    The manufacturer of the Attester arranges for its Attesting
    Environment to be provisioned with key material.
