@@ -1179,7 +1179,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
    The signing key material is typically in the form of an asymmetric
-   key pair (e.g., an RSA or ECDSA private key and a manufacturer signed
+   key pair (e.g., an RSA or ECDSA private key and a manufacturer-signed
    IDevID certificate) secured in the Attester.
 
    The Verifier is provided with an appropriate trust anchor, or
