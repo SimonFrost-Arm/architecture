@@ -5,14 +5,14 @@
 RATS Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Informational                                 D. Thaler
-Expires: 9 April 2021                                          Microsoft
+Expires: 16 April 2021                                         Microsoft
                                                            M. Richardson
                                                 Sandelman Software Works
                                                                 N. Smith
                                                                    Intel
                                                                   W. Pan
                                                      Huawei Technologies
-                                                          6 October 2020
+                                                         13 October 2020
 
 
                Remote Attestation Procedures Architecture
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 1]
+Birkholz, et al.          Expires 16 April 2021                 [Page 1]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -63,7 +63,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 April 2021.
+   This Internet-Draft will expire on 16 April 2021.
 
 Copyright Notice
 
@@ -109,39 +109,39 @@ Table of Contents
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 2]
+Birkholz, et al.          Expires 16 April 2021                 [Page 2]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
      7.4.  Verifier  . . . . . . . . . . . . . . . . . . . . . . . .  21
-     7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  22
-   8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  22
-     8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  22
-     8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  23
-     8.3.  Attestation Results . . . . . . . . . . . . . . . . . . .  23
-   9.  Claims Encoding Formats . . . . . . . . . . . . . . . . . . .  24
-   10. Freshness . . . . . . . . . . . . . . . . . . . . . . . . . .  26
-   11. Privacy Considerations  . . . . . . . . . . . . . . . . . . .  28
-   12. Security Considerations . . . . . . . . . . . . . . . . . . .  28
-     12.1.  Attester and Attestation Key Protection  . . . . . . . .  29
-       12.1.1.  On-Device Attester and Key Protection  . . . . . . .  29
-       12.1.2.  Attestation Key Provisioning Processes . . . . . . .  30
-     12.2.  Integrity Protection . . . . . . . . . . . . . . . . . .  30
-   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  31
-   14. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  31
-   15. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  32
-   16. Appendix A: Time Considerations . . . . . . . . . . . . . . .  32
-     16.1.  Example 1: Timestamp-based Passport Model Example  . . .  33
-     16.2.  Example 2: Nonce-based Passport Model Example  . . . . .  35
-     16.3.  Example 3: Handle-based Passport Model Example . . . . .  36
+     7.5.  Endorser, Reference Value Provider, and Verifier Owner  .  23
+   8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .  23
+     8.1.  Evidence  . . . . . . . . . . . . . . . . . . . . . . . .  23
+     8.2.  Endorsements  . . . . . . . . . . . . . . . . . . . . . .  24
+     8.3.  Attestation Results . . . . . . . . . . . . . . . . . . .  24
+   9.  Claims Encoding Formats . . . . . . . . . . . . . . . . . . .  25
+   10. Freshness . . . . . . . . . . . . . . . . . . . . . . . . . .  27
+   11. Privacy Considerations  . . . . . . . . . . . . . . . . . . .  29
+   12. Security Considerations . . . . . . . . . . . . . . . . . . .  29
+     12.1.  Attester and Attestation Key Protection  . . . . . . . .  30
+       12.1.1.  On-Device Attester and Key Protection  . . . . . . .  30
+       12.1.2.  Attestation Key Provisioning Processes . . . . . . .  31
+     12.2.  Integrity Protection . . . . . . . . . . . . . . . . . .  31
+   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
+   14. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  32
+   15. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  33
+   16. Appendix A: Time Considerations . . . . . . . . . . . . . . .  33
+     16.1.  Example 1: Timestamp-based Passport Model Example  . . .  34
+     16.2.  Example 2: Nonce-based Passport Model Example  . . . . .  36
+     16.3.  Example 3: Handle-based Passport Model Example . . . . .  37
      16.4.  Example 4: Timestamp-based Background-Check Model
-            Example  . . . . . . . . . . . . . . . . . . . . . . . .  38
-     16.5.  Example 5: Nonce-based Background-Check Model Example  .  38
-   17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  39
-     17.1.  Normative References . . . . . . . . . . . . . . . . . .  39
-     17.2.  Informative References . . . . . . . . . . . . . . . . .  39
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  40
+            Example  . . . . . . . . . . . . . . . . . . . . . . . .  39
+     16.5.  Example 5: Nonce-based Background-Check Model Example  .  39
+   17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  40
+     17.1.  Normative References . . . . . . . . . . . . . . . . . .  40
+     17.2.  Informative References . . . . . . . . . . . . . . . . .  40
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  41
 
 1.  Introduction
 
@@ -165,7 +165,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 3]
+Birkholz, et al.          Expires 16 April 2021                 [Page 3]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -221,7 +221,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 4]
+Birkholz, et al.          Expires 16 April 2021                 [Page 4]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -277,7 +277,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 5]
+Birkholz, et al.          Expires 16 April 2021                 [Page 5]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -333,7 +333,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 6]
+Birkholz, et al.          Expires 16 April 2021                 [Page 6]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -389,7 +389,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 7]
+Birkholz, et al.          Expires 16 April 2021                 [Page 7]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -445,7 +445,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 8]
+Birkholz, et al.          Expires 16 April 2021                 [Page 8]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -501,7 +501,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                  [Page 9]
+Birkholz, et al.          Expires 16 April 2021                 [Page 9]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -557,7 +557,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 10]
+Birkholz, et al.          Expires 16 April 2021                [Page 10]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -613,7 +613,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 11]
+Birkholz, et al.          Expires 16 April 2021                [Page 11]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -669,7 +669,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 12]
+Birkholz, et al.          Expires 16 April 2021                [Page 12]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -725,7 +725,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 13]
+Birkholz, et al.          Expires 16 April 2021                [Page 13]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -781,7 +781,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 14]
+Birkholz, et al.          Expires 16 April 2021                [Page 14]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -837,7 +837,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 15]
+Birkholz, et al.          Expires 16 April 2021                [Page 15]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -893,7 +893,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 16]
+Birkholz, et al.          Expires 16 April 2021                [Page 16]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -949,7 +949,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 17]
+Birkholz, et al.          Expires 16 April 2021                [Page 17]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 18]
+Birkholz, et al.          Expires 16 April 2021                [Page 18]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 19]
+Birkholz, et al.          Expires 16 April 2021                [Page 19]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 20]
+Birkholz, et al.          Expires 16 April 2021                [Page 20]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1162,29 +1162,77 @@ Internet-Draft              RATS Arch & Terms               October 2020
    The Verifier trusts (or more specifically, the Verifier's security
    policy is written in a way that configures the Verifier to trust) a
    manufacturer, or the manufacturer's hardware, so as to be able to
-   appraise the trustworthiness of that manufacturer's devices.  In
-   solutions with weaker security, a Verifier might be configured to
-   implicitly trust firmware or even software (e.g., a hypervisor).
-   That is, it might appraise the trustworthiness of an application
-   component, operating system component, or service under the
-   assumption that information provided about it by the lower-layer
-   hypervisor or firmware is true.  A stronger level of assurance of
-   security comes when information can be vouched for by hardware or by
+   appraise the trustworthiness of that manufacturer's devices.  In a
+   typical solution, a Verifier comes to trust an Attester indirectly by
+   having an Endorser (such as a manufacturer) vouch for the Attester's
+   ability to securely generate Evidence.
+
+   In some solutions, a Verifier might be configured to directly trust
+   an Attester by having the Verifier have the Attester's key material
+   (rather than the Endorser's) in its trust anchor store.
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 21]
+Birkholz, et al.          Expires 16 April 2021                [Page 21]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
+   Such direct trust must first be established at the time of trust
+   anchor store configuration either by checking with an Endorser at
+   that time, or by conducting a security analysis of the specific
+   device.  Having the Attester directly in the trust anchor store
+   narrows the Verifier's trust to only specific devices rather than all
+   devices the Endorser might vouch for, such as all devices
+   manufactured by the same manufacturer in the case that the Endorser
+   is a manufacturer.
+
+   Such narrowing is often important since physical possession of a
+   device can also be used to conduct a number of attacks, and so a
+   device in a physically secure environment (such as one's own
+   premises) may be considered trusted whereas devices owned by others
+   would not be.  This often results in a desire to either have the
+   owner run their own Endorser that would only Endorse devices one
+   owns, or to use Attesters directly in the trust anchor store.  When
+   there are many Attesters owned, the use of an Endorser becomes more
+   scalable.
+
+   That is, it might appraise the trustworthiness of an application
+   component, operating system component, or service under the
+   assumption that information provided about it by the lower-layer
+   firmware or software is true.  A stronger level of assurance of
+   security comes when information can be vouched for by hardware or by
    ROM code, especially if such hardware is physically resistant to
-   hardware tampering.  The component that is implicitly trusted is
-   often referred to as a root of trust.
+   hardware tampering.  In most cases, components that have to be
+   vouched for via Endorsements because no Evidence is generated about
+   them are referred to as roots of trust.
+
+   The manufacturer of the Attester arranges for its Attesting
+   Environment to be provisioned with key material.  The key material is
+   typically in the form of an asymmetric key pair (e.g., an RSA or
+   ECDSA private key and a manufacturer-signed IDevID certificate)
+   secured in the Attester.
+
+   The Verifier is provided with an appropriate trust anchor, or
+   provided with a database of public keys (rather than certificates),
+   or even carefully secured lists of symmetric keys.  The nature of how
+   the Verifier manages to validate the signatures produced by the
+   Attester is critical to the secure operation an Attestation system,
+   but is not the subject of standardization within this architecture.
 
    A conveyance protocol that provides authentication and integrity
    protection can be used to convey unprotected Evidence, assuming the
    following properties exists:
+
+
+
+
+
+
+Birkholz, et al.          Expires 16 April 2021                [Page 22]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
 
    1.  The key material used to authenticate and integrity protect the
        conveyance channel is trusted by the Verifier to speak for the
@@ -1198,6 +1246,8 @@ Internet-Draft              RATS Arch & Terms               October 2020
    3.  The root of trust protects both the conveyance channel key
        material and the Attesting Environment with equivalent strength
        protections.
+
+   See Section 12 for discussion on security strength.
 
 7.5.  Endorser, Reference Value Provider, and Verifier Owner
 
@@ -1229,7 +1279,13 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 22]
+
+
+
+
+
+
+Birkholz, et al.          Expires 16 April 2021                [Page 23]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1285,7 +1341,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 23]
+Birkholz, et al.          Expires 16 April 2021                [Page 24]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1341,7 +1397,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 24]
+Birkholz, et al.          Expires 16 April 2021                [Page 25]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1397,7 +1453,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 25]
+Birkholz, et al.          Expires 16 April 2021                [Page 26]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1453,7 +1509,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 26]
+Birkholz, et al.          Expires 16 April 2021                [Page 27]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1509,7 +1565,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 27]
+Birkholz, et al.          Expires 16 April 2021                [Page 28]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1565,7 +1621,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 28]
+Birkholz, et al.          Expires 16 April 2021                [Page 29]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1621,7 +1677,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 29]
+Birkholz, et al.          Expires 16 April 2021                [Page 30]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1677,7 +1733,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 30]
+Birkholz, et al.          Expires 16 April 2021                [Page 31]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1733,7 +1789,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 31]
+Birkholz, et al.          Expires 16 April 2021                [Page 32]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1789,7 +1845,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 32]
+Birkholz, et al.          Expires 16 April 2021                [Page 33]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1845,7 +1901,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 33]
+Birkholz, et al.          Expires 16 April 2021                [Page 34]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1901,7 +1957,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 34]
+Birkholz, et al.          Expires 16 April 2021                [Page 35]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -1957,7 +2013,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 35]
+Birkholz, et al.          Expires 16 April 2021                [Page 36]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2013,7 +2069,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 36]
+Birkholz, et al.          Expires 16 April 2021                [Page 37]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2069,7 +2125,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 37]
+Birkholz, et al.          Expires 16 April 2021                [Page 38]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2125,7 +2181,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 38]
+Birkholz, et al.          Expires 16 April 2021                [Page 39]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2181,7 +2237,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 39]
+Birkholz, et al.          Expires 16 April 2021                [Page 40]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2237,7 +2293,7 @@ Authors' Addresses
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 40]
+Birkholz, et al.          Expires 16 April 2021                [Page 41]
 
 Internet-Draft              RATS Arch & Terms               October 2020
 
@@ -2293,4 +2349,4 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-Birkholz, et al.          Expires 9 April 2021                 [Page 41]
+Birkholz, et al.          Expires 16 April 2021                [Page 42]
