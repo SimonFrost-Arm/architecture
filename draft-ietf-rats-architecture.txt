@@ -130,7 +130,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
      12.2.  Integrity Protection . . . . . . . . . . . . . . . . . .  31
    13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
    14. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  32
-   15. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  33
+   15. Notable Contributions . . . . . . . . . . . . . . . . . . . .  33
    16. Appendix A: Time Considerations . . . . . . . . . . . . . . .  33
      16.1.  Example 1: Timestamp-based Passport Model Example  . . .  34
      16.2.  Example 2: Nonce-based Passport Model Example  . . . . .  36
@@ -141,7 +141,8 @@ Internet-Draft              RATS Arch & Terms               October 2020
    17. References  . . . . . . . . . . . . . . . . . . . . . . . . .  40
      17.1.  Normative References . . . . . . . . . . . . . . . . . .  40
      17.2.  Informative References . . . . . . . . . . . . . . . . .  40
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  41
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  41
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  43
 
 1.  Introduction
 
@@ -161,7 +162,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    with them, such as the "Passport Model" and the "Background-Check
    Model" are illustrated.  The purpose is to define useful terminology
    for attestation and enable readers to map their solution architecture
-   to the canonical attestation architecture provided here.  Having a
 
 
 
@@ -170,6 +170,7 @@ Birkholz, et al.          Expires 16 April 2021                 [Page 3]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
+   to the canonical attestation architecture provided here.  Having a
    common terminology that provides well-understood meanings for common
    themes such as roles, device composition, topological models, and
    appraisal is vital for semantic interoperability across solutions and
@@ -217,7 +218,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Endorser:  An entity (typically a manufacturer) whose Endorsements
       help Verifiers appraise the authenticity of Evidence
 
-   Evidence:  A set of information about an Attester that is to be
 
 
 
@@ -226,6 +226,7 @@ Birkholz, et al.          Expires 16 April 2021                 [Page 4]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
+   Evidence:  A set of information about an Attester that is to be
       appraised by a Verifier.  Evidence may include configuration data,
       measurements, telemetry, or inferences.
 
@@ -270,7 +271,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
    Each use case includes a description followed by a summary of the
    Attester and a Relying Party roles.
-
 
 
 
@@ -1794,7 +1794,7 @@ Birkholz, et al.          Expires 16 April 2021                [Page 32]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-15.  Contributors
+15.  Notable Contributions
 
    Thomas Hardjono created older versions of the terminology section in
    collaboration with Ned Smith.  Eric Voit provided the conceptual
@@ -2285,11 +2285,11 @@ Internet-Draft              RATS Arch & Terms               October 2020
    [WebAuthN] W3C, "Web Authentication: An API for accessing Public Key
               Credentials", n.d., <https://www.w3.org/TR/webauthn-1/>.
 
-Authors' Addresses
+Contributors
 
-   Henk Birkholz
-   Fraunhofer SIT
-   Rheinstrasse 75
+   Monty Wiseman
+
+   Email: montywiseman32@gmail.com
 
 
 
@@ -2298,6 +2298,67 @@ Birkholz, et al.          Expires 16 April 2021                [Page 41]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
+   Liang Xia
+
+   Email: frank.xialiang@huawei.com
+
+
+   Laurence Lundblade
+
+   Email: lgl@island-resort.com
+
+
+   Eliot Lear
+
+   Email: elear@cisco.com
+
+
+   Jessica Fitzgerald-McKay
+
+
+   Sarah C. Helbe
+
+
+   Andrew Guinn
+
+
+   Peter Lostcco
+
+   Email: pete.loscocco@gmail.com
+
+
+   Eric Voit
+
+
+   Thomas Fossati
+
+   Email: thomas.fossati@arm.com
+
+
+   Paul Rowe
+
+
+   Carsten Bormann
+
+   Email: cabo@tzi.org
+
+
+   Giri Mandyam
+
+   Email: mandyam@qti.qualcomm.com
+
+
+
+Birkholz, et al.          Expires 16 April 2021                [Page 42]
+
+Internet-Draft              RATS Arch & Terms               October 2020
+
+
+Authors' Addresses
+
+   Henk Birkholz
+   Fraunhofer SIT
+   Rheinstrasse 75
    64295 Darmstadt
    Germany
 
@@ -2344,9 +2405,4 @@ Internet-Draft              RATS Arch & Terms               October 2020
 
 
 
-
-
-
-
-
-Birkholz, et al.          Expires 16 April 2021                [Page 42]
+Birkholz, et al.          Expires 16 April 2021                [Page 43]
