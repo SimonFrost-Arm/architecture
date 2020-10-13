@@ -295,10 +295,10 @@ Internet-Draft              RATS Arch & Terms               October 2020
    or compromised devices from getting access to the network and
    potentially harming others.
 
-   Typically, solutions start with a specific component (called a "Root
-   of Trust") that provides device identity and protected storage for
+   Typically, solutions start with a specific component (called a "root
+   of trust") that provides device identity and protected storage for
    measurements.  The system components perform a series of measurements
-   that may be signed by the Root of Trust, considered as Evidence about
+   that may be signed by the root of trust, considered as Evidence about
    the hardware, firmware, BIOS, software, etc. that is running.
 
    Attester:  A device desiring access to a network
@@ -602,7 +602,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    By definition, the Attester role creates Evidence.  An Attester may
    consist of one or more nested or staged environments, adding
    complexity to the architectural structure.  The unifying component is
-   the Root of Trust and the nested, staged, or chained attestation
+   the root of trust and the nested, staged, or chained attestation
    Evidence produced.  The nested or chained structure includes Claims,
    collected by the Attester to aid in the assurance or believability of
    the attestation Evidence.
@@ -1103,13 +1103,13 @@ Internet-Draft              RATS Arch & Terms               October 2020
    then accepts B as trustworthy, it can choose to accept B as a
    Verifier for other Attesters.
 
-   Similarly, the Relying Party also needs to trust the Relying Party
-   Owner for providing its Appraisal Policy for Attestation Results, and
-   in some scenarios the Relying Party might even require that the
-   Relying Party Owner go through a remote attestation procedure with it
-   before the Relying Party will accept an updated policy.  This can be
-   done similarly to how a Relying Party could establish trust in a
-   Verifier as discussed above.
+   As another example, the Relying Party can establish trust in the
+   Verifier by out of band establishment of key material, combined with
+   a protocol like TLS to communicate.  There is an assumption that
+   between the establishment of the trusted key material and the
+   creation of the Evidence, that the Verifier has not been compromised.
+
+
 
 
 
@@ -1122,6 +1122,14 @@ Birkholz, et al.          Expires 16 April 2021                [Page 20]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
+   Similarly, the Relying Party also needs to trust the Relying Party
+   Owner for providing its Appraisal Policy for Attestation Results, and
+   in some scenarios the Relying Party might even require that the
+   Relying Party Owner go through a remote attestation procedure with it
+   before the Relying Party will accept an updated policy.  This can be
+   done similarly to how a Relying Party could establish trust in a
+   Verifier as discussed above.
+
 7.2.  Attester
 
    In some scenarios, Evidence might contain sensitive information such
@@ -1133,11 +1141,11 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Relying Party(s).
 
    In some cases where Evidence contains sensitive information, an
-   Attester might even require that a Verifier first go through a remote
-   attestation procedure with it before the Attester will send the
-   sensitive Evidence.  This can be done by having the Attester first
-   act as a Verifier/Relying Party, and the Verifier act as its own
-   Attester, as discussed above.
+   Attester might even require that a Verifier first go through a TLS
+   authentication or a remote attestation procedure with it before the
+   Attester will send the sensitive Evidence.  This can be done by
+   having the Attester first act as a Verifier/Relying Party, and the
+   Verifier act as its own Attester, as discussed above.
 
 7.3.  Relying Party Owner
 
@@ -1145,9 +1153,9 @@ Internet-Draft              RATS Arch & Terms               October 2020
    first act as an Attester, providing Evidence that the Owner can
    appraise, before the Owner would give the Relying Party an updated
    policy that might contain sensitive information.  In such a case,
-   mutual attestation might be needed, in which case typically one
-   side's Evidence must be considered safe to share with an untrusted
-   entity, in order to bootstrap the sequence.
+   mutual authentication or attestation might be needed, in which case
+   typically one side's Evidence must be considered safe to share with
+   an untrusted entity, in order to bootstrap the sequence.
 
 7.4.  Verifier
 
@@ -1162,14 +1170,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    In some solutions, a Verifier might be configured to directly trust
    an Attester by having the Verifier have the Attester's key material
    (rather than the Endorser's) in its trust anchor store.
-
-
-
-
-
-
-
-
 
 
 
@@ -1243,7 +1243,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
        by the Attesting Environment that has the key material that
        protects the conveyance channel
 
-   3.  The Root of Trust protects both the conveyance channel key
+   3.  The root of trust protects both the conveyance channel key
        material and the Attesting Environment with equivalent strength
        protections.
 
@@ -1255,8 +1255,9 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Verifier Owner may need to trust the Verifier before giving the
    Endorsement, Reference Values, or Appraisal Policy to it.  This can
    be done similarly to how a Relying Party might establish trust in a
-   Verifier as discussed above, and in such a case, mutual attestation
-   might even be needed as discussed in Section 7.3.
+   Verifier as discussed above, and in such a case, mutual
+   authentication or attestation might even be needed as discussed in
+   Section 7.3.
 
 8.  Conceptual Messages
 
@@ -1275,7 +1276,6 @@ Internet-Draft              RATS Arch & Terms               October 2020
    timeliness of Evidence can be captured using claims that pinpoint the
    time or interval when changes in operational status, health, and so
    forth occur.
-
 
 
 
@@ -1752,7 +1752,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    architecture to protect against replay attacks.
 
    To assess the security provided by a particular Appraisal Policy, it
-   is important to understand the strength of the Root of Trust, e.g.,
+   is important to understand the strength of the root of trust, e.g.,
    whether it is mutable software, or firmware that is read-only after
    boot, or immutable hardware/ROM.
 
