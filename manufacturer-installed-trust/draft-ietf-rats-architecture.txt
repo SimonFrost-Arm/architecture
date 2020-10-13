@@ -1208,11 +1208,10 @@ Internet-Draft              RATS Arch & Terms               October 2020
    them are referred to as roots of trust.
 
    The manufacturer of the Attester arranges for its Attesting
-   Environment to be provisioned with key material.
-
-   The signing key material is typically in the form of an asymmetric
-   key pair (e.g., an RSA or ECDSA private key and a manufacturer-signed
-   IDevID certificate) secured in the Attester.
+   Environment to be provisioned with key material.  The key material is
+   typically in the form of an asymmetric key pair (e.g., an RSA or
+   ECDSA private key and a manufacturer-signed IDevID certificate)
+   secured in the Attester.
 
    The Verifier is provided with an appropriate trust anchor, or
    provided with a database of public keys (rather than certificates),
@@ -1224,6 +1223,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    A conveyance protocol that provides authentication and integrity
    protection can be used to convey unprotected Evidence, assuming the
    following properties exists:
+
 
 
 
