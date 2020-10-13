@@ -1491,21 +1491,21 @@ Internet-Draft              RATS Arch & Terms               October 2020
    Attestation Results, that compares the estimated epoch against an
    "expiry" threshold defined locally to that policy.  There is,
    however, always a race condition possible in that the state of the
-   Attester, and the Appraisal Policy for Evidence, might change
-   immediately after the Evidence or Attestation Result was generated.
-   The goal is merely to narrow their recentness to something the
-   Verifier (for Evidence) or Relying Party (for Attestation Result) is
-   willing to accept.  Freshness is a key component for enabling caching
-   and reuse of both Evidence and Attestation Results, which is
-   especially valuable in cases where their computation uses a
-   substantial part of the resource budget (e.g., energy in constrained
-   devices).
+   Attester, and the Appraisal Policies might change immediately after
+   the Evidence or Attestation Result was generated.  The goal is merely
+   to narrow their recentness to something the Verifier (for Evidence)
+   or Relying Party (for Attestation Result) is willing to accept.
+   Freshness is a key component for enabling caching and reuse of both
+   Evidence and Attestation Results, which is especially valuable in
+   cases where their computation uses a substantial part of the resource
+   budget (e.g., energy in constrained devices).
 
    There are two common approaches for determining the epoch of an
    Evidence or Attestation Result.
 
-
-
+   The first approach is to rely on synchronized and trustworthy clocks,
+   and include a signed timestamp (see [I-D.birkholz-rats-tuda]) along
+   with the Claims in the Evidence or Attestation Result.  Timestamps
 
 
 
@@ -1514,9 +1514,6 @@ Birkholz, et al.          Expires 16 April 2021                [Page 27]
 Internet-Draft              RATS Arch & Terms               October 2020
 
 
-   The first approach is to rely on synchronized and trustworthy clocks,
-   and include a signed timestamp (see [I-D.birkholz-rats-tuda]) along
-   with the Claims in the Evidence or Attestation Result.  Timestamps
    can be added on a per-Claim basis, to distinguish the time of
    creation of Evidence or Attestation Result from the time that a
    specific Claim was generated.  The clock's trustworthiness typically
@@ -1562,6 +1559,9 @@ Internet-Draft              RATS Arch & Terms               October 2020
    established to the remote Verifier and a nonce is obtained.
 
    A more detailed discussion with examples appears in Section 16.
+
+
+
 
 
 
