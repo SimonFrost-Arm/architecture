@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-10-13T14:12:55.250928+00:00",
+  "timestamp": "2020-10-14T17:25:03.191891+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -1643,15 +1643,15 @@
       "id": "MDU6SXNzdWU2NDc3NjIzNTg=",
       "title": "Appendix A: Time Considerations regressions",
       "url": "https://github.com/ietf-rats-wg/architecture/issues/111",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "dthaler",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "PR #88 and PR #91 merged text that I had, and continue to have, problems with.\r\n\r\nA summary of the problems follows:\r\n1) It includes events (CC, RP) that are not used in any checks in the text.  I had pointed this out before when the PR was generated, but the PR was merged without addressing this comment.\r\n2) The section about using timestamps with synchronized clocks was removed and replaced with a section that talks about a different mechanism (handles) that is not in any RFC or WG document.   I believe that such replacement is inappropriate.  If the WG adopts a document that talks about a handle distribution mechanism, then a section can be added.  Or if there is a standard from another org that can be referenced then it's fine to add one in that case too. But I think it should not replace the section discussing the well known technique of synchronized clocks (e.g., using secure NTP, or PTP (IEEE 1588-2002) or whatever other standard mechanism).\r\n3) time(HD) is problematic as phrased since all the other events are times as seen by a single entity, whereas time(HD) does not clearly say whose perspective (i.e., whose clock) it is from... is it the distributor's?  Text is unclear.\r\n4) It talks about nonces in a timestamp section, which I think causes confusion since there's already a separately section about nonces and this section is labeled to be scoped to timestamps.   Addressing #2 might address this naturally, if it uses a different section title.\r\n5) There are some editorial typos, such as capital \"The\" in the middle of a sentence, etc.\r\n6) I have no idea what \"delta(time(HD),time(EG))distribution-interval\" is supposed to mean.   Normally I would expect an equality for any condition to be evaluated, but I have no idea what this check is.\r\n7) time(HD) and time(EG) are according to different clocks (if my guess about point 3 above is right) and so the delta is not directly comparable.  I'm not sure how point 6 accounts for this.\r\n8) The phrase \"A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester\" has \"(recentness & uniqueness)\" which doesn't read well (sounds like bad grammar) to me, and is not explained.",
       "createdAt": "2020-06-30T00:44:11Z",
-      "updatedAt": "2020-07-07T14:16:01Z",
-      "closedAt": null,
+      "updatedAt": "2020-10-13T14:53:24Z",
+      "closedAt": "2020-10-13T14:53:23Z",
       "comments": [
         {
           "author": "henkbirkholz",
@@ -1666,6 +1666,13 @@
           "body": "PR #125 reverts the text, leaving the work in progress in PR #111",
           "createdAt": "2020-07-07T14:16:01Z",
           "updatedAt": "2020-07-07T14:16:01Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "fixed by #145.",
+          "createdAt": "2020-10-13T14:53:23Z",
+          "updatedAt": "2020-10-13T14:53:23Z"
         }
       ]
     },
@@ -1733,16 +1740,24 @@
       "id": "MDU6SXNzdWU2Njk4MjM2MTY=",
       "title": "Trust of Attester by Verifier is transitive",
       "url": "https://github.com/ietf-rats-wg/architecture/issues/132",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "This is for section 7.2 on Attester, 7.4 on Verifier and 7.5 the Endorser/Manufacturer.\r\n\r\nThe main trust flow for all of attestation is that the Verifier has a direct trust relationship with the Endorser/Manufacturer but not the Attester. The Endorser/Manufacturer supplies Input (e.g., an Endorsement containing key material) to the Verifier that allows the Verifier to come to trust the Attester. \r\n\r\nIn just about every use of attestation, there is no direct trust of the Attester by the Verifier. The Verifier doesn't directly trust the Attester's HW or SW as suggested by the text in 7.4. This text seems incorrect on one of the most fundamental attestation concepts.\r\n\r\nSection 7.2 and 7.5 don't even discuss the primary transitive trust flow. They only address the secondary trust flow on confidentiality and privacy. While confidentiality and privacy are important they are not the primary reason that the Attester and Endorser exist.\r\n\r\n\r\n\r\n",
       "createdAt": "2020-07-31T13:34:15Z",
-      "updatedAt": "2020-07-31T13:34:15Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2020-10-13T14:52:44Z",
+      "closedAt": "2020-10-13T14:52:43Z",
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closed by #154.",
+          "createdAt": "2020-10-13T14:52:43Z",
+          "updatedAt": "2020-10-13T14:52:43Z"
+        }
+      ]
     },
     {
       "number": 133,
@@ -15384,25 +15399,35 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDQ3MDc0MjE4",
       "title": "Revise Privacy Considerations",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/130",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "wontfix"
+      ],
       "body": "",
       "createdAt": "2020-07-09T20:21:37Z",
-      "updatedAt": "2020-09-08T14:09:23Z",
+      "updatedAt": "2020-10-13T14:51:46Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
-      "baseRefOid": "d69dd4103c1431ac695319299912e3d62f98eb36",
+      "baseRefOid": "3003dafa82abe4ef7d5636ba2e35769d48d1626f",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "LLPrivacy",
       "headRefOid": "f49005ea0a48bec74becef60f9ab95367cd8e9e1",
-      "closedAt": null,
+      "closedAt": "2020-10-13T14:51:46Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "please reword in smaller chunks.",
+          "createdAt": "2020-10-13T14:51:46Z",
+          "updatedAt": "2020-10-13T14:51:46Z"
+        }
+      ],
       "reviews": [
         {
           "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1OTQyMzg1",
@@ -15622,24 +15647,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDUwNTE1MDUx",
       "title": "attempt to use structured yaml to acknowledge contributors",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/131",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mcr",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "this is not complete and does not pass xml2rfc yet.\r\nPlease add/fix your name/email.  Or remove your email. Or foo at example dot com it.\r\n",
       "createdAt": "2020-07-16T21:03:52Z",
-      "updatedAt": "2020-08-18T21:19:34Z",
+      "updatedAt": "2020-10-13T15:17:06Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
-      "baseRefOid": "0fb654b8aa48d4963a797855cd5be3ca1d9df8a3",
+      "baseRefOid": "3003dafa82abe4ef7d5636ba2e35769d48d1626f",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "add-contributors",
       "headRefOid": "6319aaf33f8a0e5755c85f4a4f7e139890506d58",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2020-10-13T15:16:59Z",
+      "mergedAt": "2020-10-13T15:16:59Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "c0c931cfb03936a7469a24dadb35a96e17e82832"
+      },
       "comments": [],
       "reviews": [
         {
@@ -16548,7 +16575,7 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDc2NDU4ODgy",
       "title": "Tighten up terminology definitions.",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/141",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -16557,14 +16584,14 @@
       ],
       "body": "",
       "createdAt": "2020-08-31T18:25:15Z",
-      "updatedAt": "2020-09-29T17:37:17Z",
+      "updatedAt": "2020-10-13T14:49:26Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
-      "baseRefOid": "f3d30ba08713f7c939e0c1a9b9678ebb003c07d5",
+      "baseRefOid": "3003dafa82abe4ef7d5636ba2e35769d48d1626f",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "patch-4",
       "headRefOid": "5538867efbc803137cb8922f234a9a9eb6cbc72e",
-      "closedAt": null,
+      "closedAt": "2020-10-13T14:49:26Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -16575,6 +16602,13 @@
           "body": "I think we already dealt with this in a different PR.\r\nI want to close this one.\r\n",
           "createdAt": "2020-09-25T14:33:14Z",
           "updatedAt": "2020-09-25T14:33:14Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Addressed in #154.",
+          "createdAt": "2020-10-13T14:49:26Z",
+          "updatedAt": "2020-10-13T14:49:26Z"
         }
       ],
       "reviews": [
@@ -17452,21 +17486,21 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDgzMzg1NTg2",
       "title": "System Examples Appendix",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/148",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Here's a first rough draft of an appendix of end-end system examples that show how Endorsements, Verifier, Passport/Background and such apply (or don't apply) to some examples.   I think this conveys many of the things I've been trying largely unsuccessfully and relieves the main text of trying to explain them. I think this an important addition.\r\n\r\nIt is still a rough draft to see if there is interest.",
       "createdAt": "2020-09-10T04:50:17Z",
-      "updatedAt": "2020-09-25T13:58:30Z",
+      "updatedAt": "2020-10-13T14:50:45Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
-      "baseRefOid": "7d02eaa6fd46bd6fc99dfa09ce95b376caeaa278",
+      "baseRefOid": "3003dafa82abe4ef7d5636ba2e35769d48d1626f",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "SystemExamples",
       "headRefOid": "4060b4b0643d5174a06031b72f010ca159b74c1d",
-      "closedAt": null,
+      "closedAt": "2020-10-13T14:50:45Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -17477,6 +17511,13 @@
           "body": "I didn't intend this as the complete set. Someone else should write the TPM example. There should of course be a passport model example too. Maybe it can be the same as the TPM example.  Hopefully 3, or at max 4, can cover enough.\r\n\r\nI don't think the layering and composition should be rolled into this appendix. If there is desire to have them, then I think they would be better in a separate appendix that just is just Attester examples.",
           "createdAt": "2020-09-23T04:53:31Z",
           "updatedAt": "2020-09-23T04:53:31Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We think that this belongs in a document on its own, not an unread appendix.",
+          "createdAt": "2020-10-13T14:50:45Z",
+          "updatedAt": "2020-10-13T14:50:45Z"
         }
       ],
       "reviews": [
@@ -18648,24 +18689,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDk0ODYwOTc5",
       "title": "attempt to rewrite #149 to simplify manufacturer/endorser",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/154",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mcr",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "attempt to bring the manufacturer/attester/verifier full circle without insisting that endorsements always occuring.\r\n",
       "createdAt": "2020-09-29T14:09:52Z",
-      "updatedAt": "2020-10-13T14:12:49Z",
+      "updatedAt": "2020-10-13T14:19:24Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
-      "baseRefOid": "8c11fe62a88c24827e317bb49e617348ffbb7a85",
+      "baseRefOid": "a4f0487ac225163a657b5eacc11130ef04e2ff1d",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "manufacturer-installed-trust",
-      "headRefOid": "d37f338217bded2b1e335555d90277a91ac60fb8",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "a1c790019ea9dec0bbb8d96177b3de693d891297",
+      "closedAt": "2020-10-13T14:19:15Z",
+      "mergedAt": "2020-10-13T14:19:15Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "03d847e2ac0f70481bfa39db9106a16f00bbabef"
+      },
       "comments": [],
       "reviews": [
         {
@@ -18684,7 +18727,7 @@
               "originalPosition": 4,
               "body": "```suggestion\r\nThe manufacturer of the Attester arranges for the Attester to be provisioned with key material.\r\n```",
               "createdAt": "2020-09-29T14:23:31Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18704,7 +18747,7 @@
               "originalPosition": 7,
               "body": "```suggestion\r\nThe key material is typically in the form of asymmetric keypairs (e.g., an RSA or ECDSA private key\r\n```",
               "createdAt": "2020-09-29T14:24:58Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18724,7 +18767,7 @@
               "originalPosition": 5,
               "body": "```suggestion\r\nAs an Endorser, this manufacturer also arranges for the Verifier to be able to verify signatures from this key material.\r\n```",
               "createdAt": "2020-09-29T14:26:37Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18744,7 +18787,7 @@
               "originalPosition": 9,
               "body": "\"these Endorsements\" doesn't make sense in context since you haven't mentioned any Endorsements, and the trust anchor provisioned in the Verifier need not be from an Endorsement",
               "createdAt": "2020-09-29T14:27:45Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18764,7 +18807,7 @@
               "originalPosition": 7,
               "body": "```suggestion\r\nThe key material is typically in the form of asymmetric key pair (e.g., an RSA or ECDSA private key\r\n```",
               "createdAt": "2020-09-29T14:30:38Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18784,7 +18827,7 @@
               "originalPosition": 9,
               "body": "```suggestion\r\nThe key material may instead be in other forms, including databases of public keys (rather than certificates), or even carefully secured lists of symmetric keys.\r\n```",
               "createdAt": "2020-09-29T14:33:36Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18804,7 +18847,7 @@
               "originalPosition": 7,
               "body": "```suggestion\r\nThe key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key\r\n```",
               "createdAt": "2020-09-29T14:34:20Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18824,7 +18867,7 @@
               "originalPosition": 4,
               "body": "```suggestion\r\nThe manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.\r\n```",
               "createdAt": "2020-09-29T14:38:59Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18844,7 +18887,7 @@
               "originalPosition": 9,
               "body": "```suggestion\r\nThe signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key\r\nand a manufacturer signed IDevID certificate) secured in the Attester.\r\n\r\nThe Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.\r\n```",
               "createdAt": "2020-09-29T14:43:19Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18864,7 +18907,7 @@
               "originalPosition": 5,
               "body": "```suggestion\r\n```",
               "createdAt": "2020-09-29T14:46:23Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18884,7 +18927,7 @@
               "originalPosition": 14,
               "body": "```suggestion\r\nprovided about it by the lower-layer firmware or software is true.\r\n```",
               "createdAt": "2020-09-29T15:00:31Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18917,7 +18960,7 @@
               "originalPosition": 21,
               "body": "I think most of the above text applies only to local attestation because of the phrase \"implicitly trust firmware...\" and no mention of signed evidence.\r\n\r\nSince the main subject of this document is remote attestation, I think this paragraph should be move down several paragraphs and clearly prefaced to indicate it is about local attestation that is distinct from the main topic of remote attestation. Perhaps:\r\n\r\n> There is also a non-remote attestation use case where the Attester and Verifier are directly connected such that cryptographic proof of trustworthiness is unnecessary (e.g., they are on the same chip).\r\n\r\nThe sentence about root of trust is an exception as I think it applies to both local and remote attestation.",
               "createdAt": "2020-10-05T18:29:50Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18937,7 +18980,7 @@
               "originalPosition": 38,
               "body": "The anchor for {{security-considerations}} needs to be added.",
               "createdAt": "2020-10-05T18:34:31Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18957,7 +19000,7 @@
               "originalPosition": 30,
               "body": "I would like to add:\r\n\r\n> In remote attestation, the Verifier comes to trust the Attester transitively through the Endorser and/or Attester manufacturer.",
               "createdAt": "2020-10-05T18:44:12Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -18977,19 +19020,19 @@
               "originalPosition": 21,
               "body": "I think all of the text above is actually about remote (and local, but the main scope is remote) attestation.",
               "createdAt": "2020-10-06T01:38:45Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             },
             {
               "originalPosition": 26,
               "body": "```suggestion\r\nand a manufacturer-signed IDevID certificate) secured in the Attester.\r\n```\r\n\r\nIs there a citation for \"IDevID\"?",
               "createdAt": "2020-10-06T01:39:26Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             },
             {
               "originalPosition": 30,
               "body": "While that is typical, in some corner cases that would be false, so would only be ok in my opinion if \"typically\" were added to that suggestion.",
               "createdAt": "2020-10-06T01:40:40Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19009,7 +19052,7 @@
               "originalPosition": 21,
               "body": "While the text refers to HW & SW, as well as elaborates on a specific security considerations unique to a \"hardware root of trust\", I think it is very much applicable to remote attestation as a whole.\r\n\r\nI'd like to see feedback on a specific question, though:\r\n\r\nHow is a conveyance of data without any \"cryptographic proof of trustworthiness\" still an attestation procedure at all? \"Local\" attestation is typically realized via policies that reside in HW roots of trusts. These policies are deployed on an Attester by a trusted party and are semantically close related with the duties of a Verifier, I think (therefore the \"local\" attestation). ",
               "createdAt": "2020-10-06T12:42:19Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19029,7 +19072,7 @@
               "originalPosition": 30,
               "body": "I would simply remove the term \"transitively\", tbh. Also, the entity here is the manufacturer, which takes on the role of Endorser. I propose to remove the and/or and rephrase as follows:\r\n\r\n> In remote attestation procedures, a Verifier comes to trust a Attester with the help of Endorsers. The role of Endorser is often taken on by an Attester's manufacturer.\r\n\r\nI did not include the \"typical\" proposed by Dave here for now. Is that still needed with the new phrasing? While I think so, I also think it would help to understand what Dave means with \"n some corner cases that would be false\". We might have already elaborated on this, but my memory fails me right now.",
               "createdAt": "2020-10-06T12:50:03Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19049,7 +19092,7 @@
               "originalPosition": 38,
               "body": "I took the liberty and addressed the comment directly in this PR. Please find the added label below.",
               "createdAt": "2020-10-06T12:54:12Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19069,7 +19112,7 @@
               "originalPosition": 21,
               "body": "When there is local trust between the Attester and Verifier it is because they are on the same chip, the same bus or such. The connection between them is trusted without crypto.\r\n\r\nThe use of the word \"implicit\" is what makes it local to me. In remote Attestation, the trust is explicit. The Attester manufacturer tells the Verifier it can trust the Attester explicitly.\r\n",
               "createdAt": "2020-10-06T13:57:23Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19089,27 +19132,7 @@
               "originalPosition": 21,
               "body": "```suggestion\r\nIn most cases, components that have to be vouched for via Endorsements because no Evidence can be created about them are referred to as a roots of trust.\r\n```",
               "createdAt": "2020-10-06T14:17:56Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
-            }
-          ]
-        },
-        {
-          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTAzMDI2NjMx",
-          "commit": {
-            "abbreviatedOid": "906aed2"
-          },
-          "author": "mcr",
-          "authorAssociation": "COLLABORATOR",
-          "state": "COMMENTED",
-          "body": "",
-          "createdAt": "2020-10-06T14:28:13Z",
-          "updatedAt": "2020-10-06T14:28:14Z",
-          "comments": [
-            {
-              "originalPosition": 29,
-              "body": "```suggestion\r\nThe nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.\r\n\r\nIn remote attestation, the Verifier comes to trust the Attester transitively through the Endorser and/or Attester manufacturer.\r\n\r\nIn remote attestation procedures, a Verifier comes to trust a Attester with the help of Endorsers. \r\nThe role of Endorser is often taken on by an Attester's manufacturer.\r\n\r\n```",
-              "createdAt": "2020-10-06T14:28:14Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19129,7 +19152,7 @@
               "originalPosition": 9,
               "body": "```suggestion\r\nIn a typical solution, a Verifier comes to trust an Attester\r\nindirectly by having an Endorser (such as a manufacturer) vouch for\r\nthe Attester's ability to securely generate Evidence.\r\nIn some solutions, a Verifier might be configured to directly\r\ntrust an Attester by having the Verifier have the Attester's key\r\nmaterial (rather than the Endorser's) in its trust anchor store.\r\n\r\nSuch direct trust must first be established at the time of trust anchor\r\nstore configuration either by checking with an Endorser at that\r\ntime, or by conducting a security analysis of the specific device.\r\nHaving the Attester directly in the trust anchor store narrows\r\nthe Verifier's trust to only specific devices rather than all devices\r\nthe Endorser might vouch for, such as all devices manufactured by the\r\nsame manufacturer in the case that the Endorser is a manufacturer.\r\n\r\nSuch narrowing is often important since physical possession of a device\r\ncan also be used to conduct a number of attacks, and so a device in\r\na physically secure environment (such as one's own premises) may be\r\nconsidered trusted whereas devices owned by others would not be.\r\nThis often results in a desire to either have the owner run their\r\nown Endorser that would only Endorse devices one owns, or to use\r\nAttesters directly in the trust anchor store.   When there are many\r\nAttesters owned, the use of an Endorser becomes more scalable.\r\n\r\n```",
               "createdAt": "2020-10-06T14:38:11Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19149,7 +19172,7 @@
               "originalPosition": 9,
               "body": "\"by having the Verifier have the Attester's key material\"\r\n\r\nThe Verifier is \"made having this key material\" by the Endorser role. As a result, in this case the Endorser and Verifier Owner role are probably collapsed?",
               "createdAt": "2020-10-06T14:42:25Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19169,7 +19192,7 @@
               "originalPosition": 12,
               "body": "```suggestion\r\nthe Attester's ability to securely generate Evidence.\r\n\r\nIn some solutions, a Verifier might be configured to directly\r\n```",
               "createdAt": "2020-10-06T14:59:22Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19189,7 +19212,7 @@
               "originalPosition": 45,
               "body": "```suggestion\r\nIn most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as a roots of trust.\r\n```",
               "createdAt": "2020-10-06T15:06:30Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19209,7 +19232,7 @@
               "originalPosition": 45,
               "body": "```suggestion\r\nIn most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.\r\n```",
               "createdAt": "2020-10-06T15:07:21Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19229,7 +19252,7 @@
               "originalPosition": 35,
               "body": "```suggestion\r\n\r\n```",
               "createdAt": "2020-10-06T15:09:14Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         },
@@ -19249,27 +19272,7 @@
               "originalPosition": 49,
               "body": "```suggestion\r\nThe key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key\r\n```\r\n\r\nLins 826 just says \"key material\" not \"signing key material\".  Pick one and be consistent.",
               "createdAt": "2020-10-13T14:00:54Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
-            }
-          ]
-        },
-        {
-          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NDcxOTQ5",
-          "commit": {
-            "abbreviatedOid": "5b145db"
-          },
-          "author": "dthaler",
-          "authorAssociation": "COLLABORATOR",
-          "state": "COMMENTED",
-          "body": "",
-          "createdAt": "2020-10-13T14:04:17Z",
-          "updatedAt": "2020-10-13T14:04:18Z",
-          "comments": [
-            {
-              "originalPosition": 29,
-              "body": "Proposed line 834 is not quite correct, and the text up in 791-797 was intended to replace that.",
-              "createdAt": "2020-10-13T14:04:17Z",
-              "updatedAt": "2020-10-13T14:12:49Z"
+              "updatedAt": "2020-10-13T14:18:07Z"
             }
           ]
         }
@@ -19308,26 +19311,226 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDk4NzEwMzk4",
       "title": "Don't refer to Verifier or RP as an Entity",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/157",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "laurencelundblade",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Looked at all uses of \"entity\" in the doc to be sure it wasn't referring to Verifier or RP which are roles and found a few issues in the Freshness section.",
       "createdAt": "2020-10-06T17:20:55Z",
-      "updatedAt": "2020-10-06T17:21:41Z",
+      "updatedAt": "2020-10-13T14:28:31Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "a4f0487ac225163a657b5eacc11130ef04e2ff1d",
       "headRepository": "laurencelundblade/architecture",
       "headRefName": "patch-9",
-      "headRefOid": "62656c547d2f24c1a0b4d68affcd700fc95fea5f",
+      "headRefOid": "213b8590f44b3dfd171a28a8731cf9b9464483a7",
+      "closedAt": "2020-10-13T14:28:31Z",
+      "mergedAt": "2020-10-13T14:28:31Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "aff1732d5793433595adefc560f3ff1646c962fe"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NDg2MjYw",
+          "commit": {
+            "abbreviatedOid": "62656c5"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-13T14:17:59Z",
+          "updatedAt": "2020-10-13T14:18:00Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\nA Verifier or Relying Party may need to learn the point in time\r\n```",
+              "createdAt": "2020-10-13T14:17:59Z",
+              "updatedAt": "2020-10-13T14:26:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NDg4OTM0",
+          "commit": {
+            "abbreviatedOid": "62656c5"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-13T14:20:27Z",
+          "updatedAt": "2020-10-13T14:20:28Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\r\nVerifier or Relying Party, that compares the estimated epoch against an\r\n```",
+              "createdAt": "2020-10-13T14:20:28Z",
+              "updatedAt": "2020-10-13T14:26:02Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NDkyMDA3",
+          "commit": {
+            "abbreviatedOid": "62656c5"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-10-13T14:23:24Z",
+          "updatedAt": "2020-10-13T14:23:45Z",
+          "comments": [
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\ni.e., the Verifier (for Evidence), or the Relying Party (for\r\nAttestation Results), and might be suitable, for example, in case the Attester does not have\r\n```",
+              "createdAt": "2020-10-13T14:23:24Z",
+              "updatedAt": "2020-10-13T14:26:02Z"
+            },
+            {
+              "originalPosition": 21,
+              "body": "```suggestion\r\nA second approach places the onus of timekeeping solely on the appraiser,\r\n```",
+              "createdAt": "2020-10-13T14:23:31Z",
+              "updatedAt": "2020-10-13T14:26:02Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 159,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTAyNDEzNTMx",
+      "title": "\"Appraisal Policy\" is no longer a capitalized term",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/159",
+      "state": "MERGED",
+      "author": "mcr",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-10-13T14:46:48Z",
+      "updatedAt": "2020-10-13T14:48:22Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "3003dafa82abe4ef7d5636ba2e35769d48d1626f",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "consistent-casing-for-appraisal-policy",
+      "headRefOid": "784e51f6308411a483a36fd5f4ba7e1cdf43e7de",
+      "closedAt": "2020-10-13T14:48:19Z",
+      "mergedAt": "2020-10-13T14:48:19Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "f49a4df47f25dff66e818e5d2bec63340a646f22"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 160,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTAyNDMzNDIy",
+      "title": "A mistake of a lower case 'Appraisal Policy'",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/160",
+      "state": "MERGED",
+      "author": "William-PanWei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-10-13T15:02:14Z",
+      "updatedAt": "2020-10-14T17:24:31Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f49a4df47f25dff66e818e5d2bec63340a646f22",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "ap-patch-1",
+      "headRefOid": "1d6768c275756187b84611663846965e4cbaa46d",
+      "closedAt": "2020-10-14T17:24:28Z",
+      "mergedAt": "2020-10-14T17:24:27Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "9fe949c1ca073d6eb873ce4a32691baf8aa58b52"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NTUwMjIw",
+          "commit": {
+            "abbreviatedOid": "1d6768c"
+          },
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-13T15:17:25Z",
+          "updatedAt": "2020-10-13T15:17:25Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3NTg2MjQz",
+          "commit": {
+            "abbreviatedOid": "1d6768c"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-13T15:50:31Z",
+          "updatedAt": "2020-10-13T15:50:31Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 161,
+      "id": "MDExOlB1bGxSZXF1ZXN0NTAyNDQ5Mjky",
+      "title": "rename diagram 4 to be consistent with diagram 3",
+      "url": "https://github.com/ietf-rats-wg/architecture/pull/161",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-10-13T15:14:52Z",
+      "updatedAt": "2020-10-14T01:38:20Z",
+      "baseRepository": "ietf-rats-wg/architecture",
+      "baseRefName": "master",
+      "baseRefOid": "f49a4df47f25dff66e818e5d2bec63340a646f22",
+      "headRepository": "ietf-rats-wg/architecture",
+      "headRefName": "rename-diagram",
+      "headRefOid": "ee8ea1b4207158270eecab03cae3651314aba047",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "close #71 ",
+          "createdAt": "2020-10-13T15:15:38Z",
+          "updatedAt": "2020-10-13T15:15:38Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA3OTM2MzUx",
+          "commit": {
+            "abbreviatedOid": "ee8ea1b"
+          },
+          "author": "William-PanWei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-14T01:38:20Z",
+          "updatedAt": "2020-10-14T01:38:20Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
