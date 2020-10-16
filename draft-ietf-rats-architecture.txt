@@ -321,7 +321,7 @@ Internet-Draft              RATS Arch & Terms               October 2020
    decrypt a model the Attester already has in encrypted form, to the
    requester.
 
-   Attester:  A device desiring to run an ML model to do inferencing
+   Attester:  A device desiring to run an ML model
 
    Relying Party:  A server or service holding ML models it desires to
       protect
