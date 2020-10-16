@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-10-14T17:25:03.191891+00:00",
+  "timestamp": "2020-10-16T15:05:48.351249+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -1052,7 +1052,7 @@
       "labels": [],
       "body": "Here's some possible text.\r\n\r\nEndorser\r\nThe primary function of an Endorser is to endorse an Attester so that a Verifier can know to trust that Attester. The Endorser does this by creating an Endorsement and conveying it securely to the Verifier. The primary basis for a Verifier trusting an Attester is the Endorsement.\r\n\r\nThere is thus an existential relationship between Attesters and Endorsers.  An Attester with no Endorsement is not worth very much since there is no good basis by which a Verifier can trust it so every Attester needs an Endorser. The Endorser\u2019s primary function is to endorse Attesters so an Endorser doesn\u2019t have anything to do without some Attesters to endorse.\r\n\r\nA Verify cannot do its job without Endorsements. It must have an Endorsement for each Attester from which it received Attestation Evidence. Without this, the Attester is not trusted and there is no basis for trusting the Evidence it produces.\r\n\r\nThere is a trust triangle between the Endorser, Attester and Verifier. The Endorser tells the Verifier that an Attester is trustworthy.\r\n\r\nEndorsement\r\nUltimately an Endorsement must be realized as some input bytes to a Verifier and they must be conveyed securely from the Endorser to the Verifier. RATS architecture does not impose any limit or restriction on the formats of these bytes or the conveyance mechanism.  In practice they are expected to vary quite widely.\r\n\r\nIn most cases the Endorsement will include the key material that is used to verify signatures on the Evidence. Since the Evidence will contain a nonce, this signature verification serves to authenticate the attester. The Endorsement may also contain information about the Attester such as its type, version, manufacturer and such.\r\n\r\nIn one example, the Endorser and the Verifier are the same legal organization, so secure conveyance is entirely an internal issue for the organization. It may consist of one employee copying a set of public keys from computer in the company to another.\r\n\r\nIn another example, the Endorsement may take the form of a PKI hierarchy. The Endorser conveys a root certificate to the Verifier. The Endorser also creates per-attester certificates under that root. Those per-attester certificates are programmed into Attesters. The Attester sends them to the  Verifier attached to the Evidence. There may be several levels of certificates in the PKI hierarchy. The Verifier walks the certificate chain to determine trust.  Note in the case the abstract notion of Endorsement comes to the Verifier in two parts, one in an out-of-band secure conveyance or a root certificate and the other as the signed (self-securing) certificates from the Attester.\r\n\r\nUnendorsed Attesters\r\nThe use of unendorsed Attesters is discouraged because there is no good basis for establishing trust in them. An unendorsed Attester may still have a signing key and produce signed evidence. A Verifier may choose to have some trust in the Evidence they produce by assuming they are trusted on first use (TOFU), building up trust over time after seeing a lot of presumably good attestation evidence, or because it is fed into a machine learning algorithm that correlates to known fraud.  Rats architecture include any facilities, details or designs for this mode of use and explicitly considers it insecure.",
       "createdAt": "2020-03-10T14:50:23Z",
-      "updatedAt": "2020-07-30T10:28:14Z",
+      "updatedAt": "2020-10-16T15:02:18Z",
       "closedAt": null,
       "comments": [
         {
@@ -1061,6 +1061,13 @@
           "body": "Two updated proposal options from https://mailarchive.ietf.org/arch/msg/rats/xktCk4CIZ2hIxD9WRu39E8we58I\r\n\r\n1) Expand the notion of an Endorsement quite a lot. Endorsements are not longer just static documents like X.509 certs and/or COSE/CMS signed blobs. They are anything that conveys the attestation key material into the Verifier or allows Verification of the attester. They must support confidentiality.\r\n\r\n2) Replace the term \u201cEndorsement\u201d with something like \u201cVerifier Input\u201d or \u201cAttester Trust Criteria\u201d in the architecture document as the means by which key material goes into the Verifier. Endorsements still exist, but are just one type of Verifier Input or Attester Trust Criteria just like EAT is one kind of Attestation Evidence.\r\n\r\nLaurence proposes to follow one of theses options and highlights a slight preference for his 2nd option.",
           "createdAt": "2020-07-30T10:28:13Z",
           "updatedAt": "2020-07-30T10:28:13Z"
+        },
+        {
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "body": "PR #150 was related to that, is this now addressed or what gaps remain?",
+          "createdAt": "2020-10-16T15:02:17Z",
+          "updatedAt": "2020-10-16T15:02:17Z"
         }
       ]
     },
@@ -1936,6 +1943,22 @@
       "body": "Dave pretty clearly thinks of Endorsements and the Endorser as an optional optimization in an attestation deployment.  Also, the Endorser is an Entity like a Verifier Owner, not a Role, like a Verifier. Most of the text in the document is consistent with this. For example, it says \"...help Verifier...\".\r\n\r\nThe other messages in the document, the Attestation Evidence and Attestation Result, are not optional, though Attestation Result can be a bit virtual when Verifier and RP are the same Entity. We don't say clearly that Endorsements are optional. Probably we should say so (if we really do agree they are optional).\r\n\r\nPersonally, I think it is confusing that Endorser and Endorsements, that are optional helper optimizations, are featured so prominently in Figure 1.",
       "createdAt": "2020-10-09T19:48:30Z",
       "updatedAt": "2020-10-09T19:48:30Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 162,
+      "id": "MDU6SXNzdWU3MjI1Nzc4ODQ=",
+      "title": "Endorsements should be confidential when carrying symmetric keys",
+      "url": "https://github.com/ietf-rats-wg/architecture/issues/162",
+      "state": "OPEN",
+      "author": "laurencelundblade",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "There should be a comment, probably in security considerations, that Endorsements should have confidentiality protection when carrying symmetric verification keys.\r\n\r\nThis seems in line with the level of concern for security in the rest of the document in UCCS and such.",
+      "createdAt": "2020-10-15T18:42:25Z",
+      "updatedAt": "2020-10-15T18:42:25Z",
       "closedAt": null,
       "comments": []
     }
@@ -19489,24 +19512,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NTAyNDQ5Mjky",
       "title": "rename diagram 4 to be consistent with diagram 3",
       "url": "https://github.com/ietf-rats-wg/architecture/pull/161",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mcr",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2020-10-13T15:14:52Z",
-      "updatedAt": "2020-10-14T01:38:20Z",
+      "updatedAt": "2020-10-16T15:05:10Z",
       "baseRepository": "ietf-rats-wg/architecture",
       "baseRefName": "master",
       "baseRefOid": "f49a4df47f25dff66e818e5d2bec63340a646f22",
       "headRepository": "ietf-rats-wg/architecture",
       "headRefName": "rename-diagram",
       "headRefOid": "ee8ea1b4207158270eecab03cae3651314aba047",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2020-10-16T15:05:07Z",
+      "mergedAt": "2020-10-16T15:05:07Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "8ace25ded6afc33428a2e47efcf3bcc98ed7a770"
+      },
       "comments": [
         {
           "author": "mcr",
@@ -19528,6 +19553,45 @@
           "body": "",
           "createdAt": "2020-10-14T01:38:20Z",
           "updatedAt": "2020-10-14T01:38:20Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA4NTgwMjM1",
+          "commit": {
+            "abbreviatedOid": "ee8ea1b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "looks good",
+          "createdAt": "2020-10-14T17:36:53Z",
+          "updatedAt": "2020-10-14T17:36:53Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTA4NTkzMzI4",
+          "commit": {
+            "abbreviatedOid": "ee8ea1b"
+          },
+          "author": "dthaler",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-14T17:54:31Z",
+          "updatedAt": "2020-10-14T17:54:31Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NTEwNTU2NjYy",
+          "commit": {
+            "abbreviatedOid": "ee8ea1b"
+          },
+          "author": "nedmsmith",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2020-10-16T15:03:37Z",
+          "updatedAt": "2020-10-16T15:03:37Z",
           "comments": []
         }
       ]
